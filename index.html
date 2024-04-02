@@ -1,68 +1,1657 @@
-<!DOCTYPE html>
-<html>
 <head>
-  <title>Consulta de Datos</title>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.3/paper-full.min.js">
+</script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css" rel="stylesheet"/>
+<link href="https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
+
+ <style>
+  .layout {
+  z-index: 1;
+}
+.layout .header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.layout .content {
+  padding: 12px 50px;
+  display: flex;
+  flex-direction: column; 
+}
+.layout .content a{
+  text-decoration: none;
+}
+.layout .footer {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+
+@-webkit-keyframes top {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes top {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim{
+  -webkit-animation: top 1s both;
+          animation: top 1s both;
+}
+
+
+.sidebar {
+  color: #7d84ab;
+  overflow-x: hidden !important;
+  position: relative;
+
+  font-family: "Poppins", sans-serif;  
+  font-size: 1.7rem;  
+}
+.sidebar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+.sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: #1a4173;
+}
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+  background-color: #0c1e35;
+}
+.sidebar .image-wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+  
+}
+.sidebar .image-wrapper > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.sidebar.has-bg-image .image-wrapper {
+  display: block;
+}
+.sidebar .sidebar-layout {
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #0c1e35;
+  z-index: 2;
+}
+.sidebar .sidebar-layout .sidebar-header {
+  height: 100px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;  
+}
+.sidebar .sidebar-layout .sidebar-header h5{
+  font-weight: 700;
+}
+.sidebar .sidebar-layout .sidebar-header > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sidebar .sidebar-layout .sidebar-content {
+  flex-grow: 1;
+  padding: 10px 0;
+}
+.sidebar .sidebar-layout .sidebar-content .menu-icon i {
+    font-size: 19px; /* Change this value to your desired size */
+  }
+.sidebar .sidebar-layout .sidebar-footer {
+  height: 230px;
+  min-height: 230px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.sidebar .sidebar-layout .sidebar-footer > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@keyframes swing {
+  0%, 30%, 50%, 70%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+}
+.layout .sidebar .menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.layout .sidebar .menu .menu-header {
+  font-weight: 600;
+  padding: 10px 25px;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+  transition: opacity 0.3s;
+  opacity: 0.5;
+}
+.layout .sidebar .menu .menu-item a {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+  color: #7d84ab;
+  text-decoration: none;
+}
+.layout .sidebar .menu .menu-item a .menu-icon {
+  font-size: 1.2rem;
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 2px;
+  transition: color 0.3s;
+}
+.layout .sidebar .menu .menu-item a .menu-icon i {
+  display: inline-block;
+}
+.layout .sidebar .menu .menu-item a .menu-title {
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  transition: color 0.3s;
+}
+.layout .sidebar .menu .menu-item a .menu-prefix,
+.layout .sidebar .menu .menu-item a .menu-suffix {
+  display: inline-block;
+  padding: 5px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.layout .sidebar .menu .menu-item a:hover .menu-title {
+  color: #dee2ec;
+}
+.layout .sidebar .menu .menu-item a:hover .menu-icon {
+  color: #dee2ec;
+}
+.layout .sidebar .menu .menu-item a:hover .menu-icon i {
+  animation: swing ease-in-out 0.5s 1 alternate;
+}
+.layout .sidebar .menu .menu-item a:hover::after {
+  border-color: #dee2ec !important;
+}
+.layout .sidebar .menu .menu-item.sub-menu {
+  position: relative;
+}
+.layout .sidebar .menu .menu-item.sub-menu > a::after {
+  content: "";
+  transition: transform 0.3s;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  width: 5px;
+  height: 5px;
+  transform: rotate(-45deg);
+}
+.layout .sidebar .menu .menu-item.sub-menu > .sub-menu-list {
+  padding-left: 20px;
+  display: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.layout .sidebar .menu .menu-item.sub-menu.open > a::after {
+  transform: rotate(45deg);
+}
+.layout .sidebar .menu .menu-item.active > a .menu-title {
+  color: #dee2ec;
+}
+.layout .sidebar .menu .menu-item.active > a::after {
+  border-color: #dee2ec;
+}
+.layout .sidebar .menu .menu-item.active > a .menu-icon {
+  color: #dee2ec;
+}
+.layout .sidebar .menu > ul > .sub-menu > .sub-menu-list {
+  background-color: #0b1a2c;
+}
+.layout .sidebar .menu.icon-shape-circle .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-rounded .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-square .menu-item a .menu-icon {
+  background-color: #0b1a2c;
+}
+.layout .sidebar .menu.icon-shape-circle .menu-item a .menu-icon {
+  border-radius: 50%;
+}
+.layout .sidebar .menu.icon-shape-rounded .menu-item a .menu-icon {
+  border-radius: 4px;
+}
+.layout .sidebar .menu.icon-shape-square .menu-item a .menu-icon {
+  border-radius: 0;
+}
+.layout .sidebar:not(.collapsed) .menu > ul > .menu-item.sub-menu > .sub-menu-list {
+  visibility: visible !important;
+  position: static !important;
+  transform: translate(0, 0) !important;
+}
+.layout .sidebar.collapsed .menu > ul > .menu-header {
+  opacity: 0;
+}
+.layout .sidebar.collapsed .menu > ul > .menu-item > a .menu-prefix,
+.layout .sidebar.collapsed .menu > ul > .menu-item > a .menu-suffix {
+  opacity: 0;
+}
+.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > a::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background-color: currentcolor;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  border: none;
+  transform: translateY(-50%);
+}
+.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > a:hover::after {
+  background-color: #dee2ec;
+}
+.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > .sub-menu-list {
+  transition: none !important;
+  width: 200px;
+  margin-left: 3px !important;
+  border-radius: 4px;
+  display: block !important;
+}
+.layout .sidebar.collapsed .menu > ul > .menu-item.active > a::after {
+  background-color: #dee2ec;
+}
+.layout .sidebar.has-bg-image .menu.icon-shape-circle .menu-item a .menu-icon, .layout .sidebar.has-bg-image .menu.icon-shape-rounded .menu-item a .menu-icon, .layout .sidebar.has-bg-image .menu.icon-shape-square .menu-item a .menu-icon {
+  background-color: rgba(11, 26, 44, 0.6);
+}
+.layout .sidebar.has-bg-image:not(.collapsed) .menu > ul > .sub-menu > .sub-menu-list {
+  background-color: rgba(11, 26, 44, 0.6);
+}
+.layout.rtl .sidebar .menu .menu-item a .menu-icon {
+  margin-left: 10px;
+  margin-right: 0;
+}
+.layout.rtl .sidebar .menu .menu-item.sub-menu > a::after {
+  transform: rotate(135deg);
+}
+.layout.rtl .sidebar .menu .menu-item.sub-menu > .sub-menu-list {
+  padding-left: 0;
+  padding-right: 20px;
+}
+.layout.rtl .sidebar .menu .menu-item.sub-menu.open > a::after {
+  transform: rotate(45deg);
+}
+.layout.rtl .sidebar.collapsed .menu > ul > .menu-item.sub-menu a::after {
+  right: auto;
+  left: 10px;
+}
+.layout.rtl .sidebar.collapsed .menu > ul > .menu-item.sub-menu > .sub-menu-list {
+  margin-left: -3px !important;
+}
+
+.layout .sidebar.collapsed .content {
+  width: calc(100% - (170px));
+  margin-left: 170x;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.contents{
+  margin-left: -50px; 
+  margin-right: -50px;
+}
+
+.profil{
+   margin-left: -110px; 
+  margin-right: -110px;
+}
+
+
+
+@media (max-width: 576px) {
+  #btn-collapse {
+    display: none;
+  }
+  .sidebar {
+  font-size: 2.2rem;  
+ }
+}
+
+@media (min-width: 576px) {
+  .contents{
+  max-height: 650px; 
+  overflow-y: auto; 
+  }
+}
+
+
+@media (min-width: 1000px) {
+   .profil{
+   margin-left: -140px; 
+  margin-right: -140px;
+}
+}
+
+@media (min-height: 650px) and (max-height: 800px) {
+  .layout .sidebar .menu {
+    height: 55vh;
+  }
+}
+
+@media (min-height: 800px){
+  .layout .sidebar .menu {
+    height: 70vh;
+  }
+}
+
+
+
+.layout .sidebar .pro-sidebar-logo {
+  display: flex;
+  align-items: center;
+}
+.layout .sidebar .pro-sidebar-logo > div {
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: #4f4d4f;
+  margin-right: 10px;
+}
+.layout .sidebar .pro-sidebar-logo > h5 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  line-height: 30px;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+.layout .sidebar .footer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 20px 0;
+  border-radius: 8px;
+  width: 180px;
+  min-width: 190px;
+  margin: 0 auto;
+  background-color: #162d4a;
+}
+.layout .sidebar .footer-box img.react-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+.layout .sidebar .footer-box a {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.layout .sidebar .sidebar-collapser {
+  transition: left, right, 0.3s;
+  position: fixed;
+  left: 260px;
+  top: 70px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #00829f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  transform: translateX(50%);
+  z-index: 111;
+  cursor: pointer;
+  color: white;
+  box-shadow: 1px 1px 4px #0c1e35;
+}
+.layout .sidebar.collapsed .pro-sidebar-logo > h5 {
+  opacity: 0;
+}
+.layout .sidebar.collapsed .footer-box {
+  display: none;
+}
+.layout .sidebar.collapsed .sidebar-collapser {
+  left: 60px;
+}
+.layout .sidebar.collapsed .sidebar-collapser i {
+  transform: rotate(180deg);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #6c757d;
+}
+.badge.primary {
+  background-color: #ab2dff;
+}
+.badge.secondary {
+  background-color: #079b0b;
+}
+.badge.danger {
+  background-color: #ee4b2b;
+}
+
+.sidebar-toggler {
+  z-index: 5;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  animation: heartbeat 5s;
+}
+
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.4); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.4); }
+    40% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.4); }
+    80% { transform: scale(1); }
+    90% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+  }
+
+.social-links a {
+  margin: 0 10px;
+  color: #3f4750;
+}
+
+.selected .menu-icon,
+.selected .menu-title {
+    color: #eeffff;
+}
+
+
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.attend{
+    width: 186px;
+ }
+.outside{
+  margin-top: -10px;
+  width: 80px;
+  display: flex;
+}
+.outside button{  
+  margin: 0 2px;
+}
+.inside{
+  margin-top: 15px;
+  width: 80px;
+  display: flex;
+}
+.inside button{  
+  margin: 0 2px;
+  margin-right: -10px;
+}
+.form-control {
+  width: 30%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.name {
+  font-weight: 700;
+}
+.expertise-label {
+  display: block;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.btn-more {
+  margin-top: 10px;
+  width: 100%;
+}
+.label {
+  font-weight: normal;
+}
+.status {
+  position: absolute; 
+  bottom: 60px; 
+  right: 15px;
+}
+
+
+li {
+  list-style: none; 
+}
+
+.inside .fa-download{
+  color: CadetBlue; 
+  position: absolute; 
+  bottom: 85px; 
+  right: 110px; 
+  font-size: 24px;
+  animation: beat-fade 1s infinite ease-in-out;
+}
+
+.inside .fa-check-circle{
+  color: green; 
+  position: absolute; 
+  bottom: 85px; 
+  right: 20px; 
+  font-size: 26px;
+  animation: beat-fade 0.5s;
+}
+
+.inside .fa-pause-circle-o{
+  color: orange; 
+  position: absolute; 
+  bottom: 85px; 
+  right: 63px; 
+  font-size: 28px;
+  animation: beat-fade 0.5s;
+}
+
+.inside .fa-times-circle{
+  color: FireBrick; 
+  position: absolute; 
+  bottom: 85px; 
+  right: 20px; 
+  font-size: 26px;
+  animation: beat-fade 0.5s;
+}
+.fa-check-circle{
+  color: green; 
+  position: absolute; 
+  top: 15px; 
+  right: 15px; 
+  
+  animation: beat-fade 0.5s;
+  transform: scale(2.5); 
+}
+
+.fa-pause-circle-o{
+  color: orange; 
+  position: absolute; 
+  top: 15px; 
+  right: 15px; 
+  
+  animation: beat-fade 0.5s;
+  transform: scale(2.5); 
+}
+
+.loadInfo{
+  z-index: 4;
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+@media only screen and (min-width: 990px) {
+  .col-md-2{
+    margin-top: 130px;
+    margin-left: -20px;
+  }  
+}
+
+
+
+@keyframes beat-fade {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(2.4);
+  }
+  
+  50% {
+    opacity: 0.5;
+    transform: scale(4);
+  }
+}
+
+.iframe-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            height: 500px;
+        }
+
+.iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.backRight {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #03A9F4;
+}
+
+.backLeft {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #673AB7;
+}
+
+#back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -999;
+}
+
+.canvas-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+#slideBox {
+  width: 50%;
+  max-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 50%;
+  position: absolute;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.topLayer {
+  width: 200%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  left: -100%;
+}
+
+label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+input {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 1em;
+  padding: 8px 1px;
+  margin-top: 0.1em;
+}
+
+.left {
+  width: 50%;
+  height: 100%;
+  overflow: scroll;
+  background: #2C3034;
+  left: 0;
+  position: absolute;
+}
+.left label {
+  color: #e3e3e3;
+}
+.left input {
+  border-bottom: 1px solid #e3e3e3;
+  color: #e3e3e3;
+}
+.left input:focus, .left input:active {
+  border-color: #03A9F4;
+  color: #03A9F4;
+}
+.left input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #2C3034 inset;
+  -webkit-text-fill-color: #e3e3e3;
+}
+.left a {
+  color: #03A9F4;
+}
+
+.right {
+  width: 50%;
+  height: 100%;
+  overflow: scroll;
+  background: #f9f9f9;
+  right: 0;
+  position: absolute;
+}
+.right label {
+  color: #212121;
+}
+.right input {
+  border-bottom: 1px solid #212121;
+}
+.right input:focus, .right input:active {
+  border-color: #673AB7;
+}
+.right input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #f9f9f9 inset;
+  -webkit-text-fill-color: #212121;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content h2 {
+  font-weight: 300;
+  font-size: 2.6em;
+  margin: 0.2em 0 0.1em;
+}
+
+.left .content h2 {
+  color: #03A9F4;
+}
+
+.right .content h2 {
+  color: #673AB7;
+}
+
+.form-element {
+  margin: 1.6em 0;
+}
+.form-element.form-submit {
+  margin: 1.6em 0 0;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+
+button {
+  padding: 0.8em 1.2em;
+  margin: 0 10px 0 0;
+  width: auto;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1em;
+  color: #fff;
+  line-height: 1em;
+  letter-spacing: 0.6px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+button.signup {
+  background: #03A9F4;
+}
+button.login {
+  background: #673AB7;
+}
+button.off {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+}
+button.off.signup {
+  color: #03A9F4;
+}
+button.off.login {
+  color: #673AB7;
+}
+
+button:focus, button:active, button:hover {
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+button:focus.signup, button:active.signup, button:hover.signup {
+  background: #0288D1;
+}
+button:focus.login, button:active.login, button:hover.login {
+  background: #512DA8;
+}
+button:focus.off, button:active.off, button:hover.off {
+  box-shadow: none;
+}
+button:focus.off.signup, button:active.off.signup, button:hover.off.signup {
+  color: #03A9F4;
+  background: #212121;
+}
+button:focus.off.login, button:active.off.login, button:hover.off.login {
+  color: #512DA8;
+  background: #e3e3e3;
+}
+
+@media only screen and (max-width: 768px) {
+  #slideBox {
+    width: 80%;
+    margin-left: 20%;
+  }
+
+  .signup-info, .login-info {
+    display: none;
+  }
+}
+
+
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 99;
+}
+#loading {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+}
+
+#loading-text {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 50px);
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+</style>
+
 <body>
 
-  <section class="loginSection" >
-  <input type="email" id="email-login" placeholder="Correo electrónico">
-  <input type="password" id="password-login" placeholder="Contraseña">
-  <button onclick="login()">Iniciar sesión</button>
-  </section>
+<section class="loginSection"  style="display: none;">
+  <div id="back">
+    <canvas id="canvas" class="canvas-back"></canvas>
+    <div class="backRight">    
+    </div>
+    <div class="backLeft">
+    </div>
+  </div>
 
-  <button onclick="main()"></button>
+  <div id="slideBox">
+    <div class="topLayer">
+      <div class="left">
+        <div class="content">
+          <h2>Recuperar contraseña</h2>
+      
+          <form id="form-signup" method="post" onsubmit="return false;">
+            <div class="form-element form-stack">
+              <label for="recover" class="form-label">Email</label>
+              <input id="recover" type="email" name="recover">
+            </div>
+            <div class="form-element form-stack">
+              <label for="recover2" class="form-label">Confirmar Email</label>
+              <input id="recover2" type="email" name="recover2">
+            </div>
+            <div class="form-element form-submit">
+              <button id="signUp" class="signup" type="submit" name="signup">Enviar correo</button>
+              <button id="goLeft" class="signup off" style="font-size: 13px; margin-top: 10px;">Iniciar sesión</button> 
+            </div>
+          </form>
+            <div style="color: gainsboro; font-weight: 400; font-size: 13px; margin-top: 15px;"> Recibiras un email con los pasos a seguir para que puedas recuperar tu cuenta </div>
+        </div>
+      </div>
+    
+      <div class="right">
+        <div class="content">
+          <h2>Inicio de sesión</h2>
+          <div id="form-login">
+            <div class="form-element form-stack">
+              <label for="email-login" class="form-label">Email</label>
+              <input id="email-login" type="email" name="email-login">
+            </div>
+            
+            
+            <div class="form-element form-stack">
+              <label for="password-login" class="form-label">Password</label>
+              <input id="password-login" type="password" name="password-login">
+            </div>
+      
+            <div class="form-element form-submit">
+              <button id="logIn" class="login" onclick="login(this)" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Cargando...">Iniciar sesión</button>
+              <button id="goRight" class="login off" name="signup" style="font-size: 13px; margin-top: 10px;">Recuperar contraseña</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section class="mainSection" style="display: none;">
-    <iframe src="test.html" width="100%" height="100%" frameborder="0"></iframe>
+     <iframe src="menu" width="100%" height="100%" frameborder="0"></iframe>
   </section>
 
+  <section class="preloader" >
+    <div id="loading">&nbsp;</div>
+    <div id="loading-text">Cargando</div>
+  </section> 
+
+</body>
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
+<script>
+$(window).on('load', function() { 
+  var storedToken = localStorage.getItem('MStoken');
+  if (storedToken) {
+    var api = "https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec";
 
-    /*$(document).ready(function() {
-    $.get('evaluation.html', function(data) {
-        $('.mainSection').html(data);
+    var validationData = {
+      redirect: "follow",
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        action: "validateToken",
+        token: storedToken
+      })
+    };
+
+  fetch(api, validationData)
+  .then(response => response.text())
+  .then(res => {
+    var validation = JSON.parse(res);
+    if (validation.status == "success") {
+      $('.preloader').css({'display':'none'})  
+      $('.loginSection').css({'display':'none'})  
+      $('.mainSection').fadeIn('slow')
+      loadData(api, storedToken, "si");    
+    } else {
+      localStorage.removeItem('MStoken');
+      $('.preloader').css({'display':'none'});
+      $('.loginSection').fadeIn('slow') 
+      $('.mainSection').css({'display':'none'});
+      loadForm();
+    }
+  })
+  } else {
+    $('.preloader').css({'display':'none'})  
+    $('.loginSection').fadeIn('slow') 
+    $('.mainSection').css({'display':'none'});
+    loadForm();
+  }
+});
+
+  
+  
+ function login(button) {
+  var $button = $(button);
+  $button.button('loading');
+  var email = document.getElementById('email-login').value;
+  var password = document.getElementById('password-login').value;
+
+  var api = "https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec";
+
+  var validationData = {
+    redirect: "follow",
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      action: "validateUser",
+      email: email,
+      password: password
+    })
+  };
+
+  fetch(api, validationData)
+    .then(response => response.text())
+    .then(res => {
+      var validation = JSON.parse(res);
+      if (validation.status == "success") {
+        localStorage.setItem('MStoken', validation.token);  
+        $('.preloader').css({'display':'none'})  
+        $('.loginSection').css({'display':'none'})  
+        $('.mainSection').fadeIn('slow')
+        loadData(api, email, "no");    
+      } else {
+        alert('Información de ingreso inválida');
+        $button.button('reset');
+      }
+    })
+}
+
+
+function loadData(api, mail, encryption) {
+  var userData = {
+    redirect: "follow",
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      action: "getData",
+      email: mail,
+      encryption: encryption
+    })
+  };
+
+  fetch(api, userData)
+    .then(answer => answer.text())
+    .then(ans => {
+      //var content = JSON.parse(ans);
+      angular.module('studentsApp', [])
+      .controller('Controller1', ['$http', '$scope', function($http, $scope) {
+        $scope.userData = JSON.parse(ans) || {};       
+      }]);
+      angular.bootstrap(document, ['studentsApp']);
+      showMain(); 
+      $(function () {
+        $('[data-toggle="popover"]').popover()
       });
-    });*/
+    });
+  }
 
-    function main(){
-      $('.mainSection').css({'display':'block'})
-      $('.loginSection').css({'display':'none'})
+
+
+    function logout() {
+      $('.preloader').fadeIn('slow')
+      const storedToken = localStorage.getItem('MStoken');
+      google.script.run.withSuccessHandler().removeToken(storedToken);
+      localStorage.removeItem('MStoken');
+
+      $('.preloader').css({'display':'none'})  
+      $('.loginSection').fadeIn('slow') 
+      $('.mainSection').css({'display':'none'});
+      loadForm();
     }
 
 
-  function login() {
-  var email = document.getElementById('email-login').value;
-  var password = document.getElementById('password-login').value;
-  var requestData = {
-    email: email,
-    password: password
-  };
 
-  var api = "https://script.google.com/macros/s/AKfycbxI7m7cYkP4nioh8vTIz5XkYLYr9ov9GGQ5NrmaGaAPUd6sm2p6KvZd62HRBBt_C6WZBw/exec"; 
 
-  var options = {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(requestData)
-  };
-
-  fetch(api, options)
-    .then(response => response.json())
-    .then(jsonResponse => {
-        alert(jsonResponse);
-    })
-    .catch(error => {
-      alert("error: ", error);
+function loadForm(){
+$(document).ready(function(){
+  $('#goRight').on('click', function(){
+    $('#slideBox').animate({
+      'marginLeft' : '0'
     });
-}
+    $('.topLayer').animate({
+      'marginLeft' : '100%'
+    });
+  });
+  $('#goLeft').on('click', function(){
+    if (window.innerWidth > 769){
+      $('#slideBox').animate({
+        'marginLeft' : '50%'
+      });
+    }
+    else {
+      $('#slideBox').animate({
+        'marginLeft' : '20%'
+      });
+    }
+    $('.topLayer').animate({
+      'marginLeft': '0'
+    });
+  });
+});
 
-  </script>
+/* ====================== *
+ *  Initiate Canvas       *
+ * ====================== */
+paper.install(window);
+paper.setup(document.getElementById("canvas"));
 
-</body>
-</html>
+// Paper JS Variables
+var canvasWidth, 
+    canvasHeight,
+    canvasMiddleX,
+    canvasMiddleY;
+
+var shapeGroup = new Group();
+
+var positionArray = [];
+
+function getCanvasBounds() {
+  // Get current canvas size
+  canvasWidth = view.size.width;
+  canvasHeight = view.size.height;
+  canvasMiddleX = canvasWidth / 2;
+  canvasMiddleY = canvasHeight / 2;
+  // Set path position
+  var position1 = {
+    x: (canvasMiddleX / 2) + 100,
+    y: 100, 
+  };
+
+  var position2 = {
+    x: 200,
+    y: canvasMiddleY, 
+  };
+
+  var position3 = {
+    x: (canvasMiddleX - 50) + (canvasMiddleX / 2),
+    y: 150, 
+  };
+
+  var position4 = {
+    x: 0,
+    y: canvasMiddleY + 100, 
+  };
+
+  var position5 = {
+    x: canvasWidth - 130,
+    y: canvasHeight - 75, 
+  };
+
+  var position6 = {
+    x: canvasMiddleX + 80,
+    y: canvasHeight - 50, 
+  };
+  
+  var position7 = {
+    x: canvasWidth + 60,
+    y: canvasMiddleY - 50, 
+  };
+  
+  var position8 = {
+    x: canvasMiddleX + 100,
+    y: canvasMiddleY + 100, 
+  };
+
+  positionArray = [position3, position2, position5, position4, position1, position6, position7, position8];
+  };
+
+
+/* ====================== *
+ * Create Shapes          *
+ * ====================== */
+function initializeShapes() {
+  // Get Canvas Bounds
+  getCanvasBounds();
+
+  var shapePathData = [
+    'M231,352l445-156L600,0L452,54L331,3L0,48L231,352', 
+    'M0,0l64,219L29,343l535,30L478,37l-133,4L0,0z', 
+    'M0,65l16,138l96,107l270-2L470,0L337,4L0,65z',
+    'M333,0L0,94l64,219L29,437l570-151l-196-42L333,0',
+    'M331.9,3.6l-331,45l231,304l445-156l-76-196l-148,54L331.9,3.6z',
+    'M389,352l92-113l195-43l0,0l0,0L445,48l-80,1L122.7,0L0,275.2L162,297L389,352',
+    'M 50 100 L 300 150 L 550 50 L 750 300 L 500 250 L 300 450 L 50 100',
+    'M 700 350 L 500 350 L 700 500 L 400 400 L 200 450 L 250 350 L 100 300 L 150 50 L 350 100 L 250 150 L 450 150 L 400 50 L 550 150 L 350 250 L 650 150 L 650 50 L 700 150 L 600 250 L 750 250 L 650 300 L 700 350 '
+  ];
+
+  for (var i = 0; i <= shapePathData.length; i++) {
+    // Create shape
+    var headerShape = new Path({
+      strokeColor: 'rgba(255, 255, 255, 0.5)',
+      strokeWidth: 2,
+      parent: shapeGroup,
+    });
+    // Set path data
+    headerShape.pathData = shapePathData[i];
+    headerShape.scale(2);
+    // Set path position
+    headerShape.position = positionArray[i];
+  }
+};
+
+initializeShapes();
+
+/* ====================== *
+ * Animation              *
+ * ====================== */
+view.onFrame = function paperOnFrame(event) {
+  if (event.count % 4 === 0) {
+    // Slows down frame rate
+    for (var i = 0; i < shapeGroup.children.length; i++) {
+      if (i % 2 === 0) {
+        shapeGroup.children[i].rotate(-0.1);
+      } else {
+        shapeGroup.children[i].rotate(0.1);
+      }
+    }
+  }
+};
+
+view.onResize = function paperOnResize() {
+  getCanvasBounds();
+
+  for (var i = 0; i < shapeGroup.children.length; i++) {
+    shapeGroup.children[i].position = positionArray[i];
+  }
+
+  if (canvasWidth < 700) {
+    shapeGroup.children[3].opacity = 0;
+    shapeGroup.children[2].opacity = 0;
+    shapeGroup.children[5].opacity = 0;
+  } else {
+    shapeGroup.children[3].opacity = 1;
+    shapeGroup.children[2].opacity = 1;
+    shapeGroup.children[5].opacity = 1;
+  }
+};
+};
+</script>
+
+<script>
+   function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}const ANIMATION_DURATION = 300;
+
+const SIDEBAR_EL = document.getElementById("sidebar");
+
+const MENU_ITEM = document.querySelectorAll(
+".menu > ul > .menu-item:not(.sub-menu)");
+
+const SUBMENU_ITEMS = document.querySelectorAll(".sub-menu-list > ul > li.menu-item");
+
+const SUB_MENU_ELS = document.querySelectorAll(
+".menu > ul > .menu-item.sub-menu");
+
+const FIRST_SUB_MENUS_BTN = document.querySelectorAll(
+".menu > ul > .menu-item.sub-menu > a");
+
+const INNER_SUB_MENUS_BTN = document.querySelectorAll(
+".menu > ul > .menu-item.sub-menu .menu-item.sub-menu > a");
+
+
+class PopperObject {
+
+  constructor(reference, popperTarget) {_defineProperty(this, "instance", null);_defineProperty(this, "reference", null);_defineProperty(this, "popperTarget", null);
+    this.init(reference, popperTarget);
+  }
+
+  init(reference, popperTarget) {
+    this.reference = reference;
+    this.popperTarget = popperTarget;
+    this.instance = Popper.createPopper(this.reference, this.popperTarget, {
+      placement: "right",
+      strategy: "fixed",
+      resize: true,
+      modifiers: [
+      {
+        name: "computeStyles",
+        options: {
+          adaptive: false } },
+
+
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["left", "right"] } }] });
+
+    document.addEventListener(
+    "click",
+    e => this.clicker(e, this.popperTarget, this.reference),
+    false);
+
+
+    const ro = new ResizeObserver(() => {
+      this.instance.update();
+    });
+
+    ro.observe(this.popperTarget);
+    ro.observe(this.reference);
+  }
+
+  clicker(event, popperTarget, reference) {
+    if (
+    SIDEBAR_EL.classList.contains("collapsed") &&
+    !popperTarget.contains(event.target) &&
+    !reference.contains(event.target))
+    {
+      this.hide();
+    }
+  }
+
+  hide() {
+    this.instance.state.elements.popper.style.visibility = "hidden";
+  }}
+
+
+class Poppers {
+
+
+  constructor() {_defineProperty(this, "subMenuPoppers", []);
+    this.init();
+  }
+
+  init() {
+    SUB_MENU_ELS.forEach(element => {
+      this.subMenuPoppers.push(
+      new PopperObject(element, element.lastElementChild));
+
+      this.closePoppers();
+    });
+  }
+
+  togglePopper(target) {
+    if (window.getComputedStyle(target).visibility === "hidden")
+    target.style.visibility = "visible";else
+    target.style.visibility = "hidden";
+  }
+
+  updatePoppers() {
+    this.subMenuPoppers.forEach(element => {
+      element.instance.state.elements.popper.style.display = "none";
+      element.instance.update();
+    });
+  }
+
+  closePoppers() {
+    this.subMenuPoppers.forEach(element => {
+      element.hide();
+    });
+  }}
+
+const slideUp = (target, duration = ANIMATION_DURATION) => {
+  const { parentElement } = target;
+  parentElement.classList.remove("open");
+  target.style.transitionProperty = "height, margin, padding";
+  target.style.transitionDuration = `${duration}ms`;
+  target.style.boxSizing = "border-box";
+  target.style.height = `${target.offsetHeight}px`;
+  target.offsetHeight;
+  target.style.overflow = "hidden";
+  target.style.height = 0;
+  target.style.paddingTop = 0;
+  target.style.paddingBottom = 0;
+  target.style.marginTop = 0;
+  target.style.marginBottom = 0;
+  window.setTimeout(() => {
+    target.style.display = "none";
+    target.style.removeProperty("height");
+    target.style.removeProperty("padding-top");
+    target.style.removeProperty("padding-bottom");
+    target.style.removeProperty("margin-top");
+    target.style.removeProperty("margin-bottom");
+    target.style.removeProperty("overflow");
+    target.style.removeProperty("transition-duration");
+    target.style.removeProperty("transition-property");
+  }, duration);
+};
+const slideDown = (target, duration = ANIMATION_DURATION) => {
+  const { parentElement } = target;
+  parentElement.classList.add("open");
+  target.style.removeProperty("display");
+  let { display } = window.getComputedStyle(target);
+  if (display === "none") display = "block";
+  target.style.display = display;
+  const height = target.offsetHeight;
+  target.style.overflow = "hidden";
+  target.style.height = 0;
+  target.style.paddingTop = 0;
+  target.style.paddingBottom = 0;
+  target.style.marginTop = 0;
+  target.style.marginBottom = 0;
+  target.offsetHeight;
+  target.style.boxSizing = "border-box";
+  target.style.transitionProperty = "height, margin, padding";
+  target.style.transitionDuration = `${duration}ms`;
+  target.style.height = `${height}px`;
+  target.style.removeProperty("padding-top");
+  target.style.removeProperty("padding-bottom");
+  target.style.removeProperty("margin-top");
+  target.style.removeProperty("margin-bottom");
+  window.setTimeout(() => {
+    target.style.removeProperty("height");
+    target.style.removeProperty("overflow");
+    target.style.removeProperty("transition-duration");
+    target.style.removeProperty("transition-property");
+  }, duration);
+};
+
+const slideToggle = (target, duration = ANIMATION_DURATION) => {
+  if (window.getComputedStyle(target).display === "none")
+  return slideDown(target, duration);
+  return slideUp(target, duration);
+};
+
+const PoppersInstance = new Poppers();
+
+/**
+ * wait for the current animation to finish and update poppers position
+ */
+const updatePoppersTimeout = () => {
+  setTimeout(() => {
+    PoppersInstance.updatePoppers();
+  }, ANIMATION_DURATION);
+};
+
+/**
+ * sidebar collapse handler
+ */
+document.getElementById("btn-collapse").addEventListener("click", () => {
+  SIDEBAR_EL.classList.toggle("collapsed");
+  PoppersInstance.closePoppers();
+  if (SIDEBAR_EL.classList.contains("collapsed"))
+  FIRST_SUB_MENUS_BTN.forEach(element => {
+    element.parentElement.classList.remove("open");
+  });
+
+  updatePoppersTimeout();
+});
+
+/**
+ * sidebar toggle handler (on break point )
+ */
+document.getElementById("btn-toggle").addEventListener("click", () => {
+  SIDEBAR_EL.classList.toggle("toggled");
+  updatePoppersTimeout();
+});
+
+/**
+ * toggle sidebar on overlay click
+ */
+document.getElementById("overlay").addEventListener("click", () => {
+  SIDEBAR_EL.classList.toggle("toggled");  
+});
+
+const defaultOpenMenus = document.querySelectorAll(".menu-item.sub-menu.open");
+
+defaultOpenMenus.forEach(element => {
+  element.lastElementChild.style.display = "block";
+});
+
+/**
+ * handle top level submenu click
+ */
+FIRST_SUB_MENUS_BTN.forEach(element => {
+  element.addEventListener("click", () => {
+    if (SIDEBAR_EL.classList.contains("collapsed"))
+    PoppersInstance.togglePopper(element.nextElementSibling);
+    else{      
+      const parentMenu = element.closest(".menu.open-current-submenu");
+      if (parentMenu)
+      parentMenu.
+      querySelectorAll(":scope > ul > .menu-item.sub-menu > a").
+      forEach(
+      (el) =>
+      window.getComputedStyle(el.nextElementSibling).display !==
+      "none" && slideUp(el.nextElementSibling));
+
+      slideToggle(element.nextElementSibling);
+    }
+  });
+});
+
+/**
+ * handle inner submenu click
+ */
+INNER_SUB_MENUS_BTN.forEach(element => {
+  element.addEventListener("click", () => {
+    slideToggle(element.nextElementSibling);
+  });
+});
+
+
+MENU_ITEM.forEach(element => {
+  element.addEventListener("click", () => {
+    SIDEBAR_EL.classList.toggle("toggled");
+
+  var id = element.getAttribute("id");    
+  var contentDivs = document.querySelectorAll('.contents > div');
+
+    contentDivs.forEach(function(div) {
+      var idc = div.parentElement.getAttribute("id");
+      if (idc === id + '-content') {
+        div.style.display = 'block';
+        div.classList.add('anim');
+        event.preventDefault();
+      } else {
+        div.style.display = 'none';
+        div.classList.remove('anim');
+        
+      }
+    });
+    
+    MENU_ITEM.forEach(item => {
+      item.classList.remove('selected');
+    });
+    SUBMENU_ITEMS.forEach(item => {
+      item.classList.remove('selected');
+    });
+    element.classList.add('selected');
+      
+  })
+});
+
+
+SUBMENU_ITEMS.forEach((subMenuItem) => {
+  subMenuItem.addEventListener("click", () => {
+    SIDEBAR_EL.classList.toggle("toggled");
+     
+
+    // Get the index of the clicked sub-menu item within its parent
+    var clickedIndex = Array.from(subMenuItem.parentNode.children).indexOf(subMenuItem);
+
+    // Extract the content section ID from the clicked sub-menu item's parent ID
+    var parentId = subMenuItem.parentElement.parentElement.parentElement.getAttribute("id");
+    var contentDiv = document.getElementById(`${parentId}-content${clickedIndex + 1}`);
+
+    if (contentDiv) {
+      // Hide all content sections
+      var allContentDivs = document.querySelectorAll('.contents > div');
+      allContentDivs.forEach(div => {
+        div.style.display = 'none';
+      });
+
+      // Display the corresponding content section
+      contentDiv.style.display = 'block'; 
+    }
+    
+    MENU_ITEM.forEach(item => {
+      item.classList.remove('selected');
+    });
+    SUBMENU_ITEMS.forEach(item => {
+      item.classList.remove('selected');
+    });
+    subMenuItem.classList.add('selected');
+  });
+});   
+
+</script>
