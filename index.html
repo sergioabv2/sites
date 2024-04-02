@@ -1032,7 +1032,243 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
 </section>
 
   <section class="mainSection" style="display: none;">
-     <iframe src="menu.html" width="100%" height="100%" frameborder="0"></iframe>
+     <div ng-app="studentsApp">
+<div class="layout has-sidebar fixed-sidebar fixed-header">
+      <aside id="sidebar" class="sidebar break-point-sm has-bg-image">
+        <a id="btn-collapse" class="sidebar-collapser"><i class="ri-arrow-left-s-line"></i></a>
+        <div class="image-wrapper">
+          <img src="assets/images/sidebar-bg.jpg" alt="sidebar background" />
+        </div>
+        <div class="sidebar-layout">
+          <div class="sidebar-header">
+            <div class="pro-sidebar-logo">
+              <div>🎹</div>
+              <h5>Taller de Piano</h5>
+            </div>
+          </div>
+          <div class="sidebar-content">
+            <nav class="menu open-current-submenu">
+              <ul >
+           
+           
+                <li class="menu-header" style="padding-top: 20px"><span> MATRÍCULA</span></li>
+                
+                 <li class="menu-item" id="profile">
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-user-3-fill"></i>
+                    </span>
+         <span class="menu-title">Perfil</span>
+     <span class="menu-suffix">
+    <span class="badge danger">!</span></span>
+                  </a>
+                </li>   
+                
+            <li class="menu-item" id="assignments" >
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-calendar-schedule-fill"></i>
+                    </span>
+     <span class="menu-title">Asignaciones</span> 
+      <span class="menu-suffix">
+    <span class="badge danger">!</span></span>
+   
+              </a>
+      </li>         
+  <li class="menu-item" id="manual">
+                  <a href="#">
+                    <span class="menu-icon">
+                     
+                       <i class="ri-book-2-fill"></i>
+                    </span>
+         <span class="menu-title">Manual de trabajo</span>
+                  </a>
+                </li>   
+                
+         <li class="menu-header" style="padding-top: 20px"><span> APOYO DIDÁCTICO</span></li>              
+                
+      <li class="menu-item" id="service">
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-customer-service-2-fill"></i>
+                    </span>
+                    <span class="menu-title">Asesorías</span>
+                  </a>
+                </li>     
+                
+      
+      <li class="menu-item sub-menu" id="apps" onclick="event.preventDefault();">
+                  <a href="#" class="sub-men" > 
+                    <span class="menu-icon">
+                      <i class="ri-layout-2-fill"></i>
+                    </span>
+                    <span class="menu-title">Recursos</span>
+                  </a>
+                  <div class="sub-menu-list">
+                    <ul>
+                      <li class="menu-item">
+                        <a href="#">
+                          <span class="menu-icon">
+                      <i class="ri-timer-flash-fill"></i>
+                    </span>
+                          <span class="menu-title">Metrónomo</span>
+                        </a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="#">
+                          <span class="menu-icon">
+                      <i class="ri-music-2-fill"></i>
+                    </span>
+                          <span class="menu-title">Solfeo</span>
+                        </a>
+                      </li>
+                        <li class="menu-item">
+                        <a href="#">
+                          <span class="menu-icon">
+                      <i class="ri-file-music-fill"></i>
+                    </span>
+                          <span class="menu-title">Acordes</span>
+                        </a>
+                      </li>
+        <li class="menu-item">
+                        <a href="#">
+                          <span class="menu-icon">
+                      <i class="ri-donut-chart-fill"></i>
+                    </span>
+                          <span class="menu-title">Circulo de quintas</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                 </li>    
+
+                 <li class="menu-header" style="padding-top: 20px"><span> LINEAMIENTOS </span></li>  
+        <li class="menu-item" id="regulation">
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-git-repository-fill"></i>
+                    </span>
+                    <span class="menu-title">Reglamento</span>
+                  </a>
+                </li>
+
+                 <li class="menu-item" id="events">
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-newspaper-fill"></i>
+                    </span>
+                    <span class="menu-title">Eventos</span>
+                  </a>
+                </li>   
+                
+     <li class="menu-item" id="structure">
+                  <a href="#">
+                    <span class="menu-icon">
+                      <i class="ri-bank-fill"></i>
+                    </span>
+                    <span class="menu-title">Estructura</span>
+                  </a>
+                </li>
+                
+  
+                
+              </ul>
+            </nav>
+          </div>
+          <div class="sidebar-footer">
+            <div class="footer-box">
+              <div>
+                <img
+                  class="react-logo"
+                  src="https://i.ibb.co/RNPp9dP/wepik-20230829144554c-Uoc.png"
+                  alt="react"
+                />
+              </div>
+              <div style="padding: 0 10px">
+                <span style="display: block; margin-bottom: 10px"
+                  >Taller de Piano
+                </span>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <div id="overlay" class="overlay"></div>
+      <div class="layout">
+        <main class="content">
+          
+            <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">
+              <i class="ri-menu-line ri-xl"></i>
+            </a>
+                      
+          
+<div class="contents profil" id="profile-content">
+  <div >
+     <div class="iframe-container"><iframe src="profile_student.html" style="border-width:0" width="300" height="400" frameborder="0" scrolling="no"></iframe></div>
+  </div> 
+</div>    
+          
+<div class="contents" id="assignments-content" >
+  <div style="display: none;">
+    <?!= include('assignments'); ?>
+  </div> 
+</div>       
+   
+  <div class="contents" id="manual-content" >
+  <div style="display: none;">
+  <?!= include('workbooks'); ?>
+  </div> 
+</div>   
+
+<div class="contents" id="service-content" >
+  <div style="display: none;">
+    <?!= include('advising'); ?>
+  </div> 
+</div>      
+
+ <div class="contents" id="apps-content" >
+  <div id="apps-content1" style="display: none;">
+      <?!= include('metronome'); ?>
+  </div> 
+  <div id="apps-content2" style="display: none;">
+      <?!= include('solfege'); ?>
+  </div> 
+  <div id="apps-content3" style="display: none;">
+      <?!= include('chords'); ?>
+  </div> 
+  <div id="apps-content4" style="display: none;">
+      <?!= include('5ths circle'); ?>
+  </div> 
+</div>   
+
+
+          
+<div class="contents" id="regulation-content" >
+  <div style="display: none;">
+    <?!= include('regulation'); ?>
+  </div> 
+</div>  
+
+<div class="contents" id="events-content" >
+  <div style="display: none;">
+    <?!= include('events'); ?>
+  </div> 
+</div>  
+          
+ <div class="contents" id="structure-content" >
+  <div style="display: none;">
+    <?!= include('structure'); ?>
+  </div> 
+</div>       
+                   
+        
+         
+        </main>
+        <div class="overlay"></div>
+      </div>
+    </div>
+</div>
   </section>
 
   <section class="preloader" >
