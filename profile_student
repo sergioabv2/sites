@@ -1,0 +1,518 @@
+<style>
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.text-orange {color: #ff8300}
+
+/*-- Dashboard panel --*/
+.dashboard-panel {margin: 10px 0 20px; }
+.dashboard-panel .panel-header {position: relative; background: #8a8a8d; color: #FFF; }
+.dashboard-panel .panel-header > * {display: block; }
+.dashboard-panel .panel-header h4 {margin: 0; padding: 12px; font-size: 21px; }
+.dashboard-panel .panel-header h4 i {color: #d8d8d8; }
+.dashboard-panel .panel-header .dropdown {position: absolute; top: 50%; right: 5px; margin: -17px 0 0 0; }
+.dashboard-panel .panel-header .dropdown > a {display: block; border-left: 1px solid #FFF; padding: 8px 15px 6px; color: #FFF; font-size: 18px; line-height: 1; }
+.dashboard-panel .panel-header .dropdown > a:hover,
+.dashboard-panel .panel-header .dropdown > a:focus {background: rgba(255,255,255,0.1); }
+.dashboard-panel .panel-body {margin-top: 10px; max-height: 225px; border: 1px solid #d8d8d8; overflow-y: auto; }
+ 
+/*-- Datos del usuario --*/
+.profile-user-data {padding: 10px 0;}
+.profile-user-data > * {float: left;}
+.profile-user-data img { margin-right: 10px; max-width: 100px;}
+.profile-user-data .main-data {padding: 30px 0 20px; width: calc(100% - 115px);}
+.profile-user-data .main-data h4 {margin: 0; font-size: 20px; font-weight: }
+.profile-user-data .main-data span {font-size: 12px;}
+
+/*-- Números del usuario --*/
+.user-stats {padding: 20px 5px; border-top: 3px solid #e6e6e6;}
+.user-stats > * {margin: 0;}
+.user-stats .achievement-count {font-size: 20px;}
+.user-stats .achievement-count i {margin-right: 10px;  font-size: 28px;}
+.user-stats .achievement-count span {margin: 0 5px; color: #55565a; opacity: 0.6;}
+.user-stats .achievement-count span.acive {font-size: 28px; opacity: 1;}
+.user-stats .currency-count li {padding: 2px 0 2px 5px;}
+.user-stats .currency-count li span {color: #77777a; font-size: 18px;}
+.user-stats .currency-count li i {
+  width: 34px; height: 34px;
+  padding: 8px 0;
+  background: #ff8300;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px #ff8300, inset 0 0 0 5px rgba(255,255,255,0.4);
+  color: #FFF;
+  font-size: 19px;
+  text-align: center;
+  
+}
+
+/*-- Últimos logros obtenidos --*/
+.user-achievements {padding: 15px 20px 10px; background: #eff3f9;}
+.user-achievements h3 {margin: 0 0 20px 0;}
+.user-achievements ul li {width: calc(100% /6 - 5px); padding: 3px; vertical-align: middle;}
+.user-achievements ul li a {display: block; height: 54px; width: 54px; margin: auto; padding: 8px 0; border: 3px solid #77777a; border-radius: 50%; color: #a5a5a5; font-size: 12px; text-align: center;}
+.user-achievements ul li a i {font-size: 31px;}
+.user-achievements ul li a:hover,
+.user-achievements ul li a:focus {background: rgba(0,0,0,0.08)}
+.user-achievements ul li a.see-more {border: none; width: 100%; padding: 10px 0; border-radius: 0; color: #ff6b00; line-height: 0.8}
+.user-achievements ul li a.see-more > * {display: block;}
+.user-achievements ul li a.see-more span {font-size: 28px; margin-bottom: 5px;}
+.user-achievements ul li a.see-more small {display: block; margin-top: 0; font-size: 12px; text-decoration: underline;}
+.user-achievements ul li a.see-more:hover,
+.user-achievements ul li a.see-more:focus {background: rgba(0,0,0,0.05); text-decoration: none;}
+.popover {background: #333; padding: 8px; color: #FFF; font-size: 12px; border-radius: 0}
+.popover > * {background: transparent;}
+.popover .arrow:after {border-right-color: #333 !important;}
+.popover .popover-title,
+.popover .popover-content {padding: 2px;}
+.popover .popover-title {font-size: 12px; font-weight: bold; border: none}
+
+/*-- Registro de actividad --*/
+.log-list-container {margin: 0; }
+.log-list-container ul {position: relative; margin: -15px 0; padding: 0; }
+.log-list-container ul:before {content: ""; display: block; position: absolute; top: 20px; bottom: 20px; left: 8px; width: 4px; background: #a5a5a5; }
+.log-list-container li {display: block; position: relative; padding: 10px 15px 10px 35px; color: #666; font-size: 12px;}
+.log-list-container li > * {display: block; }
+.log-list-container li:before {content: "\f11d"; display: block; position: absolute; top: 50%; left: -5px; width: 30px; height: 30px; margin-top: -15px; padding: 7px 0; background: #a5a5a5; border-radius: 50%; color: #FFF; font: normal normal normal 16px/1 FontAwesome; text-align: center; }
+.log-list-container li small {opacity: 0.7; }
+
+/*-- Logros --*/
+.achievement-list-panel .panel-body {padding: 0 10px; max-height: 570px;}
+.achievement-list-panel .panel-body .list-unstyled li {padding: 10px 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align:center; -ms-flex-align:center; -ms-grid-row-align:center; align-items:center;}
+.achievement-list-panel .panel-body .list-unstyled li:not(:last-child) {border-bottom: 1px dashed #cccccc}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-icon {-webkit-box-flex: 1;-ms-flex: 1 0 70px; flex: 1 0 70px; margin-right: 15px;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-icon i {display: block; height: 70px; width: 70px; padding: 11px 0; border: 3px solid #cccccc; border-radius: 50%; color: #cccccc; font-size: 40px; text-align: center;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-content {color: #55565a;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-content > * {display: block;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-content strong {font-size: 15px;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-content p {margin: 0; font-size: 14px;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-actions {margin-left: 15px;}
+.achievement-list-panel .panel-body .list-unstyled li .achievement-actions a {display: block; color: #55565a; font-size: 18px; white-space: nowrap; }
+.achievement-list-panel .panel-body .list-unstyled li .achievement-actions a i {font-size: 21px !important;}
+
+.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-icon i {position: relative; border-color: #ff9e16; color: #ff9e16}
+.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-icon i:after {content: "\f00c"; display: block; position: absolute; top: 0px; right: 0px; width: 18px; height: 18px; padding: 3px 0; background: #ff9e16; border-radius: 50%; color: #FFF; font: normal normal normal 13px/1 FontAwesome; text-align: center;}
+.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-content strong {color: #ff9e16}
+.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-actions a {font-weight: bold; color: #ff9e16}
+
+
+/*-- Tienda --*/
+.store-header {margin-bottom: 15px; padding: 3px 15px; border-bottom: 5px solid #ff9e16;}
+.store-header i {margin-right: 10px;}
+
+.store-list-panel .panel-body {max-height: 420px;}
+.store-list-panel .panel-body .list-unstyled li {padding: 10px 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align:center; -ms-flex-align:center; -ms-grid-row-align:center; align-items:center;}
+.store-list-panel .panel-body .list-unstyled li > * {}
+.store-list-panel .panel-body .list-unstyled li .prize-thumbnail {-webkit-box-flex: 0;-ms-flex: 0 0 90px; flex: 0 0 90px; margin-right: 15px;}
+.store-list-panel .panel-body .list-unstyled li .prize-thumbnail div {width: 100%; padding-top: 70%; background: center center no-repeat; background-size: cover}
+.store-list-panel .panel-body .list-unstyled li .prize-description {-webkit-box-flex: 1;-ms-flex: 1 0 auto; flex: 1 0 auto; margin-right: 15px;}
+.store-list-panel .panel-body .list-unstyled li .prize-description > * {display: block; width: 100%;}
+.store-list-panel .panel-body .list-unstyled li .prize-description small i {height: 18px; width: 18px; padding: 4px 0; background: rgba(0,0,0,0.7); border-radius: 50%; color: #FFF; text-align: center;}
+.store-list-panel .panel-body .list-unstyled li .prize-actions {padding: 10px 0 10px 20px}
+.store-list-panel .panel-body .list-unstyled li .prize-actions .btn {padding: 7px 18px; border-radius: 0; background: #dddddd; text-transform: uppercase; border: none;}
+.store-list-panel .panel-body .list-unstyled li .prize-actions .btn:hover,
+.store-list-panel .panel-body .list-unstyled li .prize-actions .btn:focus {background: #ff9e16; color: #FFF;}
+
+
+
+
+.bar-column {
+	position: absolute;
+  width: 50%;
+  margin-left: 2%;
+  margin-right: 2%;
+
+}
+
+.bar {
+	height: 8px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #484B53;
+	position: absolute;
+}
+
+.fill {
+	height: 8px;
+	border-radius: 4px;
+	background-color: #FF8095;
+	box-shadow: 0px 0px 30px #FF2AA6;
+	position: absolute;
+}
+
+.fill-u {
+	width: 50%;
+	animation-name: filling-u;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: initial;
+}
+
+@keyframes filling-u {
+	0% {
+		box-shadow: 0px 0px 0px #FF2AA6;
+		width: 0px;
+	}
+	100% {
+		box-shadow: 0px 0px 30px #FF2AA6;
+		width: 50%;
+	}
+}
+
+</style>
+
+
+
+<div class="dashboard-container" ng-controller="Controller1" ng-cloak>
+  <!-- Profile Data -->
+  <div class="profile-student">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="profile-user-data clearfix">
+          <img class="img-circle" src="http://placehold.it/100x100" title="Diego Alejandro Rodríguez Montenegro" alt="Diego Alejandro Rodríguez Montenegro">
+          <div class="main-data">
+            <h4>{{ userData.name }}</h4>
+            <span><em>Grado 7</em></span>
+          <br><br>
+				<div class="bar-column">
+					<div class="bar u">
+						<div class="fill fill-u">
+						</div>
+					</div>
+				</div>
+      
+          </div>
+          
+          
+          
+        </div>
+        <div class="user-stats clearfix">
+          <div class="pull-left achievement-count"><i class="fa fa-trophy text-orange"></i><span class="acive">12</span>/<span>999</span> piezas</div>
+          <ul class="pull-right currency-count list-inline">
+            <li><i class="fa fa-star-o"></i> <span>99,999.99</span></li>
+            <li><i class="fa fa-dollar"></i> <span>99,999.99</span></li>
+          </ul>
+        </div>
+        <div class="user-achievements">
+          <h3 class="text-orange text-center"><i class="fa fa-trophy"></i> Últimos logros obtenidos</h3>
+          <ul class="list-inline">
+            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
+            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
+            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
+            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
+            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
+            <li><a class="see-more" href="javascript:void(0)"><span>+6</span> <small>Ver todos</small></a></li>
+          </ul>
+        </div>
+        <div class="dashboard-panel registry-log-panel">
+          <div class="panel-header">
+            <h4><i class="fa fa-fw fa-clock-o"></i> Registro de actividad</h4>
+            <div class="dropdown">
+                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="javascript:void(0)">Editar</a></li>
+                  <li><a href="javascript:void(0)">Eliminar</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="panel-body log-list-container">
+            <ul class="list-unstyled log-list">
+              <li>
+                <span>Nam euismod dignissim odio</span>
+                <small>2018/01/21</small>
+              </li>
+              <li>
+                <span>Sed aliquam placerat posuere. Sed sed lacinia erat.</span>
+                <small>2018/01/21</small>
+              </li>
+              <li>
+                <span>Phasellus vestibulum varius quam a ultrices.</span>
+                <small>2018/01/21</small>
+              </li>
+              <li>
+                <span>Vivamus luctus felis ex, et aliquam orci malesuada rhoncus.</span>
+                <small>2018/01/21</small>
+              </li>
+              <li>
+                <span>Sed aliquam placerat posuere. Sed sed lacinia erat.</span>
+                <small>2018/01/21</small>
+              </li>
+              <li>
+                <span>Nam euismod dignissim odio</span>
+                <small>2018/01/21</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="dashboard-panel achievement-list-panel">
+          <div class="panel-header">
+            <h4><i class="fa fa-fw fa-trophy"></i> Logros</h4>
+            <div class="dropdown">
+                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="javascript:void(0)">Editar</a></li>
+                  <li><a href="javascript:void(0)">Eliminar</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
+                </div>
+              </li>
+              <li class="completed">
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star"></i></a>
+                </div>
+              </li>
+              <li>
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
+                </div>
+              </li>
+              <li>
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
+                </div>
+              </li>
+              <li class="completed">
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star"></i></a>
+                </div>
+              </li>
+              <li>
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
+                </div>
+              </li>
+              <li>
+                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
+                <div class="achievement-content">
+                  <strong>Nombre del Logro</strong>
+                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
+                </div>
+                <div class="achievement-actions">
+                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="store-header">
+    <h2 class="text-orange"><i class="fa fa-shopping-basket"></i> Tienda</h2>
+  </div>
+  
+  <!-- Store Catalog -->
+  <div>
+     <div class="row">
+      <div class="col-sm-6">
+        <div class="dashboard-panel store-list-panel">
+          <div class="panel-header">
+            <h4><i class="fa fa-fw fa-star-o"></i> Premios para ti</h4>
+            <div class="dropdown">
+                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="javascript:void(0)">Editar</a></li>
+                  <li><a href="javascript:void(0)">Eliminar</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+               <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-star-o"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="dashboard-panel store-list-panel">
+          <div class="panel-header">
+            <h4><i class="fa fa-fw fa-dollar"></i> Premios para alguien más</h4>
+            <div class="dropdown">
+                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="javascript:void(0)">Editar</a></li>
+                  <li><a href="javascript:void(0)">Eliminar</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-dollar"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-dollar"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-dollar"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Nombre del Premio</strong>
+                  <small><i class="fa fa-dollar"></i> 9,000</small>
+                </div>
+                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
+              </li>
+              <li>
+                <div class="prize-thumbnail">
+                  <div style="background-image: url(http://placehold.it/100x100)"></div>
+                </div>
+                <div class="prize-description">
+                  <strong>Cerrar sesion</strong>
+                </div>
+                <div class="prize-actions"><button class="btn btn-sm" onclick="logout()">SALIR</button></div>
+              </li>
+            
+           
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
