@@ -1912,17 +1912,36 @@ function loadData(api, mail, encryption) {
   }
 
 
-
-    function logout() {
+  function logout() {
       $('.preloader').fadeIn('slow')
       const storedToken = localStorage.getItem('MStoken');
-      google.script.run.withSuccessHandler().removeToken(storedToken);
-      localStorage.removeItem('MStoken');
 
-      $('.preloader').css({'display':'none'})  
-      $('.loginSection').fadeIn('slow') 
-      $('.mainSection').css({'display':'none'});
-      loadForm();
+      var api = "https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec";
+
+      var removeData = {
+        redirect: "follow",
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          action: "removeToken",
+          token: storedToken,
+        })
+      };
+
+      fetch(api, removeData)
+      .then(response => response.text())
+      .then(res => {
+        var validation = JSON.parse(res);
+        if (validation.status == "success") {
+          localStorage.removeItem('MStoken');
+          $('.preloader').css({'display':'none'})  
+          $('.loginSection').fadeIn('slow') 
+          $('.mainSection').css({'display':'none'});
+          loadForm();
+        }
+      })
     }
 
 
