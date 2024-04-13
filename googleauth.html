@@ -1,20 +1,113 @@
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload"
-     data-client_id="252469198131-2kkmsipskfhr98mkdklhb85oo6bui9tc.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-login_uri="https://tallerdepiano.app"
-     data-auto_prompt="false">
-</div>
+<!DOCTYPE HTML>
+<html>
+    	<head>
+    		<meta charset="UTF-8">
+    		<title>LoginSN</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    		<!--
+    			<link rel="shortcut icon" href="images/favicon.png">
+    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+    		-->
+    		<link href="jqueryMobile/jquery.mobile-1.4.5.css" rel="stylesheet">
+    		<link rel="stylesheet" href="css/main.css">
+    		<script>window.$ = window.jQuery = WLJQ;</script>
+    		<script src="jqueryMobile/jquery.mobile-1.4.5.js"></script>
+    		<script src="https://apis.google.com/js/client.js?onload=checkAuth"/></script>
+    		
+  </head>
+		
+    	<body style="display: none;">
+    	
+    		<div data-role="page" id="loginPage">
+    			<div data-role="content" style="padding: 15px">
+    				<h1 id="fb-welcome"></h1>
+					<label for="text">User Name:</label><input type="text" name="text" id="unL">
+					<label for="text">Password:</label><input type="password" name="text" id="pwdL">
+					<a href="#dashboardPage" data-role="button" id="buttonLn">LOGIN</a>
+					<a href="#registrationPage" data-role="button" id="buttonRe">REGISRASTION</a>
+					<a href="#" data-role="button" id="buttonF" onclick="fblogin()">via Facebook Login</a>
+					<!-- <a href="#" data-role="button" id="login" class="g-signin2" data-onsuccess="onSignIn">via Google Login</a> -->
+					<!-- <a href="#" data-role="button" id="login" onclick="callGoogle()">via Google Login</a>  -->
+					
+					<!--  <a href="#" data-role="button" id="login" onclick="login('google')">via Google Login</a>  -->
+					<div id="authorize-div" >
+					  <span>Authorize access to Gmail API</span>
+					  <a href="#" data-role="button" id="authorize-button" onclick="handleAuthClick(event)">via Google Login</a>
+					</div>
+				</div>
+    		</div>
+          <div data-role="page" id="dashboardPage">
+    			<div data-role="content" style="padding: 15px">
+    				<a href="#" data-role="button" onclick='Logout();'>LogOut</a>
+    			</div>
+    		</div>
+    		
+    		<script src="js/initOptions.js"></script>
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    		
+    	</body>
 
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="rectangular"
-     data-theme="filled_blue"
-     data-text="continue_with"
-     data-size="large"
-     data-logo_alignment="left">
-</div>
-
-
-    <div id="buttonDiv"></div> 
+    <script>
+        var CLIENT_ID = '349212001841-t1qnhfhp7ail46dh5rn1t6vdc10op93l.apps.googleusercontent.com';
+			
+				var SCOPES = [ 'https://www.googleapis.com/auth/gmail.readonly' ];
+			
+				function checkAuth() {
+					gapi.auth.authorize({
+						'client_id' : CLIENT_ID,
+						'scope' : SCOPES.join(' '),
+						'immediate' : true
+					}, handleAuthResult);
+				}
+			
+				function handleAuthResult(authResult) {
+					var authorizeDiv = document.getElementById('authorize-div');
+					if (authResult && !authResult.error) {
+						authorizeDiv.style.display = 'none';
+						loadGmailApi();
+					} else {
+						authorizeDiv.style.display = 'inline';
+					}
+				}
+			
+				function handleAuthClick(event) {
+					gapi.auth.authorize({
+						client_id : CLIENT_ID,
+						scope : SCOPES,
+						immediate : false
+					}, handleAuthResult);
+					return false;
+				}
+			
+				function loadGmailApi() {
+					gapi.client.load('gmail', 'v1', listLabels);
+				}
+			
+				function listLabels() {
+					var request = gapi.client.gmail.users.labels.list({
+						'userId' : 'me'
+					});
+			
+					request.execute(function(resp) {
+						var labels = resp.labels;
+						appendPre('Labels:');
+			
+						if (labels && labels.length > 0) {
+							for (i = 0; i < labels.length; i++) {
+								var label = labels[i];
+								appendPre(label.name)
+							}
+						} else {
+							appendPre('No Labels found.');
+						}
+					});
+				}
+			
+			function appendPre(message) {
+					var pre = document.getElementById('output');
+					var textContent = document.createTextNode(message + '\n');
+					pre.appendChild(textContent);
+				}
+    </script>
+</html>
