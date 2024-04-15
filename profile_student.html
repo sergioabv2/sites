@@ -2,55 +2,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-  <title></title>
 
-  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-<link href="https://code.ionicframework.com/1.0.0-beta.9/css/ionic.min.css" rel="stylesheet">
+
+<link href="http://code.ionicframework.com/1.0.0-beta.9/css/ionic.min.css" rel="stylesheet">
   <script src="https://code.ionicframework.com/1.0.0-beta.9/js/ionic.bundle.min.js"></script>
-  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-  <link href="css/ionic.app.css" rel="stylesheet">
--->
-
-<!--For users deploying their apps to Windows 8.1 or Android Gingerbread, platformOverrided.js
-will inject platform-specific code from the /merges folder -->
-<script src="js/platformOverrides.js"></script>
-
-<!-- ionic/angularjs js -->
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-
-<!-- cordova script (this will be a 404 during development) -->
-<script src="cordova.js"></script>
-
-<!-- your app's js -->
-<script src="js/app.js"></script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+ <script async src="//platform.twitter.com/widgets.js"></script>
 </head>
 
+
+  <style>
+    
+.card{
+  font-family: 'Nunito', sans-serif;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+  height: 120px;
+  align-items: center; 
+   display: flex; 
+  text-decoration: none; 
+}
+
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.list .card h3{
+  font-weight: 600;
+  font-size: 1.7rem;
+  
+}
+
+.card img{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  max-height: 120px;
+}
+
+.card-1{
+  background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-2{
+   background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-3{
+   background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
+
+
+
+
+ .iframe-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            height: 500px;
+        }
+
+        /* Estilo para hacer el iframe responsivo */
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+  </style>
   
 <body ng-app="ionicApp">
   <div ng-controller="AppCtrl">
 
-  <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+  <ion-nav-bar class="nav-title-slide-ios7 bar-positive" >
     <ion-nav-back-button class="button-icon ion-arrow-left-c">
     </ion-nav-back-button>
   </ion-nav-bar>
 
-  <ion-nav-view animation="slide-left-right"></ion-nav-view>
+  <ion-nav-view animation="slide-right"></ion-nav-view>
 
     
   <script id="menu.html" type="text/ng-template">
     <ion-side-menus>
 
-      <ion-side-menu side="left">
+      <ion-side-menu side="right">
         <ion-header-bar class="bar-positive">
-          <h1 class="title">Side Menu</h1>
+          <h1 class="title">Menu</h1>
         </ion-header-bar>
         <ion-content>
           <ul class="list">
-            <a href="#/menu/tab/buttons" class="item" menu-toggle="left">UI Components</a>
-            <a href="#/menu/keyboard" class="item" menu-toggle="left">Keyboard Input Types</a>
-            <a href="#/menu/slidebox" class="item" menu-toggle="left">Slide Box</a>
-            <a href="#/menu/about" class="item" menu-toggle="left">About</a>
+            <a href="#/menu/tab/record" class="item" menu-toggle="right">Inicio</a>
+            <a href="#/menu/lessons" class="item" menu-toggle="right">Lecciones</a>
+            <a href="#/menu/resources" class="item" menu-toggle="right">Recursos</a>
+             <a href="#/menu/social-feed" class="item" menu-toggle="right">Social feed</a>
+             <a href="#/menu/about" class="item" menu-toggle="right">Lineamientos</a>
           </ul>
         </ion-content>
       </ion-side-menu>
@@ -63,293 +130,265 @@ will inject platform-specific code from the /merges folder -->
   </script>    
     
   <script id="tabs.html" type="text/ng-template">
-    <ion-nav-bar class="bar-positive">
-        <ion-nav-back-button class="button-icon ion-arrow-left-c">
+    <ion-nav-bar class="bar-positive" >
+                <ion-nav-back-button class="button-icon ion-arrow-left-c">
         </ion-nav-back-button>
-
-        <ion-nav-buttons side="left">
-          <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
-        </ion-nav-buttons>
-
         <ion-nav-buttons side="right">
-          <button class="button button-icon button-clear ion-compose" ng-click="modal.show()"></button>
-        </ion-nav-buttons>
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
     </ion-nav-bar>
         
-    <ion-tabs class="tabs-icon-top tabs-positive">
 
-      <ion-tab title="Buttons" icon="ion-pricetag" href="#/menu/tab/buttons">
-        <ion-nav-view name="buttons-tab"></ion-nav-view>
+    <ion-tabs class="tabs-icon-top tabs-positive"  >
+
+      <ion-tab title="Comunidad" icon="ion-ios7-people" href="#/menu/tab/comunity">
+        <ion-nav-view name="comunity-tab"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="List Nav" icon="ion-clipboard" href="#/menu/tab/list">
-        <ion-nav-view name="list-tab"></ion-nav-view>
+      <ion-tab  icon="ion-mic-a" href="#/menu/tab/record" >
+        <ion-nav-view name="record-tab"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Form" icon="ion-settings" href="#/menu/tab/form">
-        <ion-nav-view name="form-tab"></ion-nav-view>
+      <ion-tab title="Perfil" icon="ion-ios7-contact" href="#/menu/tab/profile">
+        <ion-nav-view name="profile-tab"></ion-nav-view>
       </ion-tab>
+    
 
     </ion-tabs>
   </script>
 
-  <script id="buttons.html" type="text/ng-template">
-    <ion-view title="Buttons">
+  <script id="comunity.html" type="text/ng-template">
+    <ion-view title="Comunidad">
       <ion-content class="padding">
-        <h2>Ionic Kitchen Sink example by krisrak</h2>
-        <p>Example of Ionic buttons, grouped buttons, popup and actionsheet.</p>
-        <p>
-          <a class="button icon icon-left ion-ios7-albums-outline button-assertive" ng-click="showPopup()">Popup</a>
-          <a class="button icon icon-left ion-ios7-upload-outline button-energized" ng-click="showActionsheet()">Action Sheet</a>
-        </p>
-        <p>
-        <button class="button icon ion-gear-a"></button>
-        </p>
-        <p>
-        <button class="button button-outline button-positive">
-          Outlined Button
-        </button>
-        </p>
-        <p>
-        <button class="button button-block button-dark">
-          Block Button
-        </button>
-        </p>
-        <p>
-        <div class="button-bar">
-          <a class="button">First</a>
-          <a class="button">Second</a>
-          <a class="button">Third</a>
-        </div>
-        </p>        
+       
+    
       </ion-content>
     </ion-view>
   </script>
 
-  <script id="item.html" type="text/ng-template">
-    <ion-view title="Item">
+  <script id="record.html" type="text/ng-template">
+    <ion-view title="Entrega de actividad">
       <ion-content class="padding">
-        <h2>Ionic Kitchen Sink example by krisrak</h2>
-        <p>Details of Item</p>
+       
+         
+   Entrega de actividad
+    
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    <script id="profile.html" type="text/ng-template">
+    <ion-view title="Perfil">
+      <ion-content class="padding">
+       
+         
+   Perfil2
+    
       </ion-content>
     </ion-view>
   </script>
 
-  <script id="list.html" type="text/ng-template">
-    <ion-view title="List Nav">
-      <ion-content>
-        <h2>Ionic Kitchen Sink example by krisrak</h2>
-        <ion-list show-delete="data.showDelete" on-delete="onItemDelete(item)" option-buttons="itemButtons">
+ 
 
-        <div class="list">
+
+  <script id="lessons.html" type="text/ng-template">
+    <ion-view title="Actividades">
+
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+     <ion-content>
+       
+    <div ng-if=news.length>
+            <a class="item" ng-repeat="n in news" ng-click="onSelectNews(n)" >{{n.name}} </a>
+          </div>
+
+      </ion-content>
+
+    </ion-view>
+  </script>   
+    
+   
+
+    
+    <script id="detail.html" type="text/ng-template">
+      <ion-nav-bar class="bar-positive">
+         <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+    <ion-view title=" Title">
+      <ion-view title="News">
+        <ion-content>
+      
+            {{news.name}}
+       
+        </ion-content>
+      </ion-view>
+    </script>
+    
+
+    
+
+
+   <script id="resources.html" type="text/ng-template">
+    <ion-view title="Recursos didácticos">
+
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+
+     <ion-content>
+       
+    <div class="list">
           <div class="item item-divider">
             Static list
           </div>  
           
-          <a class="item item-icon-left" href="#/menu/tab/item">
+          <a class="item item-icon-left" href="#/menu/nivelprincipiante">
             <i class="icon ion-email"></i>
-            Check mail
+            Nivel principiante
           </a>
 
-          <a class="item item-icon-left item-icon-right" href="#/menu/tab/item">
+          <a class="item item-icon-left item-icon-right" href="#/menu/nivelintermedio">
             <i class="icon ion-chatbubble-working"></i>
-            Call Ma
+            Nivel intermedio
             <i class="icon ion-ios7-telephone-outline"></i>
           </a>
-
-          <a class="item item-icon-left" href="#/menu/tab/item">
-            <i class="icon ion-mic-a"></i>
-            Record album
-            <span class="item-note">
-              Grammy
-            </span>
-          </a>
-
-          <a class="item item-icon-left" href="#/menu/tab/item">
-            <i class="icon ion-person-stalker"></i>
-            Friends
-            <span class="badge badge-assertive">0</span>
-          </a>
-        
-          <div class="item item-divider">
-            Angularjs list
-          </div>
-               
-          <ion-item ng-repeat="item in items" item="item" href="#/menu/tab/item">
-            Item {{ item.id }}
-          </ion-item>        
-        </div>         
-
-        </ion-list>
+    </div> 
+     
       </ion-content>
+      
+     
     </ion-view>
-  </script>
-
-  <script id="form.html" type="text/ng-template">
-    <ion-view title="Form Elements">
+  </script>   
+    
+    
+    
+    <script id="nivelprincipiante.html" type="text/ng-template">
+      <ion-nav-bar >
+         <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>  
+    </ion-nav-bar>
+    <ion-view > 
       <ion-content class="padding">
-        <h2>Ionic Kitchen Sink example by krisrak</h2>
         
-        <div class="list">
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper" id="search-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Search">
-          </label>
-        </div>
-        </div>
-        
-        <div class="list">
-          <div class="item item-divider">
-            Other form elements
-          </div>
-        
-          <label class="item item-radio">
-            <input type="radio" name="group">
-            <div class="item-content">
-              Radio Item #1
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
-          </label>
-          <label class="item item-radio">
-            <input type="radio" name="group">
-            <div class="item-content">
-              Radio Item #2
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
-          </label>
-          
-          <label class="item item-checkbox">
-             <label class="checkbox">
-               <input type="checkbox">
-             </label>
-             Checkbox
-          </label> 
-          
-          <li class="item item-toggle">
-             Toggle
-             <label class="toggle toggle-assertive">
-               <input type="checkbox">
-               <div class="track">
-                 <div class="handle"></div>
-               </div>
-             </label>
-          </li>
-        
-          <div class="item range range-positive">
-            <i class="icon ion-ios7-sunny-outline"></i>
-            <input type="range" name="volume" min="0" max="100" value="33">
-            <i class="icon ion-ios7-sunny"></i>
-          </div>
-        
-          <div class="item item-input item-select">
-            <div class="input-label">
-              Select
-            </div>
-            <select>
-              <option>Option #1</option>
-              <option selected>Option #2</option>
-              <option>Option #3</option>
-            </select>
-          </div>
-          
-        </div>
-        
-        <br>
-
+        <h2>Nivel Principiante</h2>
+       
       </ion-content>
     </ion-view>
   </script>
     
-  <script id="slidebox.html" type="text/ng-template">
-    <ion-view>
-      <ion-header-bar class="bar-positive">
-          <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
-          <h1 class="title">Slide Box</h1>
-      </ion-header-bar>
+    
+    
+     <script id="nivelintermedio.html" type="text/ng-template">
+       <ion-nav-bar >
+         <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>  
+    </ion-nav-bar>
+    <ion-view >
+      <ion-content class="padding">
+        
+        <h2>Nivel Intermedio</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    
+    
+     <script id="nivelavanzado.html" type="text/ng-template">
+       <ion-nav-bar >
+         <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>  
+    </ion-nav-bar>
+    <ion-view >
+      <ion-content class="padding">
+        
+        <h2>Nivel Avanzado</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+
+
+  <script id="social-feed.html" type="text/ng-template">
+    <ion-view title="Social Feed">
+
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+
+     <ion-content>
+       
+     <div class="list">
+        
+             <a class="card card-3" href="#/menu/nivelprincipiante">
+          <h3>Nivel Principiante</h3>
+          </a>
+        
+    
+    <a class="card card-1" href="#/menu/nivelintermedio">
+            <h3>Nivel Intermedio</h3>
+          </a>
+    
+     <a class="card card-2" href="#/menu/nivelavanzado">
+            <h3>Nivel Avanzado</h3>
+          </a>
+
+    </div> 
+
+      </ion-content>
       
-      <ion-content>
-        <ion-slide-box>
-          <ion-slide>
-            <div class="box">
-                <h2>Box #1</h2>
-                <p>Content goes here</p>
-            </div>
-          </ion-slide>
-          <ion-slide>
-            <div class="box">
-                <h2>Box #2</h2>
-                <p>Content goes here</p>
-            </div>
-          </ion-slide>
-          <ion-slide>
-            <div class="box">
-                <h2>Box #3</h2>
-                <p>Content goes here</p>
-            </div>
-          </ion-slide>
-        </ion-slide-box>
-       </ion-content>    
+     
     </ion-view>
   </script>   
 
-  <script id="keyboard.html" type="text/ng-template">
-    <ion-view>
-      <ion-header-bar class="bar-positive">
-        <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
-        <h1 class="title">Keyboard Input</h1>
-      </ion-header-bar>
-      
-      <ion-content class="padding">
-        <div class="list">        
-          <label class="item item-divider">
-            Input types for popup keyboard
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Text</span>
-            <input type="text" ng-model="user.username">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Password</span>
-            <input type="password" ng-model="user.password">
-          </label>          
-          <label class="item item-input">
-            <span class="input-label">Email</span>
-            <input type="email">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Tel</span>
-            <input type="tel">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Number</span>
-            <input type="number">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Date</span>
-            <input type="date">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Month</span>
-            <input type="month">
-          </label> 
-        </div>
+
+
+<script id="about.html" type="text/ng-template">
+    <ion-view title="Lineamientos">
+
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+
+     <ion-content>
+       
+  <div class="iframe-container"><iframe src="https://instagram.com/p/CyWOlFkpFfh/embed/" frameborder="0" allowfullscreen></iframe></div>
+
       </ion-content>
+      
+     
     </ion-view>
-  </script>     
+  </script>   
+
+
+
+
     
-  <script id="about.html" type="text/ng-template">
-    <ion-view>
-      <ion-header-bar class="bar-positive">
-        <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
-        <h1 class="title">About</h1>
-      </ion-header-bar>
-      
-      <ion-content>
-       <iframe src="https://git.tallerdepiano.app/fileupload" frameborder="0" height="560px" width="100%"></iframe>
-      </ion-content>
-    </ion-view>
-  </script>    
+    
+    
+
+
+
+
 
   <script id="modal.html" type="text/ng-template">
     <div class="modal">
@@ -376,8 +415,12 @@ will inject platform-specific code from the /merges folder -->
   </div>
 </body>
 
+
   <script>
-    angular.module('ionicApp', ['ionic'])
+    
+
+
+angular.module('ionicApp', ['ionic'])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -396,54 +439,88 @@ will inject platform-specific code from the /merges folder -->
         }
       }
     })
-    .state('menu.tabs.buttons', {
-      url: "/buttons",
+    .state('menu.tabs.comunity', {
+      url: "/comunity",
       views: {
-        'buttons-tab': {
-          templateUrl: "buttons.html",
-          controller: 'ButtonsTabCtrl'
+        'comunity-tab': {
+          templateUrl: "comunity.html"
         }
       }
     })
-    .state('menu.tabs.list', {
-      url: "/list",
+    .state('menu.tabs.record', {
+      url: "/record",
       views: {
-        'list-tab': {
-          templateUrl: "list.html",
-          controller: 'ListCtrl'
+        'record-tab': {
+          templateUrl: "record.html"
         }
       }
     })
-    .state('menu.tabs.item', {
-      url: "/item",
+  .state('menu.tabs.profile', {
+      url: "/profile",
       views: {
-        'list-tab': {
-          templateUrl: "item.html"
+        'profile-tab': {
+          templateUrl: "profile.html"
         }
       }
     })
-    .state('menu.tabs.form', {
-      url: "/form",
-      views: {
-        'form-tab': {
-          templateUrl: "form.html"
-        }
-      }
-    })
-    .state('menu.keyboard', {
-      url: "/keyboard",
+
+
+    .state('menu.lessons', {
+      url: "/lessons",
       views: {
         'menuContent': {
-          templateUrl: "keyboard.html"
+          templateUrl: "lessons.html",
+          controller: 'NewsListController'
+        }
+      }
+    }) 
+
+  .state('menu.detail', {
+      url: "/detail/:id",
+      views: {
+        'menuContent': {
+          templateUrl: "detail.html",
+      controller: 'NewsDetailController'
         }
       }
     })
-    .state('menu.slidebox', {
-      url: "/slidebox",
+    .state('menu.resources', {
+      url: "/resources",
       views: {
         'menuContent': {
-          templateUrl: "slidebox.html",
-          controller: 'SlideboxCtrl'
+          templateUrl: "resources.html"
+        }
+      }
+    })
+   .state('menu.nivelprincipiante', {
+      url: "/nivelprincipiante",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelprincipiante.html"
+        }
+      }
+    })
+  .state('menu.nivelintermedio', {
+      url: "/nivelintermedio",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelintermedio.html"
+        }
+      }
+    })
+  .state('menu.nivelavanzado', {
+      url: "/nivelavanzado",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelavanzado.html"
+        }
+      }
+    })
+    .state('menu.social-feed', {
+      url: "/social-feed",
+      views: {
+        'menuContent': {
+          templateUrl: "social-feed.html"
         }
       }
     })
@@ -454,9 +531,10 @@ will inject platform-specific code from the /merges folder -->
           templateUrl: "about.html"
         }
       }
-    });
+    })
+    ;
 
-  $urlRouterProvider.otherwise("menu/tab/buttons");
+  $urlRouterProvider.otherwise("menu/tab/record");
 
 })
 
@@ -555,15 +633,11 @@ will inject platform-specific code from the /merges folder -->
       });
 })
 
-.controller('SlideboxCtrl', function($scope, $ionicSlideBoxDelegate) {
-  $scope.nextSlide = function() {
-    $ionicSlideBoxDelegate.next();
-  }             
-})              
+          
 
 .controller('MenuCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
+  $scope.toggleRight = function() {
+    $ionicSideMenuDelegate.toggleRight();
   };
               
   $ionicModal.fromTemplateUrl('modal.html', function (modal) {
@@ -580,9 +654,35 @@ will inject platform-specific code from the /merges folder -->
 
   });
 
- });
+ })
+
+
+
+.controller('NewsListController', function ($scope, $location) {
+      
+      $scope.news = [
+ { id: 1, name: 'Nivel Principiante', material: "Material de trabajo preparatorio" },
+   { id: 2, name: 'Nivel Intermedio', material: "material de nivel 1" },
+   { id: 3, name: 'Nivel Avanzado', material: "material de nivel 2" }
+        ];
+      
+      $scope.onSelectNews = function(n) {
+        //$state.go('menu.detail', { NewsId: n.id });
+        $location.url('/menu/detail/' + n.name);
+      }
+      
+    })
+   
+.controller('NewsDetailController', function ($stateParams, $scope) {
+      $scope.news = { 
+        name: $stateParams.id
+      };
+   });
+
               
               
+
+
   </script>
 
 </html>
