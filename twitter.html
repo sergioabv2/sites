@@ -26,7 +26,7 @@
                     <div class="flex-1">
                       <div>
                         <strong class="font-bold text-gray-800 mr-2" x-text="tweet.name"></strong> 
-                        <span x-text="tweet.username" class="text-gray-600"></span>
+                 
                         <span class="mx-1 text-gray-500">&bull;</span>
                         <span class="text-gray-600" x-text="formatDate(tweet.date)"></span>
                       </div>
@@ -36,7 +36,7 @@
                         
          <div x-show="tweet.videoUrl">
            <br>
-            <iframe width="100%" height="220" :src="tweet.videoUrl" frameborder="0"></iframe>
+            <iframe width="100%" height="190" :src="tweet.videoUrl" frameborder="0"></iframe>
         </div>
               
                       </div>
@@ -134,7 +134,7 @@
 
         tweets: [
           {
-            name: "John Wick",
+            name: "Mozart Studio",
             username: "@john1123wick",
             tweet: 'Build your own Fake Twitter Post now! Check it out @simitator.com',
             retweets: 12,
