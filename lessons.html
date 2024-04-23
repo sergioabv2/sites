@@ -1,0 +1,654 @@
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css" rel="stylesheet"/>
+
+
+
+<style>
+.collection {
+  border: none;
+}
+
+.css a {
+  color: #F44336 !important;
+}
+
+.css i {
+  color: #F44336 !important;
+}
+
+.html5 a {
+  color: #ffc107 !important;
+}
+
+.html5 i {
+  color: #ffc107;
+}
+
+.javascript a {
+  color: #4CAF50 !important;
+}
+
+.javascript i {
+  color: #4CAF50;
+}
+
+.php a {
+  color: #2196F3 !important;
+}
+
+.php i {
+  color: #2196F3;
+}
+
+.indicator {
+  background-color: #9e9e9e !important;
+}
+
+.modal-content {
+  padding: 24px !important;
+  overflow: visible !important;
+  height: 550px !important;
+}
+
+.linehorizontal{
+  border-bottom: 1px solid lightgray; 
+  margin-bottom: 15px;
+  margin-left: -30px;
+  width: 125%;
+}
+
+
+.collapsible-header{
+  margin-left: -35px;
+   margin-right: -25px;
+}
+
+.collapsible {
+    
+    
+    transition: max-height 0.3s ease-out; /* Define la transición de altura máxima */
+}
+
+
+</style>
+
+
+<body ng-app="materializeApp" >
+
+  <!-- End Header -->
+  <!-- Tabs Nav Start -->
+  <div class="row">
+    <div class="col s12" ng-controller="BodyController">
+      <ul class="tabs">
+        <li class="tab col s3 css"><a href="#test1"><span class="hide-on-med-and-up">Preparatorio</span></a></li>
+        <li class="tab col s3 css"><a href="#test2"><span class="hide-on-med-and-up">Grado 1</span></a></li>
+        <li class="tab col s3 javascript"><a href="#test3"><span class="hide-on-med-and-up">Grado 2</span></a></li>
+      </ul>
+    </div>
+    <!-- Tabs Nav End -->
+    
+    
+    
+    
+    
+    
+    <div id="test1" class="col s12" ng-controller="levelP">
+  <!-- CSS Course Start -->
+  <ul class="collection with-header css" ng-repeat="data in allData">
+    <li class="collection-header">
+      <h4 class="grey-text">{{data.block}}</h4>
+    </li>
+    <li class="collection-item" ng-repeat="lesson in data.lessons">
+      <a href="#lesson" ng-init="lesson.showButton = false" ng-click="lesson.showButton = !lesson.showButton">
+        <div>{{lesson.name}}<span class="secondary-content"><i class="material-icons" ng-if="lesson.id < num">check</i></span></div>
+      </a>
+      
+      <ul class="collapsible popout" data-collapsible="accordion" ng-if="lesson.showButton">
+     <div class="linehorizontal" ></div>
+        <li ng-repeat="material in lesson.material" class="container-lessons" ng-if="lesson.id <= num">
+          <div class="collapsible-header"><i class="material-icons">{{material.icon}}</i>{{material.title}}</div>
+          <div class="collapsible-body">
+            <p>{{material.instructions}}</p>
+            {{material.id}}
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="test2" class="col s12" ng-controller="level1">
+    <!-- CSS Course Start -->
+    <ul class="collection with-header css" ng-repeat="data in allData">
+        <li class="collection-header">
+            <h4 class="grey-text">{{data.block}}</h4>
+        </li>
+        <li class="collection-item" ng-repeat="lesson in data.lessons">
+            <a href="#" ng-click="toggleAccordion(lesson)">
+                <div>{{lesson.name}}<span class="secondary-content"><i class="material-icons">pageview</i></span></div>
+            </a>
+        </li>
+        <!-- Modal for Lesson1 -->
+        <ul class="collapsible popout" data-collapsible="accordion" ng-repeat="material in lesson.material" ng-show="lesson.showAccordion">
+            <li>
+                <div class="collapsible-header"><i class="{{material.icon}}"></i>{{material.title}}</div>
+                <div class="collapsible-body">
+                    <p>{{material.instructions}}</p>
+                </div>
+            </li>
+        </ul>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="test3" class="col s12">
+      <!-- JAVASCRIPT Course Start -->
+      <ul class="collection with-header javascript">
+        <li class="collection-header">
+          <h4 class="grey-text">Course Overview</h4></li>
+        <li class="collection-item">
+          <a href="#!" ng-init="showJavascript1" ng-click="showJavascript1 = !showJavascript1">
+            <div>Lesson 1: Introduction to Javascript<span class="secondary-content"><i class="material-icons">pageview</i></span></div>
+          </a>
+        </li>
+        <!-- Modal for Lesson1 -->
+        <ul class="collapsible popout" data-collapsible="accordion" ng-if="showJavascript1" watch>
+          <li ng-repeat="single in javascriptLesson1">
+            <div class="collapsible-header"><i class="{{single.icon}}">{{single.iconDisplay}}</i>{{single.title}}</div>
+            <div class="collapsible-body">
+              <p>
+                {{single.content}}
+              </p>
+            </div>
+          </li>
+        </ul>
+        <!-- End Modal for Lesson1 -->
+        <li class="collection-item">
+          <a href="#!" ng-init="showJavascript2" ng-click="showJavascript2 = !showJavascript2">
+            <div>Lesson 2: Control Flow<span class="secondary-content"><i class="material-icons">pageview</i></span></div>
+          </a>
+        </li>
+        <!-- Modal for Lesson2 -->
+        <ul class="collapsible popout" data-collapsible="accordion" ng-if="showJavascript2" watch>
+          <li ng-repeat="single in javascriptLesson2">
+            <div class="collapsible-header"><i class="{{single.icon}}">{{single.iconDisplay}}</i>{{single.title}}</div>
+            <div class="collapsible-body">
+              <p>
+                {{single.content}}
+              </p>
+            </div>
+          </li>
+        </ul>
+        <!-- End Modal for Lesson2 -->
+        <li class="collection-item">
+          <a href="#!" ng-init="showJavascript3" ng-click="showJavascript3 = !showJavascript3">
+            <div>Lesson 3: Functions & Scope<span class="secondary-content"><i class="material-icons">pageview</i></span></div>
+          </a>
+        </li>
+        <!-- Modal for Lesson3 -->
+        <ul class="collapsible popout" data-collapsible="accordion" ng-if="showJavascript3" watch>
+          <li ng-repeat="single in javascriptLesson3">
+            <div class="collapsible-header"><i class="{{single.icon}}">{{single.iconDisplay}}</i>{{single.title}}</div>
+            <div class="collapsible-body">
+              <p>
+                {{single.content}}
+              </p>
+            </div>
+          </li>
+        </ul>
+        <!-- End Modal for Lesson3 -->
+        <li class="collection-item">
+          <a href="#!" ng-init="showJavascript4" ng-click="showJavascript4 = !showJavascript4">
+            <div>Lesson 4: Arrays & Loops<span class="secondary-content"><i class="material-icons">pageview</i></span></div>
+          </a>
+        </li>
+        <!-- Modal for Lesson4 -->
+        <ul class="collapsible popout" data-collapsible="accordion" ng-if="showJavascript4" watch>
+          <li ng-repeat="single in javascriptLesson4">
+            <div class="collapsible-header"><i class="{{single.icon}}">{{single.iconDisplay}}</i>{{single.title}}</div>
+            <div class="collapsible-body">
+              <p>
+                {{single.content}}
+              </p>
+            </div>
+          </li>
+        </ul>
+        <!-- End Modal for Lesson4 -->
+      </ul>
+      <!-- JAVASCRIPT Course End -->
+    </div>
+   
+   
+    
+  </div> 
+
+</body>
+
+
+<script>
+  $(document).ready(function() {
+  $('ul.tabs').tabs();
+});
+
+
+
+
+  //Angular Materialize
+var app = angular.module('materializeApp', ['ui.materialize']);
+app.factory('SharedState', function() {
+  return {
+    num: 3 // Inicializa la variable num aquí
+  };
+});
+  app.controller('BodyController', ["$scope", function($scope) {
+    $scope.cssLesson1 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Tema 1: Ritmo y altura',
+      content: 'Proxima fecha de entrega: 23 de Marzo',
+      new: {
+        text: "it works"
+      }
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Tema 2: Posición de 5 dedos',
+      content: 'Proxima fecha de entrega: 23 de Marzo'
+    },
+     {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Pieza',
+      content: 'Ode to Joy var 2'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Teoria',
+      content: 'Ejercicios de reforzamiento',
+    }];
+
+    $scope.cssLesson2 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'Pellentesque viverra fringilla neque. Pellentesque leo lacus, aliquet et lorem sed, tincidunt varius justo. Curabitur a gravida urna, in interdum neque. Maecenas ornare ullamcorper eros sed gravida. Aenean et ante id libero varius varius. Donec venenatis consectetur nunc, eu placerat libero consequat vitae. Ut quis libero vel nunc scelerisque rutrum in quis ligula. Curabitur a dolor ac mauris vestibulum interdum iaculis ac magna. Morbi aliquam turpis nec sem posuere mattis. Pellentesque mattis nec ex vitae viverra. Quisque a rhoncus ligula. Integer mollis faucibus ligula a rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent a commodo lacus, at pretium augue. Nulla odio sapien, pellentesque in auctor nec, rutrum eget sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et metus nibh. Proin accumsan dolor sollicitudin neque tempor pharetra eu nec lacus. Suspendisse feugiat facilisis suscipit. Donec eu tristique velit, ac condimentum tellus.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This lesson will take approximately 2 hour'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Create an inline style with a working class and id on the page.',
+    }];
+    $scope.cssLesson3 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'Pellentesque viverra fringilla neque. Pellentesque leo lacus, aliquet et lorem sed, tincidunt varius justo. Curabitur a gravida urna, in interdum neque. Maecenas ornare ullamcorper eros sed gravida. Aenean et ante id libero varius varius. Donec venenatis consectetur nunc, eu placerat libero consequat vitae. Ut quis libero vel nunc scelerisque rutrum in quis ligula. Curabitur a dolor ac mauris vestibulum interdum iaculis ac magna. Morbi aliquam turpis nec sem posuere mattis. Pellentesque mattis nec ex vitae viverra. Quisque a rhoncus ligula. Integer mollis faucibus ligula a rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent a commodo lacus, at pretium augue. Nulla odio sapien, pellentesque in auctor nec, rutrum eget sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et metus nibh. Proin accumsan dolor sollicitudin neque tempor pharetra eu nec lacus. Suspendisse feugiat facilisis suscipit. Donec eu tristique velit, ac condimentum tellus.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 3 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Style your page and make it personal. You can style the page any way you would like.'
+    }];
+    $scope.cssLesson4 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'Pellentesque viverra fringilla neque. Pellentesque leo lacus, aliquet et lorem sed, tincidunt varius justo. Curabitur a gravida urna, in interdum neque. Maecenas ornare ullamcorper eros sed gravida. Aenean et ante id libero varius varius. Donec venenatis consectetur nunc, eu placerat libero consequat vitae. Ut quis libero vel nunc scelerisque rutrum in quis ligula. Curabitur a dolor ac mauris vestibulum interdum iaculis ac magna. Morbi aliquam turpis nec sem posuere mattis. Pellentesque mattis nec ex vitae viverra. Quisque a rhoncus ligula. Integer mollis faucibus ligula a rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent a commodo lacus, at pretium augue. Nulla odio sapien, pellentesque in auctor nec, rutrum eget sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et metus nibh. Proin accumsan dolor sollicitudin neque tempor pharetra eu nec lacus. Suspendisse feugiat facilisis suscipit. Donec eu tristique velit, ac condimentum tellus.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 2 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'For this assignment you will use the <style> tag to implement your styles to the HTML elements. Part two of the assignment will to be to create an external CSS stylesheet and import it to the page.'
+    }];
+    $scope.htmlLesson1 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'In this Lesson you will learn the basics of HTML5.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 3 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Build a proper HTML5 template.'
+    }];
+    $scope.htmlLesson2 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'In this lesson you will be exploring HTML5 tags and creating content for your new web page.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 1 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Explore different HTML tags such as <h1> and <p> which you will implement into a working web page to display content.'
+    }];
+    $scope.htmlLesson3 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'In this lesson you will learn how to add structure to your HTML5 page and organize your content.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 1 hours and 15 minutes.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Restructure your current page with the proper structuring techniques learned in this lesson.'
+    }];
+    $scope.htmlLesson4 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'In this lesson you will learn about the <td>, <th>, and <tr> tags for constructing tables.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 3 hours and 15 minutes.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Add a table in your web page with data of your choice.'
+    }];
+    $scope.javascriptLesson1 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'In this lecture we will go over the basics of JavaScript and this lesson will be an introduction to using JavaScript'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 2 hours and 10 minutes.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Declare a few variables and log your new variable to the console.'
+    }];
+    $scope.javascriptLesson2 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'JavaScript supports a compact set of statements, specifically control flow statements, that you can use to incorporate a great deal of interactivity in your application.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 3 hours and 20 minutes.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Create a conditionional if statement and follow it with an else if statement. Once you are finished with your conditional statements you can end it with an else statement.'
+    }];
+    $scope.javascriptLesson3 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'Values can be passed to a function, and the function will return a value. In JavaScript, functions are first-class objects, because they can have properties and methods just like any other object. What distinguishes them from other objects is that functions can be called. In brief, they are Function objects.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 4 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'create a function named cats and when that function is called create a while loop to display "it is raining cats" once.'
+    }];
+    $scope.javascriptLesson4 = [{
+      icon: 'large material-icons',
+      iconDisplay: 'message',
+      title: 'Lecture',
+      content: 'You will be learning about arrays in this lesson which will take you through how to call a specific value from that array and how to define an array within an array.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'schedule',
+      title: 'Completion Time',
+      content: 'This assignment will take approximately 3 hours.'
+    }, {
+      icon: 'large material-icons',
+      iconDisplay: 'assignment',
+      title: 'Assignments',
+      content: 'Create an array with values of your choice and then create a multi dimensional array on a seperate line.'
+    }];
+    
+  }])
+
+
+
+.controller('levelP', ["$scope", "SharedState", function($scope, SharedState) {
+   $scope.num = SharedState.num
+    $scope.allData = [
+      {
+          block: "Bloque 1",
+          lessons: [
+            {
+              id: 1,
+              name: 'Lección 1: Ejercicios pre-pentagrama',
+              stat: 'check',
+              material:[{
+                title: 'Posición de 5 dedos',
+                instructions: 'Se debe entregar con metronomo a 50 BPM',
+                type: 'Technic',
+                pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                video: 'https:www.example.com/video/2093h24oinfos',
+                icon: 'message',
+                id: '1'
+              },
+              {
+                title: 'Ritmo y métrica',
+                instructions: 'Se debe entregar con metronomo a 50 BPM',
+                type: 'Technic',
+                pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                video: 'https:www.example.com/video/2093h24oinfos',
+                icon: 'message',
+                id: '2'
+              }]
+          },
+          { 
+            id: 2,
+            name: 'Lección 2: Grand Staff',
+            stat: 'check',
+            material:[{
+              title: 'El pentagrama',
+              instructions: 'Se debe entregar con metronomo a 50 BPM',
+              type: 'Technic',
+              pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+              video: 'https:www.example.com/video/2093h24oinfos',
+              icon: 'message',
+              id: '3'
+            },
+            {
+              title: 'El grand staff',
+              instructions: 'Se debe entregar con metronomo a 50 BPM',
+              type: 'Technic',
+              pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+              video: 'https:www.example.com/video/2093h24oinfos',
+              icon: 'message',
+              id: '4'
+            }]
+          }]
+      },
+      {
+          block: "Bloque 2",
+          lessons: [
+            {
+              id: 3,
+              name: 'Lección 3: Ejercicios pre-pentagrama',
+              material:[{
+                title: 'Posición de 5 dedos',
+                instructions: 'Se debe entregar con metronomo a 50 BPM',
+                type: 'Technic',
+                pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                video: 'https:www.example.com/video/2093h24oinfos',
+                icon: 'message',
+                id: '5'
+              },
+              {
+                title: 'Ritmo y métrica',
+                instructions: 'Se debe entregar con metronomo a 50 BPM',
+                type: 'Technic',
+                pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                video: 'https:www.example.com/video/2093h24oinfos',
+                icon: 'message',
+                id: '6'
+              }]
+          },
+          { 
+            id: 4,
+            name: 'Lección 4: Grand Staff',
+            material:[{
+              title: 'El pentagrama',
+              instructions: 'Se debe entregar con metronomo a 50 BPM',
+              type: 'Technic',
+              pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+              video: 'https:www.example.com/video/2093h24oinfos',
+              icon: 'message',
+              id: '7'
+            },
+            {
+              title: 'El grand staff',
+              instructions: 'Se debe entregar con metronomo a 50 BPM',
+              type: 'Technic',
+              pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+              video: 'https:www.example.com/video/2093h24oinfos',
+              icon: 'message',
+              id: '8'
+            }]
+          }]
+      }
+    ]
+  }])
+
+.controller('level1', ["$scope", function($scope) {
+ 
+    $scope.allData = [
+        {
+            block: "Bloque 1",
+            lessons: [
+                {
+                    id: 1,
+                    stat: 'check',
+                    name: 'Lección 1: Ejercicios pre-pentagrama',
+                    material: [
+                        {
+                            title: 'Posición de 5 dedos',
+                            instructions: 'Se debe entregar con metronomo a 50 BPM',
+                            type: 'Technic',
+                            pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                            video: 'https:www.example.com/video/2093h24oinfos',
+                            icon: 'ri-cap-fill',
+                            id: '1'
+                        },
+                        {
+                            title: 'Ritmo y métrica',
+                            instructions: 'Se debe entregar con metronomo a 50 BPM',
+                            type: 'Technic',
+                            pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                            video: 'https:www.example.com/video/2093h24oinfos',
+                            icon: 'ri-cap-fill',
+                            id: '2'
+                        }
+                    ],
+                    showAccordion: false
+                },
+                { 
+                    id: 2,
+                    name: 'Lección 2: Grand Staff',
+                  stat: 'check',
+                    material: [
+                        {
+                            title: 'El pentagrama',
+                            instructions: 'Se debe entregar con metronomo a 50 BPM',
+                            type: 'Technic',
+                            pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                            video: 'https:www.example.com/video/2093h24oinfos',
+                            icon: 'ri-cap-fill',
+                            id: '3'
+                        },
+                        {
+                            title: 'El grand staff',
+                            instructions: 'Se debe entregar con metronomo a 50 BPM',
+                            type: 'Technic',
+                            pdf: 'https:www.example.com/pdf/a2o0jr2ou3',
+                            video: 'https:www.example.com/video/2093h24oinfos',
+                            icon: 'ri-cap-fill',
+                            id: '4'
+                        }
+                    ],
+                    showAccordion: false
+                }
+            ]
+        }
+    ];
+
+    
+}]);
+
+
+
+
+
+</script>
+
+
