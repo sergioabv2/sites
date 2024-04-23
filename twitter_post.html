@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-
-
+</head>
 
 <body >
   <div x-data="app()" x-cloak class="antialiased sans-serif bg-gray-200">
@@ -83,3 +83,40 @@
 
 
 </body>
+
+<script>
+  function app() {
+      return {
+        tweetText: '',
+        images: [],
+
+
+        saveTweet() {
+          this.tweets.unshift({
+            name: "Current User",
+            username: "@current_user",
+            tweet: this.tweetText,
+            retweets: 0,
+            likes: 0,
+            date: new Date(),
+            tweet_images: this.images,
+            hasBeenLiked: false,
+            hasBeenRetweeted: false
+          });
+
+          this.images = [];
+          this.tweetText = '';
+        },
+        charactersRemaining() {
+          return MAX_TWEET_LENGTH - this.tweetText.length;
+        },
+
+        tweetIsOutOfRange() {
+          return (MAX_TWEET_LENGTH - this.tweetText.length) == MAX_TWEET_LENGTH || (MAX_TWEET_LENGTH - this.tweetText.length) < 0;
+        },
+
+        generateAvatarFromName(name) {
+          return name.split(" ")[0].slice(0, 1) +''+ name.split(" ")[1].slice(0, 1);
+        }
+      }
+</script>
