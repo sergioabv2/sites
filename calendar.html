@@ -1,3 +1,5 @@
+
+
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
@@ -7,16 +9,25 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.1/ui-bootstrap-tpls.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-calendar/1.0.0/calendar.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/lang-all.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
 
 
- <style>
 
+ 
+<style>
+	/*!
+ * FullCalendar v2.6.1 Stylesheet
+ * Docs & License: https://fullcalendar.io/
+ * (c) 2015 Adam Shaw
+ */
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
 
 .fc {
 	direction: ltr;
 	text-align: left;
 }
+
+
 
 .fc-rtl {
 	text-align: right;
@@ -536,12 +547,10 @@ temporary rendered events).
 .ui-widget .fc-event {
 	color: #fff; /* default TEXT color */
 	text-decoration: none; /* if <a> has an href */
+  cursor: pointer;
 }
 
-.fc-event[href],
-.fc-event.fc-draggable {
-	cursor: pointer; /* give events with links and draggable events a hand mouse pointer */
-}
+
 
 .fc-not-allowed, /* causes a "warning" cursor. applied on body */
 .fc-not-allowed .fc-event { /* to override an event's custom cursor */
@@ -1137,8 +1146,10 @@ be a descendant of the grid when it is being dragged.
 }
 
 
- </style>
 
+
+
+</style>
 
 
 
@@ -1153,7 +1164,7 @@ be a descendant of the grid when it is being dragged.
             <script type="text/ng-template" id="myModalContent.html">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title">I'm a modal!</h3>
+                    <h3 class="modal-title">Clase</h3>
                 </div>
                 <div class="modal-body">
                     <div class="text-center well">
@@ -1170,6 +1181,45 @@ be a descendant of the grid when it is being dragged.
                     <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
                 </div>
             </script>
+          
+          
+          
+            <script type="text/ng-template" id="bookpiano.html">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Agendar servicio</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center well">
+                    
+                    <p>
+             <label for="service">Servicio</label>
+  <select id="service" class="form-control" ng-model="selectedService" ng-change="updateDayList()">
+    <option value=""></option>
+    <option value="service1">{{opc1}}</option>
+    <option value="service2" ng-if="miss > 0">{{opc2}}</option>
+    <option value="service3" ng-if="delay > 0">{{opc3}}</option>
+  </select>
+        <label for="dayList" ng-if="selectedService">Dia</label>
+  <select id="dayList" class="form-control" ng-model="selectedDay" ng-change="updateHourList()" ng-options="day for day in days" >
+  </select>
+     <label for="hourList" ng-if="selectedDay && selectedService != 'service3'">Hora</label>
+  <select id="hourList" class="form-control" ng-model="selectedHour" ng-if="selectedDay && selectedService != 'service3'">
+    <option ng-repeat="hour in hours">{{hour}}</option>
+  </select>
+             </p>          
+                  
+                </div>
+               <span style="font-weight: 700;">Prácticas:  </span> Ilimitadas<br>
+  <span style="font-weight: 700;">Reposiciones:  </span> {{miss}}<br>
+               <span style="font-weight: 700;">Falta sin recargo:  </span> {{delay}}
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                </div>
+            </script>
+          
             <!--   END  Modal Body     -->
             <div class="alert-success calAlert ng-scope" ng-show="alertMessage != undefined &amp;&amp; alertMessage != ''">
                 <h4 class="ng-binding">{{alertMessage}}</h4>
@@ -1183,55 +1233,99 @@ be a descendant of the grid when it is being dragged.
         </div>
         <p></p>
        <div class="col-md-12">
-           <button style="margin-top: 20px; float: right;"> Agendar</button>
+           <button style="margin-top: 20px; float: right;" ng-click="bookpiano()"> Agendar</button>
                         </div>
     </div>
 </div>
 
-
 <script>
-  var app = angular.module('myApp', ['ui.bootstrap', 'ui.calendar']);
+	var app = angular.module('myApp', ['ui.bootstrap', 'ui.calendar']);
 
 app.controller('Ctrl', function($scope, $uibModal, $log, $compile, uiCalendarConfig) {
-    $scope.teste = "Calendário";
+    $scope.teste = "calendar";
 
     var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
+    var hour = date.getHours()
     var y = date.getFullYear();
     
+    $scope.userData =
+      {
+        name: 'Sergio Aberlado Bello Valenzo',
+        miss: 2,
+        delay: 1,
+        month: 3,
+        day: 4,
+        hour: 18
+      };
 
-    $scope.events = [{
-        title: 'All Day Event',
-        start: new Date(y, m, 1)
-    },  {
-        title: 'Reposicion',
-        start: new Date(y, 3, 5, 19)
+    $scope.events = [
+      {
+        title: 'Clase 1',
+        start: new Date(y, 3, $scope.userData.day+(0*7), 19),
+        attendance: 1
     }, {
-        title: 'Reposicion',
-        start: new Date(y, 3, 5+7, 19)
+        title: 'Clase 2',
+        start: new Date(y, 3, $scope.userData.day+(1*7), 19),
+      attendance: 1
     },  {
-        title: 'Reposicion',
-        start: new Date(y, 3, 5+14, 19)
+        title: 'Clase 3',
+        start: new Date(y, 3, $scope.userData.day+(2*7), 19),
+      attendance: 0
     },
        {
-        title: 'Click for Google',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        url: 'https://google.com/'
-    }];
+        title: 'Clase 4',
+        start: new Date(y, 3, $scope.userData.day+(3*7), 19),
+         attendance: ""
+    },
+
+      {
+        title: 'Próximo pago',
+        start: new Date(y, 3, $scope.userData.day+(4*7), 19),
+        color: 'green'
+    },
+            {
+        title: 'Reposicion de clase',
+        start: new Date(y, 4, 5+16, 19),
+         attendance: "P",
+        color: 'orange'
+    },
+       {
+        title: 'Ausencia sin recargo',
+        start: new Date(y, 4, $scope.userData.day+(3*7), 19),
+        color: 'Silver'
+    }, 
+       ];
+  
+  
+  
 
     /* event source that calls a function on every view switch */
     $scope.eventSources = [$scope.events];
 
-    /* Render Tooltip */
+  
+ $scope.bookpiano = function() {
+    var modalInstance2 = $uibModal.open({
+      templateUrl: 'bookpiano.html',
+      controller: 'bookCtrl',
+      resolve: {
+                items: function() {
+                    return $scope.events;
+                },
+                userData: function() {
+                    return $scope.userData;
+                }
+            }
+    });
+  };
+
+    /* Render Tooltip 
     $scope.eventRender = function(event, element, view) {
         element.attr({
-            'uib-tooltip': 'editar: ' + event.title,
+
             'tooltip-append-to-body': true
         });
         $compile(element)($scope);
-    };
+    };*/
 
     $scope.alertOnEventClick = function(date, jsEvent, view, size) {
         $scope.selected = date;
@@ -1257,16 +1351,10 @@ app.controller('Ctrl', function($scope, $uibModal, $log, $compile, uiCalendarCon
         // FIM Modal
 
     };
+  
+ 
 
-    /* Change View */
-    $scope.changeView = function(view, calendar) {
-        uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
-    };
-    $scope.renderCalender = function(calendar) {
-        if (uiCalendarConfig.calendars[calendar]) {
-            uiCalendarConfig.calendars[calendar].fullCalendar('render');
-        }
-    };
+
 
     var currentLangCode = 'es-mx';
     $scope.uiConfig = {
@@ -1274,18 +1362,34 @@ app.controller('Ctrl', function($scope, $uibModal, $log, $compile, uiCalendarCon
             defaultView: 'month',
             height: "auto",
             lang: currentLangCode,
-            editable: true,
             eventTextColor: '#fff',
-            eventBorderColor: '#9987B5',
-            eventBackgroundColor: '#9987B5',
+            eventBorderColor: 'white',
+          
+            eventBackgroundColor: function(event) {
+              if(event.color){
+                return event.color; 
+              }
+                
+            },
+            eventBackgroundColor: 'LightSeaGreen',
+            eventRender: function(event, element) {
+                element.find('.fc-time').text(""); 
+              if (event.start < new Date()) { 
+                if(event.attendance === 1){
+                     element.append('<i class="ri-check-line" style="position: absolute; top: -30px;  color: green; font-size: 20px; font-weight: 700;"></i>'); 
+                }else if(event.attendance === 0){
+                  element.append('<i class="ri-close-line" style="position: absolute; top: -30px;  color: red; font-size: 20px; font-weight: 700;"></i>'); 
+               }
+                 
+                };
+             
+            },
+            
             header: {
                 left: 'title',
                 right: 'today prev,next'
             },
-            eventClick: $scope.alertOnEventClick,
-            eventDrop: $scope.alertOnDrop,
-            eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender
+            eventClick: $scope.alertOnEventClick
         }
     };
 
@@ -1297,7 +1401,7 @@ app.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, items) {
     // Mudando formato como é mostrado DateTime no input
     $scope.ted = items.start;
     $scope.date = moment($scope.ted).format("DD-MM-YYYY HH:mm");
-    $scope.gfExtenso = moment(items.start).format("dddd, Do MMMM YYYY, HH:mm a");
+    $scope.gfExtenso = moment(items.start).format("dddd D MMMM YYYY, HH:mm a");
     // FIM Mudando formato como é mostrado DateTime no input
 
     $scope.items = items;
@@ -1314,4 +1418,172 @@ app.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, items) {
         $uibModalInstance.dismiss('cancel');
     };
 });
+
+
+
+app.controller('bookCtrl', function($scope, $uibModalInstance, items, userData) {
+  // Agrega aquí la lógica necesaria para el controlador del modal
+   $scope.miss = userData.miss;
+  $scope.delay = userData.delay;
+  // Por ejemplo, puedes definir una función para cerrar el modal
+  $scope.ok = function() {
+        $uibModalInstance.close();
+    };
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
+  
+  
+  $scope.opc1 = "Agendar piano para práctica";
+  $scope.opc2 = "Agendar reposición de clase";
+  $scope.opc3 = "Solicitar falta sin recargo";
+
+  $scope.daysForPractice = [];
+  $scope.daysForService2 = [];
+  $scope.daysForService3 = [];
+  var now = new Date();
+  var hour = now.getHours();
+  
+  for(i=0; i<6;i++){ 
+    var day = newDate(i).split(" ")[0];
+    var limit = getLimit(day)
+     if(day === "Miércoles" || day === "Jueves" || day === "Viernes"){
+       if(i == 0 && hour < limit){
+         $scope.daysForPractice.push(newDate(i));
+       }else if(i>0){
+         $scope.daysForPractice.push(newDate(i));
+       }     
+    }
+  };
+
+  for(i=1; i<7;i++){ 
+    var day = newDate(i).split(" ")[0];
+    //dateR.toDateString() === now.toDateString()
+   if(day === "Miércoles" || day === "Jueves" || day === "Viernes" || day === "Sábado" || day === "Domingo"){
+        $scope.daysForService2.push(newDate(i));
+    }
+  };
+  
+  for(i=0;i<items.length;i++){
+    if(items[i].attendance === ""){
+      var date = new Date(items[i].start)
+      $scope.daysForService3.push(returnDateFormat(date))
+    }
+  }
+  
+  
+
+  var hoursForWeekday = ['14:00 a 15:00 Hrs', '15:00 a 16:00 Hrs', '16:00 a 17:00 Hrs', '17:00 a 18:00 Hrs', '18:00 a 19:00 Hrs'];
+  var hoursForFriday = ['11:00 a 12:00 Hrs', '12:00 a 13:00 Hrs', '13:00 a 14:00 Hrs'];
+  var hoursForSaturday = ['10:00 a 11:00 Hrs', '11:00 a 12:00 Hrs', '12:00 a 13:00 Hrs', '14:00 a 15:00 Hrs', '15:00 a 16:00 Hrs'];
+  var hoursForSunday = ['9:00 a 10:00 Hrs', '10:00 a 11:00 Hrs', '11:00 a 12:00 Hrs', '12:00 a 13:00 Hrs'];
+
+  $scope.updateDayList = function() {
+    if ($scope.selectedService === 'service1') {
+      $scope.days = $scope.daysForPractice;
+    } else if ($scope.selectedService === 'service2') {
+      $scope.days = $scope.daysForService2;
+    } else if ($scope.selectedService === 'service3') {
+      $scope.days = $scope.daysForService3;
+    } else {
+      $scope.days = [];
+    }
+    $scope.selectedDay = '';
+    $scope.selectedHour = '';
+  };
+
+   $scope.updateHourList = function() {
+    if ($scope.selectedService === 'service2' || $scope.selectedService === 'service1') {
+    if ($scope.selectedDay.split(" ")[0] === 'Miércoles' || $scope.selectedDay.split(" ")[0] === 'Jueves') {
+      $scope.hours = hoursForWeekday;
+      if($scope.selectedService === 'service1'){
+        if(now.getDay() == 3){
+          var filteredHours = hoursForWeekday.slice();
+          $scope.hours = filteredHours.splice(substractHour(3));
+        }else if(now.getDay() == 4)
+          var filteredHours = hoursForWeekday.slice();
+          $scope.hours = filteredHours.splice(substractHour(3));
+      }
+    } else if($scope.selectedDay.split(" ")[0] === 'Viernes') {
+       $scope.hours = hoursForFriday;
+        if($scope.selectedService === 'service1' && now.getDay() == 5){
+          var filteredHours = hoursForWeekday.slice();
+          $scope.hours = filteredHours.splice(substractHour(3));
+        }
+    } else if($scope.selectedDay.split(" ")[0] === 'Sábado') {
+      $scope.hours = hoursForSaturday;
+    } else if($scope.selectedDay.split(" ")[0] === 'Domingo') {
+      $scope.hours = hoursForSunday;
+    };
+
+     $scope.selectedHour = '';
+   } else if ($scope.selectedService === 'service3') {
+     $scope.hours = [""]
+   }
+   
+  };
+  
+  
+  function substractHour(tolerance){
+    var now = new Date();
+    var hour = now.getHours();
+
+    for (i = 17; i >= 14; i--) {
+      if (hour > i - tolerance) {
+        return i - 14 + 1; 
+      }
+    }
+  }
+  
+  function newDate (num){
+    const now = new Date();
+  const dat = new Date(now.getTime() + num*24*60*60*1000)
+  const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    var dat2 = dat.toLocaleDateString("es-mx",options).replace(",","");
+    return dat2.charAt(0).toUpperCase() + dat2.slice(1);
+  };
+  
+  function returnDateFormat(date){
+    const dat = new Date(date);
+  const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    var dat2 = dat.toLocaleDateString("es-mx",options).replace(",","");
+    return dat2.charAt(0).toUpperCase() + dat2.slice(1);
+  }
+  
+  function getDateFormat(dayAndDate, time) {
+    var parts = dayAndDate.split(" ");
+    var day = parts[0];
+    var date = parseInt(parts[1]);
+    var month = parts[3];
+
+    var hour = parseInt(time.split(":")[0]);
+    var minute = parseInt(time.split(":")[1]);
+    var monthIndex = getMonthIndex(month);
+
+    // Crear el objeto de fecha
+    var dateObject = new Date();
+    dateObject.setFullYear(new Date().getFullYear());
+    dateObject.setMonth(monthIndex);
+    dateObject.setDate(date);
+    dateObject.setHours(hour);
+    dateObject.setMinutes(minute);
+
+    return dateObject;
+};
+
+function getMonthIndex(month) {
+    var months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    return months.indexOf(month.toLowerCase());
+};
+  
+  function getLimit(day){
+    if(day == 'Miércoles' || day == 'Jueves'){
+      return 17
+    }else if(day == 'Viernes'){
+      return 12
+    }
+  }
+});
+
 </script>
