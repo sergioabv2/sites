@@ -1,216 +1,1308 @@
-<head>
-<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-</head>
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css"></link>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+
+<script async defer src="//www.instagram.com/embed.js"></script>
+
+<style>
+  /*** base color: #f27275 ***/
+body {
+  font-size: 0.9rem;
+  background: silver;
+}
+
+a {color: #f27275;}a:hover, a:focus {color:#666;}
+
+/*** HEADER ***/
+
+
+.kol_header {
+  position: fixed;
+  display: flex;
+  background: #fff;
+  height: 56px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+  z-index: 99;
+}
+.kol_header .logo{}
+.kol_header .arama{color:#aaa;opacity: .7;} .kol_header .arama:hover,.kol_header .arama:focus{opacity:1;}
+.kol_header .butonlar{}
+
+/*** FILTER POSTS ***/
+.filtermenu {
+  width: 100%;
+  margin-left: -20px;
+  text-align: center;
+}
+.filtermenu li {
+  border: 1px solid #CCC;
+  padding: 4px 12px;
+  display: inline-block;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.filtermenu li.active {
+  background: #CCC;
+}
+
+/*** POSTS ***/
+.post {
+  display:flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.post_thumbnail img{width:100%;text-align: center;}
+.post_header, .post_footer {
+  padding: 10px 20px;
+  color: #777;
+  width: 100%;
+}
+
+/** Insta Post **/
+iframe#instagram-embed-0{height: auto;}
+.Header {display: none;}
+.HoverCard {display: none;}
+.Feedback {display: none;}
+.SocialProof {display: none;}
+.Footer {display: none;}
+/** Post Tumblr **/
+.post-header {display: none;}
+.post_body {display: none;}
+.post-tags {display: none;}
+.post-footer {display: none !important;}
+
+/*** Pagination ***/
+.hr-pagi{width:70%;}
+.pagination a,.pagination a:hover,.pagination a:focus{color:#f27275;}
+
+/*** KEYFRAMES ***/
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes sonar {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+
+/*** RESPONSIVE ***/
+@media screen and (min-width: 768px) {
+  .post{width:60%;margin: 0 auto 10px auto;}
+  .hr-pagi{width:30%;}
+}
+
+
+/*** SOL MENU ALL ***/
+
+.page-wrapper .sidebar-wrapper,
+.sidebar-wrapper .sidebar-brand > a,
+.sidebar-wrapper .sidebar-dropdown > a:after,
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
+.sidebar-wrapper ul li a i,
+.page-wrapper .page-content,
+.sidebar-wrapper .sidebar-search input.search-menu,
+.sidebar-wrapper .sidebar-search .input-group-text,
+.sidebar-wrapper .sidebar-menu ul li a,
+#show-sidebar,
+#close-sidebar {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/*----------------page-wrapper----------------*/
+
+.page-wrapper {
+  height: 100vh;
+}
+
+.page-wrapper .theme {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 4px;
+  margin: 2px;
+}
+
+.page-wrapper .theme.chiller-theme {
+  background: #fafafa;
+}
+
+/*----------------toggeled sidebar----------------*/
+
+.page-wrapper.toggled .sidebar-wrapper {
+  left: 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .page-wrapper.toggled .page-content {
+    padding-left: 300px;
+  }
+}
+/*----------------show sidebar button----------------*/
+#show-sidebar {
+  position: fixed;
+  left: 0;
+  top: 56px;
+  border-radius: 0 4px 4px 0px;
+  width: 35px;
+  transition-delay: 0.3s;
+}
+.page-wrapper.toggled #show-sidebar {
+  left: -40px;
+}
+/*----------------sidebar-wrapper----------------*/
+
+.sidebar-wrapper {
+  width: 260px;
+  height: calc( 100% - 56.5px );
+  max-height: calc( 100% - 56.5px );
+  position: fixed;
+  top: 56.5px;
+  left: -300px;
+  z-index: 999;
+}
+
+.sidebar-wrapper ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-wrapper a {
+  text-decoration: none;
+}
+
+/*----------------sidebar-content----------------*/
+
+.sidebar-content {
+  max-height: calc(100% - 30px);
+  height: calc(100% - 30px);
+  overflow-y: auto;
+  position: relative;
+}
+
+.sidebar-content.desktop {
+  overflow-y: hidden;
+}
+
+/*--------------------sidebar-brand----------------------*/
+
+.sidebar-wrapper .sidebar-brand {
+  height: 55px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-brand a {color:#fff;}
+
+/** Brand FA Icons **/
+.sidebar-brand .fab, .sidebar-brand .fas {
+  padding: 10px;
+  font-size: 15px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+.sidebar-brand .fab:hover, .sidebar-brand .fas:hover {
+    opacity: 0.7;
+}
+.sidebar-brand .fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.sidebar-brand .fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.sidebar-brand .fa-google {
+  background: #dd4b39;
+  color: white;
+}
+.sidebar-brand .fa-instagram {
+  background: #125688;
+  color: white;
+}
+.sidebar-brand .fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+.sidebar-brand .fa-rss {
+  background: #ff6600;
+  color: white;
+}
+
+.sidebar-wrapper .sidebar-brand #close-sidebar {
+  cursor: pointer;
+  font-size: 20px;
+}
+/*--------------------sidebar-header----------------------*/
+
+.sidebar-wrapper .sidebar-header {
+  padding: 20px;
+  overflow: hidden;
+}
+
+.sidebar-wrapper .sidebar-header .user-pic {
+  float: left;
+  width: 60px;
+  padding: 2px;
+  border-radius: 12px;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.sidebar-wrapper .sidebar-header .user-pic img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar-wrapper .sidebar-header .user-info {
+  float: left;
+}
+
+.sidebar-wrapper .sidebar-header .user-info > span {
+  display: block;
+}
+
+.sidebar-wrapper .sidebar-header .user-info .user-role {
+  font-size: 12px;
+}
+
+.sidebar-wrapper .sidebar-header .user-info .user-status {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.sidebar-wrapper .sidebar-header .user-info .user-status i {
+  font-size: 8px;
+  margin-right: 4px;
+  color: #5cb85c;
+}
+
+/*-----------------------sidebar-search------------------------*/
+
+.sidebar-wrapper .sidebar-search > div {
+  padding: 10px 20px;
+}
+
+/*----------------------sidebar-menu-------------------------*/
+
+.sidebar-wrapper .sidebar-menu {
+  padding-bottom: 10px;
+}
+
+.sidebar-wrapper .sidebar-menu .header-menu span {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 15px 20px 5px 20px;
+  display: inline-block;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  position: relative;
+  padding: 8px 30px 8px 20px;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a i {
+  margin-right: 10px;
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a:hover > i::before {
+  display: inline-block;
+  animation: swing ease-in-out 0.5s 1 alternate;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f105";
+  font-style: normal;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background: 0 0;
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
+  padding: 5px 0;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
+  padding-left: 25px;
+  font-size: 13px;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
+  content: "\f111";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 10px;
+  font-size: 8px;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a span.label,
+.sidebar-wrapper .sidebar-menu ul li a span.badge {
+  float: right;
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .badge,
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
+  float: right;
+  margin-top: 0px;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-submenu {
+  display: none;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
+  transform: rotate(90deg);
+  right: 17px;
+}
+
+/*--------------------------side-footer------------------------------*/
+
+.sidebar-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+}
+
+.sidebar-footer > a {
+  flex-grow: 1;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+}
+
+.sidebar-footer > a .notification {
+  position: absolute;
+  top: 0;
+}
+
+.badge-sonar {
+  display: inline-block;
+  background: #980303;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: 0;
+}
+
+.badge-sonar:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #980303;
+  opacity: 0;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: sonar 1.5s infinite;
+}
+
+/*--------------------------page-content-----------------------------*/
+
+.page-wrapper .page-content {
+  display: inline-block;
+  width: 100%;
+  padding-left: 0px;
+  padding-top: 20px;
+}
+
+.page-wrapper .page-content > div {
+  padding: 20px 40px;
+}
+
+.page-wrapper .page-content {
+  overflow-x: hidden;
+}
+
+/*------scroll bar---------------------*/
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #636269;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #636269;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #636269;
+}
+::-webkit-scrollbar-track {
+  background: #333238;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #333238;
+}
+::-webkit-scrollbar-track:active {
+  background: #333238;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+
+/*-----------------------------chiller-theme-------------------------------------------------*/
+
+.chiller-theme .sidebar-wrapper {
+    background: #eee;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-header,
+.chiller-theme .sidebar-wrapper .sidebar-search,
+.chiller-theme .sidebar-wrapper .sidebar-menu {
+    border-top: 1px solid #aaa;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
+.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
+    border-color: #999;
+    box-shadow: none;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
+.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
+.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
+.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text,
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
+.chiller-theme .sidebar-footer>a {
+    color: #444;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a,
+.chiller-theme .sidebar-wrapper .sidebar-header .user-info,
+.chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
+.chiller-theme .sidebar-footer>a:hover i {
+    color: #000;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.page-wrapper.chiller-theme.toggled #close-sidebar {
+    color: #bdbdbd;
+}
+
+.page-wrapper.chiller-theme.toggled #close-sidebar:hover {
+    color: #000;
+}
+
+.chiller-theme .sidebar-wrapper ul li:hover a i,
+.chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
+.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+    color: #ffffff;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
+.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
+.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
+    background: #aaa;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
+    color: #f27275;
+}
+
+.chiller-theme .sidebar-footer {
+    background: #ddd;
+    box-shadow: 0px -1px 5px #666;
+    border-top: 1px solid #aaa;
+}
+
+.chiller-theme .sidebar-footer>a:first-child {
+    border-left: none;
+}
+
+.chiller-theme .sidebar-footer>a:last-child {
+    border-right: none;
+}
+
+.chiller-theme .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+.chiller-theme .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar,
+.chiller-theme .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar {
+    background: #636363;
+}
+
+.chiller-theme .mCSB_scrollTools .mCSB_draggerRail {
+    background-color: transparent;
+}
+
+</style>
 
 
 
-<body >
-  <div x-data="app()" x-cloak class="antialiased sans-serif bg-gray-200">
+<body style="background: #ddd" ng-app="postApp" ng-controller="postController">
+<div class="page-wrapper chiller-theme">
+      
+       
+   
+       
+   
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                  <ul class="filtermenu">
+                    <li data-filter="all">Nuevos</li>
+                    <li data-filter="face">Populares</li>
+                    <li data-filter="twit">Favoritos</li>
   
-    
-    <div class="container mx-auto py-5">
-          
-
-
-          <ul class="bg-white rounded-lg shadow mb-8">
-            <template x-for="(tweet, tweetIndex) in tweets" :key="tweetIndex">  
-              <div>
-                <li class="px-6 py-5" :class="{'border-b border-gray-200': (tweetIndex + 1) != tweets.length }">
-                  <div class="flex w-full">
-                    <div class="flex-shrink-0 mr-5">
-                      <div class="cursor-pointer font-bold w-12 h-12 bg-gray-300 flex items-center justify-center rounded-full">
-                        <span x-text="generateAvatarFromName(tweet.name)" class="uppercase text-gray-700"></span>
+                  </ul>
+                    <div class="col-md-12 posts-group">
+                        <div class="post face">
+                          <div class="post_header">
+                            <a href="https://www.instagram.com/mozart.studio_academy/">@mozart.studio_academy</a>
+                          </div>
+                          <div class="post_thumbnail">
+                               <iframe width="100%" height="220" src="https://lh3.googleusercontent.com/d/1P-NPni4N_gljISZ63TFt-keDkkU4kAIJ" frameborder="0" ></iframe>
+                        <!---    <img src="https://loremflickr.com/620/640/istanbul?random=1" /> --->
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Comentarios...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample1">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
                       </div>
-                    </div>
-                    <div class="flex-1">
-                      <div>
-                        <strong class="font-bold text-gray-800 mr-2" x-text="tweet.name"></strong> 
-                 
-                        <span class="mx-1 text-gray-500">&bull;</span>
-                        <span class="text-gray-600" x-text="formatDate(tweet.date)"></span>
-                      </div>
-
-                      <div class="mb-4">
-                        <p x-text="tweet.tweet" class="text-gray-700"></p>
-                        
-         <div x-show="tweet.videoUrl">
-           <br>
-            <iframe width="100%" height="190" :src="tweet.videoUrl" frameborder="0"></iframe>
-        </div>
-              
-                      </div>
+                        <div class="post twit" >
                        
-                      <div class="relative w-auto mb-2 border rounded-lg relative bg-gray-100 mb-4 shadow-inset overflow-hidden" x-show="tweet.tweet_images.length > 0">
-
-                        <div class="gg-container">
-                          <div class="gg-box square-gallery" style="margin: 0">
-                            <template x-for="image in tweet.tweet_images"> 
-                              <img class="object-cover w-full" :src="image" />   
-                              
-                            </template>
-                            
-                            
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center w-full">
-                        
-                        
-
-                        <div class="w-1/4 flex items-center">
-                          <div @click="likeTweet(tweetIndex)" class="cursor-pointer hover:bg-gray-200 inline-flex p-2 rounded-full duration-200 transition-all ease-in-out">
-                            <svg x-show="tweet.hasBeenLiked == false" class="h-6 w-6 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
-
-                            <svg x-show="tweet.hasBeenLiked == true" class="h-6 w-6 text-red-500"  viewBox="0 0 20 20" fill="currentColor">  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
-                          </div>
-                          <div x-text="tweet.likes" class="ml-1 text-gray-600 leading-none inline-flex" :class="{'text-gray-600': tweet.hasBeenLiked == false, 'text-red-600': tweet.hasBeenLiked == true}"></div>
-                        </div>
-
-                       <div class="w-1/4 flex items-center">
-                          <div @click="retweet(tweetIndex, tweet.retweets)" class="cursor-pointer hover:bg-gray-200 inline-flex p-2 rounded-full duration-200 transition-all ease-in-out">
-                            <svg class="h-6 w-6" :class="{'text-gray-500': tweet.hasBeenRetweeted == false, 'text-green-500': tweet.hasBeenRetweeted == true }"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                            </svg>                            
-                          </div>
-                          <div x-text="tweet.retweets" class="ml-1 leading-none inline-flex" :class="{'text-gray-600': tweet.hasBeenRetweeted == false, 'text-green-600': tweet.hasBeenRetweeted == true}"></div>
-                        </div>
+                     
+                 <iframe width="100%" height="300" scrolling="no"  src="https://instagram.com/p/CyWOlFkpFfh/embed/" frameborder="0"></iframe>
                         
                       </div>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </template>
-          </ul>
-
-      
-        <div x-data="{ 'showModal': false }"
-      @keydown.escape="showModal = false">
-
-    <button  @click="showModal = true">Open modal 2</button>
-
-    <div class="overflow-auto"
-        x-show="showModal"
-        :class="{ 'absolute inset-0 z-10 flex items-center justify-center': showModal }"
-    >
-
-      <div
-        x-show="showModal"
-        @click.away="showModal = false"
-        x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0 scale-90"
-        x-transition:enter-end="opacity-100 scale-100"
-      >
-        
-
-
-       <div class="iframe-container"><iframe src="https://git.tallerdepiano.app/twitter_post" frameborder="0" allowfullscreen></iframe></div>
-
-          <button  @click="showModal = false">Close</button>
-    
-      </div>
-    </div>
+                      
+                   
+                    
+                      
+                        <div class="post tumblr">
+                          <div class="post_header">
+                            <a href="#">@hakki</a> tarafından instadan gönderildi
+                          </div>
+                          <div class="post_thumbnail">
+          <iframe width="100%" height="180" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/18942763&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false" frameborder="0" ></iframe>
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
   </div>
-      
-
-    </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
   </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">yorumlar...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample4">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
+                      </div>
+                      
+                      
+                      
+                      
+                      
+                       <div class="post tumblr">
+                          <div class="post_header">
+                            <a href="#">@hakki</a> tarafından instadan gönderildi
+                          </div>
+                          <div class="post_thumbnail">
+    <iframe width="100%" height="180" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/18942763&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false" frameborder="0" ></iframe>
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
 
-</body>
+  </div>
+  <div class="btn-group mr-4" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">yorumlar...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample4">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
+                      </div>
+                      
+                      
+                      
+                      
+               
+                      
+                      
+         <div class="post tumblr">
+             <div class="post_header">
+                            <a href="#">@hakki</a> tarafından instadan gönderildi
+                          </div>           
+   <div class="post_thumbnail">
+      
+      <iframe srcdoc="<script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js'></script>
+
+
+<style>
+  body {
+
+  font-family: 'Raleway';
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #BCAAA4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-wrap {
+  margin: 10px;
+  transform: perspective(800px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.card-wrap:hover .card-info {
+  transform: translateY(0);
+}
+.card-wrap:hover .card-info p {
+  opacity: 1;
+}
+.card-wrap:hover .card-info, .card-wrap:hover .card-info p {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-wrap:hover .card-info:after {
+  transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-wrap:hover .card-bg {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.8;
+}
+.card-wrap:hover .card {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 240px;
+  width: 240px;
+  height: 320px;
+  background-color: #333;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card-bg {
+  opacity: 0.5;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  pointer-events: none;
+}
+
+.card-info {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  transform: translateY(40%);
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.card-info p {
+  opacity: 0;
+  text-shadow: black 0 2px 3px;
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.card-info * {
+  position: relative;
+  z-index: 1;
+}
+.card-info:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  background-blend-mode: overlay;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card-info h1 {
+  font-family: 'Playfair Display';
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+}
+
+
+#op{
+  transform: scale(1.4);
+  display: none;
+}
+
+#opicon:active op{
+  transform: scale(1.2);
+}
+
+
+
+#opicon{
+  background-image: url('data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1h-3zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0z' fill='black'/%3E%3C/svg%3E');
+  width: 50px;
+  height: 50px;
+}
+</style>
+
+<div id='app' class='container'>
+  <card data-image='https://i.ibb.co/ZWqkznM/image.png'>
+    <h1 slot='header'>Sergio B.</h1>
+    <p slot='content'>Reconocimiento por haber concluido el nivel preparatorio</p>
+  </card>
+  
+  
+</div>
+</div>
 
 
 <script>
-   const MAX_TWEET_LENGTH = 140;
-    const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  Vue.config.devtools = true;
 
-    function app() {
+Vue.component('card', {
+  template: `
+    <div class='card-wrap'
+      @mouseenter='handleMouseEnter'
+      @mouseleave='handleMouseLeave'
+      ref='card'>
+      <div class='card'
+        :style='cardStyle'>
+        <div class='card-bg' :style='[cardBgTransform, cardBgImage]'></div>
+        <div class='card-info'>
+          <slot name='header'></slot>
+          <slot name='content'></slot>
+        </div>
+      </div>
+    </div>`,
+  mounted() {
+    this.width = this.$refs.card.offsetWidth;
+    this.height = this.$refs.card.offsetHeight;
+
+    // Add devicemotion event listener
+    window.addEventListener('devicemotion', this.handleDeviceMotion);
+  },
+  destroyed() {
+    // Remove devicemotion event listener when component is destroyed
+    window.removeEventListener('devicemotion', this.handleDeviceMotion);
+  },
+  props: ['dataImage'],
+  data: () => ({
+    width: 0,
+    height: 0,
+    gravity: { x: 0, y: 0, z: 0 }
+  }),
+  computed: {
+    cardStyle() {
+      const rX = this.gravity.x * 20;
+      const rY = this.gravity.y * -20;
       return {
-        tweetText: '',
-        images: [],
-
-        tweets: [
-          {
-            name: "Mozart Studio",
-            username: "@john1123wick",
-            tweet: 'Build your own Fake Twitter Post now! Check it out @simitator.com',
-            retweets: 12,
-            likes: 50,
-            date: "2020-04-06 12:00:00",
-            tweet_images: [],
-            hasBeenLiked: false,
-            hasBeenRetweeted: false,
-            videoUrl: "https://www.youtube.com/embed/BsVNs6-1B5s"
-          },
-          {
-            name: "Captain America",
-            username: "@capAmerica",
-            tweet: 'Prank your friends or imitate celebrities. You can make fake twitter tweets in any creative way you like. Upload profile picture, select username, write message...',
-            retweets: 10,
-            likes: 100,
-            date: "2020-04-02",
-            tweet_images: [],
-            hasBeenLiked: false,
-            hasBeenRetweeted: false
-          }
-        ],
-        
-
-        retweet(index) {
-          this.tweets[index].hasBeenRetweeted ? this.tweets[index].retweets-- : this.tweets[index].retweets++;
-          this.tweets[index].hasBeenRetweeted = !this.tweets[index].hasBeenRetweeted;
-        },
-
-        likeTweet(index) {
-          this.tweets[index].hasBeenLiked ? this.tweets[index].likes-- : this.tweets[index].likes++;
-          this.tweets[index].hasBeenLiked = !this.tweets[index].hasBeenLiked;
-        },
-
-        generateAvatarFromName(name) {
-          return name.split(" ")[0].slice(0, 1) +''+ name.split(" ")[1].slice(0, 1);
-        },
-
-        formatDate(date) {
-          if (!date) {
-              return null;
-          }
-          
-          const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
-          const today = new Date();
-          const yesterday = new Date(today - DAY_IN_MS);
-          const d = new Date(date);
-          const day = d.getDate();
-            const month = MONTH_NAMES[d.getMonth()];
-
-          const seconds = Math.round((today - d) / 1000);
-            const minutes = Math.round(seconds / 60);
-          const hours = Math.round(minutes / 60);
-
-          const isToday = today.toDateString() === d.toDateString();
-          // const isYesterday = yesterday.toDateString() === date.toDateString();
-          // const isThisYear = today.getFullYear() === date.getFullYear();
-          
-          if (isToday) {
-            if (seconds < 5) {
-              return 'now';
-            } else if (seconds < 60) {
-              return `${ seconds }s`;
-            } else if (minutes < 60) {
-              return `${ minutes }m`;
-            } else {
-              return `${ hours }h`;
-            }
-          } else {
-            return month +' '+ day;
-          }
-        }
-      }
+        transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
+      };
+    },
+    cardBgTransform() {
+      const tX = this.gravity.x * -30;
+      const tY = this.gravity.y * -30;
+      return {
+        transform: `translateX(${tX}px) translateY(${tY}px)`
+      };
+    },
+    cardBgImage() {
+      return {
+        backgroundImage: `url(${this.dataImage})`
+      };
     }
+  },
+  methods: {
+    handleMouseEnter() {
+      clearTimeout(this.mouseLeaveDelay);
+    },
+    handleMouseLeave() {
+      this.mouseLeaveDelay = setTimeout(() => {
+        this.gravity.x = 0;
+        this.gravity.y = 0;
+      }, 1000);
+    },
+    handleDeviceMotion(event) {
+      // Update the gravity values
+      this.gravity.x = event.accelerationIncludingGravity.x;
+      this.gravity.y = event.accelerationIncludingGravity.y;
+      this.gravity.z = event.accelerationIncludingGravity.z;
+    }
+  }
+});
+
+const app = new Vue({
+  el: '#app'
+});
+
+</script>" width="100%" height="360"></iframe>
+
+</div>
+             <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">yorumlar...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample4">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
+                          </div>
+                         
+                        
+                      
+                      
+                      
+                      
+                      
+                        <div class="post tumblr">
+                          <div class="post_header">
+                            <a href="#">@hakki</a> tarafından instadan gönderildi
+                          </div>
+                          <div class="post_thumbnail">
+                            <div style="height: 150px; background: #343434; display: flex; justify-content: center; align-items: center;">
+                              <div style="margin-top: 45px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" height="160" style="filter: invert(1);">
+        <path d="M85.83,53.22h-5L77.37,42.86a1.9,1.9,0,0,0-3.66.21L69.46,63.32,64.87,32.67a1.9,1.9,0,0,0-3.76.06L57.26,66.94l-5-43.9a1.9,1.9,0,0,0-3.78,0l-5,43.9L39.69,32.73a1.9,1.9,0,0,0-3.77-.06l-4.48,30L27.12,38.93a1.9,1.9,0,0,0-3.71-.14L19.89,52.33H14.13a1.5,1.5,0,1,0,0,3h6.61a1.91,1.91,0,0,0,1.84-1.43l2.48-9.54L29.68,69.7a1.9,1.9,0,0,0,3.75-.06l4.22-28.22,4,35.54a1.9,1.9,0,0,0,3.78,0L50.4,33l5,43.94a1.9,1.9,0,0,0,3.77,0l4-35.54L67.4,69.83a1.9,1.9,0,0,0,3.73.1l4.68-22.27,2.52,7.53a1.48,1.48,0,0,0,1.42,1h6.08A1.5,1.5,0,0,0,85.83,53.22Z"/>
+                                </svg></div>
+
+</div>
+      <iframe src="https://drive.google.com/file/d/1uv_JPib31QffXi4KDEFc6q7BMo7qrCNG/preview"  frameborder="0" height="60px" width="100%"></iframe>
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">yorumlar...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample4">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
+                      </div>
+                      
+                      
+                      
+                      
+                      
+                  <div ng-repeat="post in data">       
+                        <div class="post face" >
+                          <div class="post_header">
+                            <a href="https://www.instagram.com/mozart.studio_academy/">@mozart.studio_academy</a>
+                          </div>
+                          <div class="post_thumbnail">
+                               <iframe width="100%" height="220" ng-src="{{post.url}}" frameborder="0" ></iframe>
+                        <!---    <img src="https://loremflickr.com/620/640/istanbul?random=1" /> --->
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Comentarios...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample1">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div>
+                            </div>
+                      </div>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                        <div class="post youtube">
+                          <div class="post_header">
+                            <a href="#">@Mozart</a> tarafından instadan gönderildi
+                          </div>
+                          <div class="post_thumbnail">
+                            <img src="https://loremflickr.com/420/640?random=5" />
+                          </div>
+                          <div class="post_footer">
+                            
+                           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-heart" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-comments" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-share-square"></i>
+    </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+    <button type="button" class="btn btn-outline-secondary btn-sm">
+      <i class="far fa-bookmark" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+                            
+                           <a data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="false" aria-controls="multiCollapseExample5">yorumlar...</a>
+                            <div class="comments collapse multi-collapse" id="multiCollapseExample5">
+                              <p>Yorum #1</p>
+                              <p>Yorum #2</p>
+                              <p>Yorum #3</p>
+                            </div>
+                            
+                          </div><!-- Post Footer -->
+                      </div>
+                    </div>
+                </div>
+                <hr class="hr-pagi">  
+         
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+</body>
+
+
+
+<script>
+   var app = angular.module('postApp', [])
+ app.controller('postController', ['$scope', '$interval', '$sce', function($scope, $interval, $sce) {
+   $scope.data = [
+     {
+       user: "@mozart.studio_academy",
+       type: "youtube",
+       url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/shfXvPCqYyw"),
+       likes: 10,
+       comments: [{
+         user: "@kevin",
+         comment: "cool!",
+         time: "02/01/24"
+       },{
+         user: "@yako",
+         comment: "si!",
+         time: "02/02/24"
+       } ]
+     
+    },
+     {
+       user: "@mozart.studio_academy",
+       type: "youtube",
+       url: $sce.trustAsResourceUrl("https://www.youtube.com/embed/NmpbK3n8nWo"),
+       likes: 2,
+       comments: [{
+         user: "@kevin",
+         comment: "wow!",
+         time: "02/03/24"
+       } ]
+     
+    }
+   ]
+   
+  // Inicializar el contador de likes y el estado del like
+  $scope.likesCount = 0;
+  $scope.isLiked = false;
+
+  // Función para manejar el clic en el botón de like
+  $scope.toggleLike = function() {
+    if ($scope.isLiked) {
+      // Si ya le ha dado like, disminuir el contador y cambiar el estado del like
+      $scope.likesCount--;
+      $scope.isLiked = false;
+    } else {
+      // Si no ha dado like, incrementar el contador y cambiar el estado del like
+      $scope.likesCount++;
+      $scope.isLiked = true;
+    }
+  };
+}]);
+
+
+
+/*** FILTER ***/
+var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var
+FilterGallery = function () {
+
+	function FilterGallery() {_classCallCheck(this, FilterGallery);
+		this.$filtermenuList = $('.filtermenu li');
+		this.$container = $('.posts-group');
+
+		this.updateMenu('all');
+		this.$filtermenuList.on('click', $.proxy(this.onClickFilterMenu, this));
+	}_createClass(FilterGallery, [{ key: 'onClickFilterMenu', value: function onClickFilterMenu(
+
+		event) {
+			var $target = $(event.target);
+			var targetFilter = $target.data('filter');
+
+			this.updateMenu(targetFilter);
+			this.updateGallery(targetFilter);
+		} }, { key: 'updateMenu', value: function updateMenu(
+
+		targetFilter) {
+			this.$filtermenuList.removeClass('active');
+			this.$filtermenuList.each(function (index, element) {
+				var targetData = $(element).data('filter');
+
+				if (targetData === targetFilter) {
+					$(element).addClass('active');
+				}
+			});
+		} }, { key: 'updateGallery', value: function updateGallery(
+
+		targetFilter) {var _this = this;
+
+			if (targetFilter === 'all') {
+				this.$container.fadeOut(300, function () {
+					$('.post').show();
+					_this.$container.fadeIn();
+				});
+			} else {
+				this.$container.find('.post').each(function (index, element) {
+					_this.$container.fadeOut(300, function () {
+						if ($(element).hasClass(targetFilter)) {
+							$(element).show();
+						} else {
+							$(element).hide();
+						}
+						_this.$container.fadeIn();
+					});
+				});
+			}
+		} }]);return FilterGallery;}();
+
+
+var fliterGallery = new FilterGallery();
+
+
+
+
+
 </script>
-
-
-      
-
