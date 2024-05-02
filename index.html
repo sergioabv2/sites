@@ -1098,7 +1098,7 @@ app
           $('.preloader').css({ 'display': 'none' });
           $('.loginSection').fadeIn('slow');
           $('.mainSection').css({ 'display': 'none' });
-          //loadForm();
+          loadForm();
         }
       })
       .catch(function(error) {
@@ -1127,81 +1127,8 @@ app
       
     });
 
-  /*  app.factory('SharedState', ["$http", function($http) {
-  var service = {};
-
-  service.getData = function() {
-    var requestData = {
-      action: "getData",
-      email: localStorage.getItem('MStoken'),
-      encryption: "si"
-    };
-
-    var config = {
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      followRedirects: true
-    };
-
-    return $http.post('https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec', requestData, config)
-      .then(function(response) {
-        return response.data;
-      });
-  };
-
-  return service;
-}]);
-
-app.controller('Controller1', ["$scope", "SharedState", function($scope, SharedState) {
-  SharedState.getData()
-    .then(function(userData) {
-      $scope.userData = userData;
-    })
-    .catch(function(error) {
-      console.error('Error fetching data:', error);
-    });
-}]);
-
-app.controller('Controller2', ["$scope", "SharedState", function($scope, SharedState) {
-  SharedState.getData()
-    .then(function(userData) {
-      $scope.userData2 = userData;
-    })
-    .catch(function(error) {
-      console.error('Error fetching data:', error);
-    });
-}]);
-
-
-  .controller('Controller1', ['$http', '$scope', function($http, $scope) {
-  $scope.userData = [];
-
-  var requestData = {
-    action: "getData",
-    email: localStorage.getItem('MStoken'),
-    encryption: "si"
-  };
-
-  var config = {
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    followRedirects: true, 
-  };
-
-  $http.post('https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec', requestData, config)
-    .then(function(response) {
-      $scope.userData = response.data;
-    })
-}]);*/
-
-
-
+ 
     </script>
-
-
-
 
 
 
@@ -1231,8 +1158,7 @@ $(window).on('load', function() {
     if (validation.status == "success") {
       $('.preloader').css({'display':'none'})  
       $('.loginSection').css({'display':'none'})  
-      $('.mainSection').fadeIn('slow')
-      //loadData(api, storedToken, "si");    
+      $('.mainSection').fadeIn('slow')  
     } else {
       localStorage.removeItem('MStoken');
       $('.preloader').css({'display':'none'});
@@ -1281,75 +1207,15 @@ $(window).on('load', function() {
         $('.preloader').css({'display':'none'})  
         $('.loginSection').css({'display':'none'})  
         $('.mainSection').fadeIn('slow')
-        //loadData(api, email, "no");    
+	document.getElementById('email-login').value = ''; 
+        document.getElementById('password-login').value = '';
+        $button.button('reset'); 
       } else {
         alert('Información de ingreso inválida');
         $button.button('reset');
       }
     })
 }
-
-
-
-function loadData(api, mail, encryption) {
-  var userData = {
-    redirect: "follow",
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
-      action: "getData",
-      email: mail,
-      encryption: encryption
-    })
-  };
-
-  fetch(api, userData)
-    .then(answer => answer.text())
-    .then(ans => {
-      //var content = JSON.parse(ans);
-      app.controller('Controller1', ['$http', '$scope', function($http, $scope) {
-        $scope.userData = JSON.parse(ans) || {};          
-      }]);
-      angular.bootstrap(document, ['studentsApp']);
-      showMain(); 
-    });
-  }
-
-
-  function logout() {
-      $('.preloader').fadeIn('slow')
-      const storedToken = localStorage.getItem('MStoken');
-
-      var api = "https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec";
-
-      var removeData = {
-        redirect: "follow",
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify({
-          action: "removeToken",
-          token: storedToken,
-        })
-      };
-
-      fetch(api, removeData)
-      .then(response => response.text())
-      .then(res => {
-        var validation = JSON.parse(res);
-        if (validation.status == "success") {
-          localStorage.removeItem('MStoken');
-          $('.preloader').css({'display':'none'})  
-          $('.loginSection').fadeIn('slow') 
-          $('.mainSection').css({'display':'none'});
-          loadForm();
-        }
-      })
-    }
-
 
 
 
