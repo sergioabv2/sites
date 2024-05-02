@@ -1,670 +1,20 @@
+<html >
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.3/paper-full.min.js">
-</script>
-<link href="https://cdn.jsdelivr.net/npm/remixicon@3.7.0/fonts/remixicon.css" rel="stylesheet"/>
-<link href="https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://code.ionicframework.com/1.3.3/css/ionic.min.css" rel="stylesheet">
+  <script src="https://code.ionicframework.com/1.3.3/js/ionic.bundle.min.js"></script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
  <style>
-  .layout {
-  z-index: 1;
-}
-.layout .header {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
-.layout .content {
-  padding: 12px 50px;
-  display: flex;
-  flex-direction: column; 
-}
-.layout .content a{
-  text-decoration: none;
-}
-.layout .footer {
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: 20px;
-  padding: 20px;
-}
 
-
-@-webkit-keyframes top {
-  0% {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  100% {
-    
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes top {
-  0% {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.anim{
-  -webkit-animation: top 1s both;
-          animation: top 1s both;
-}
-
-
-.sidebar {
-  color: #7d84ab;
-  overflow-x: hidden !important;
-  position: relative;
-
-  font-family: "Poppins", sans-serif;  
-  font-size: 1.7rem;  
-}
-.sidebar::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-}
-.sidebar:hover::-webkit-scrollbar-thumb {
-  background-color: #1a4173;
-}
-.sidebar::-webkit-scrollbar {
-  width: 6px;
-  background-color: #0c1e35;
-}
-.sidebar .image-wrapper {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  display: none;
-  
-}
-.sidebar .image-wrapper > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.sidebar.has-bg-image .image-wrapper {
-  display: block;
-}
-.sidebar .sidebar-layout {
-  height: auto;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background-color: #0c1e35;
-  z-index: 2;
-}
-.sidebar .sidebar-layout .sidebar-header {
-  height: 100px;
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;  
-}
-.sidebar .sidebar-layout .sidebar-header h5{
-  font-weight: 700;
-}
-.sidebar .sidebar-layout .sidebar-header > span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.sidebar .sidebar-layout .sidebar-content {
-  flex-grow: 1;
-  padding: 10px 0;
-}
-.sidebar .sidebar-layout .sidebar-content .menu-icon i {
-    font-size: 19px; /* Change this value to your desired size */
-  }
-.sidebar .sidebar-layout .sidebar-footer {
-  height: 230px;
-  min-height: 230px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-}
-.sidebar .sidebar-layout .sidebar-footer > span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-@keyframes swing {
-  0%, 30%, 50%, 70%, 100% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(10deg);
-  }
-  40% {
-    transform: rotate(-10deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  80% {
-    transform: rotate(-5deg);
-  }
-}
-.layout .sidebar .menu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.layout .sidebar .menu .menu-header {
-  font-weight: 600;
-  padding: 10px 25px;
-  font-size: 0.8em;
-  letter-spacing: 2px;
-  transition: opacity 0.3s;
-  opacity: 0.5;
-}
-.layout .sidebar .menu .menu-item a {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 0 20px;
-  color: #7d84ab;
-  text-decoration: none;
-}
-.layout .sidebar .menu .menu-item a .menu-icon {
-  font-size: 1.2rem;
-  width: 35px;
-  min-width: 35px;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  display: inline-block;
-  margin-right: 10px;
-  border-radius: 2px;
-  transition: color 0.3s;
-}
-.layout .sidebar .menu .menu-item a .menu-icon i {
-  display: inline-block;
-}
-.layout .sidebar .menu .menu-item a .menu-title {
-  font-size: 0.9em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex-grow: 1;
-  transition: color 0.3s;
-}
-.layout .sidebar .menu .menu-item a .menu-prefix,
-.layout .sidebar .menu .menu-item a .menu-suffix {
-  display: inline-block;
-  padding: 5px;
-  opacity: 1;
-  transition: opacity 0.3s;
-}
-.layout .sidebar .menu .menu-item a:hover .menu-title {
-  color: #dee2ec;
-}
-.layout .sidebar .menu .menu-item a:hover .menu-icon {
-  color: #dee2ec;
-}
-.layout .sidebar .menu .menu-item a:hover .menu-icon i {
-  animation: swing ease-in-out 0.5s 1 alternate;
-}
-.layout .sidebar .menu .menu-item a:hover::after {
-  border-color: #dee2ec !important;
-}
-.layout .sidebar .menu .menu-item.sub-menu {
-  position: relative;
-}
-.layout .sidebar .menu .menu-item.sub-menu > a::after {
-  content: "";
-  transition: transform 0.3s;
-  border-right: 2px solid currentcolor;
-  border-bottom: 2px solid currentcolor;
-  width: 5px;
-  height: 5px;
-  transform: rotate(-45deg);
-}
-.layout .sidebar .menu .menu-item.sub-menu > .sub-menu-list {
-  padding-left: 20px;
-  display: none;
-  overflow: hidden;
-  z-index: 999;
-}
-
-.layout .sidebar .menu .menu-item.sub-menu.open > a::after {
-  transform: rotate(45deg);
-}
-.layout .sidebar .menu .menu-item.active > a .menu-title {
-  color: #dee2ec;
-}
-.layout .sidebar .menu .menu-item.active > a::after {
-  border-color: #dee2ec;
-}
-.layout .sidebar .menu .menu-item.active > a .menu-icon {
-  color: #dee2ec;
-}
-.layout .sidebar .menu > ul > .sub-menu > .sub-menu-list {
-  background-color: #0b1a2c;
-}
-.layout .sidebar .menu.icon-shape-circle .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-rounded .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-square .menu-item a .menu-icon {
-  background-color: #0b1a2c;
-}
-.layout .sidebar .menu.icon-shape-circle .menu-item a .menu-icon {
-  border-radius: 50%;
-}
-.layout .sidebar .menu.icon-shape-rounded .menu-item a .menu-icon {
-  border-radius: 4px;
-}
-.layout .sidebar .menu.icon-shape-square .menu-item a .menu-icon {
-  border-radius: 0;
-}
-.layout .sidebar:not(.collapsed) .menu > ul > .menu-item.sub-menu > .sub-menu-list {
-  visibility: visible !important;
-  position: static !important;
-  transform: translate(0, 0) !important;
-}
-.layout .sidebar.collapsed .menu > ul > .menu-header {
-  opacity: 0;
-}
-.layout .sidebar.collapsed .menu > ul > .menu-item > a .menu-prefix,
-.layout .sidebar.collapsed .menu > ul > .menu-item > a .menu-suffix {
-  opacity: 0;
-}
-.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > a::after {
-  content: "";
-  width: 5px;
-  height: 5px;
-  background-color: currentcolor;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  border: none;
-  transform: translateY(-50%);
-}
-.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > a:hover::after {
-  background-color: #dee2ec;
-}
-.layout .sidebar.collapsed .menu > ul > .menu-item.sub-menu > .sub-menu-list {
-  transition: none !important;
-  width: 200px;
-  margin-left: 3px !important;
-  border-radius: 4px;
-  display: block !important;
-}
-.layout .sidebar.collapsed .menu > ul > .menu-item.active > a::after {
-  background-color: #dee2ec;
-}
-.layout .sidebar.has-bg-image .menu.icon-shape-circle .menu-item a .menu-icon, .layout .sidebar.has-bg-image .menu.icon-shape-rounded .menu-item a .menu-icon, .layout .sidebar.has-bg-image .menu.icon-shape-square .menu-item a .menu-icon {
-  background-color: rgba(11, 26, 44, 0.6);
-}
-.layout .sidebar.has-bg-image:not(.collapsed) .menu > ul > .sub-menu > .sub-menu-list {
-  background-color: rgba(11, 26, 44, 0.6);
-}
-.layout.rtl .sidebar .menu .menu-item a .menu-icon {
-  margin-left: 10px;
-  margin-right: 0;
-}
-.layout.rtl .sidebar .menu .menu-item.sub-menu > a::after {
-  transform: rotate(135deg);
-}
-.layout.rtl .sidebar .menu .menu-item.sub-menu > .sub-menu-list {
-  padding-left: 0;
-  padding-right: 20px;
-}
-.layout.rtl .sidebar .menu .menu-item.sub-menu.open > a::after {
-  transform: rotate(45deg);
-}
-.layout.rtl .sidebar.collapsed .menu > ul > .menu-item.sub-menu a::after {
-  right: auto;
-  left: 10px;
-}
-.layout.rtl .sidebar.collapsed .menu > ul > .menu-item.sub-menu > .sub-menu-list {
-  margin-left: -3px !important;
-}
-
-.layout .sidebar.collapsed .content {
-  width: calc(100% - (170px));
-  margin-left: 170x;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.contents{
-  margin-left: -50px; 
-  margin-right: -50px;
-}
-
-.profil{
-   margin-left: -110px; 
-  margin-right: -110px;
-}
-
-
-
-@media (max-width: 576px) {
-  #btn-collapse {
-    display: none;
-  }
-  .sidebar {
-  font-size: 2.2rem;  
- }
-}
-
-@media (min-width: 576px) {
-  .contents{
-  max-height: 650px; 
-  overflow-y: auto; 
-  }
-}
-
-
-@media (min-width: 1000px) {
-   .profil{
-   margin-left: -140px; 
-  margin-right: -140px;
-}
-}
-
-@media (min-height: 650px) and (max-height: 800px) {
-  .layout .sidebar .menu {
-    height: 55vh;
-  }
-}
-
-@media (min-height: 800px){
-  .layout .sidebar .menu {
-    height: 70vh;
-  }
-}
-
-
-
-.layout .sidebar .pro-sidebar-logo {
-  display: flex;
-  align-items: center;
-}
-.layout .sidebar .pro-sidebar-logo > div {
-  width: 35px;
-  min-width: 35px;
-  height: 35px;
-  min-height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  background-color: #4f4d4f;
-  margin-right: 10px;
-}
-.layout .sidebar .pro-sidebar-logo > h5 {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 20px;
-  line-height: 30px;
-  transition: opacity 0.3s;
-  opacity: 1;
-}
-.layout .sidebar .footer-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.8em;
-  padding: 20px 0;
-  border-radius: 8px;
-  width: 180px;
-  min-width: 190px;
-  margin: 0 auto;
-  background-color: #162d4a;
-}
-.layout .sidebar .footer-box img.react-logo {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 10px;
-}
-.layout .sidebar .footer-box a {
-  color: #fff;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-.layout .sidebar .sidebar-collapser {
-  transition: left, right, 0.3s;
-  position: fixed;
-  left: 260px;
-  top: 70px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #00829f;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  transform: translateX(50%);
-  z-index: 111;
-  cursor: pointer;
-  color: white;
-  box-shadow: 1px 1px 4px #0c1e35;
-}
-.layout .sidebar.collapsed .pro-sidebar-logo > h5 {
-  opacity: 0;
-}
-.layout .sidebar.collapsed .footer-box {
-  display: none;
-}
-.layout .sidebar.collapsed .sidebar-collapser {
-  left: 60px;
-}
-.layout .sidebar.collapsed .sidebar-collapser i {
-  transform: rotate(180deg);
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.25em 0.4em;
-  font-size: 75%;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem;
-  color: #fff;
-  background-color: #6c757d;
-}
-.badge.primary {
-  background-color: #ab2dff;
-}
-.badge.secondary {
-  background-color: #079b0b;
-}
-.badge.danger {
-  background-color: #ee4b2b;
-}
-
-.sidebar-toggler {
-  z-index: 5;
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-  font-size: 20px;
-  animation: heartbeat 5s;
-}
-
-  @keyframes heartbeat {
-    0% { transform: scale(1); }
-    10% { transform: scale(1.4); }
-    20% { transform: scale(1); }
-    30% { transform: scale(1.4); }
-    40% { transform: scale(1); }
-    50% { transform: scale(1.4); }
-    60% { transform: scale(1); }
-    70% { transform: scale(1.4); }
-    80% { transform: scale(1); }
-    90% { transform: scale(1.4); }
-    100% { transform: scale(1); }
-  }
-
-.social-links a {
-  margin: 0 10px;
-  color: #3f4750;
-}
-
-.selected .menu-icon,
-.selected .menu-title {
-    color: #eeffff;
-}
-
-
-
-body {
-  font-family: "Source Sans Pro", sans-serif;
-}
-h1 {
-  text-align: center;
-}
-.row {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.attend{
-    width: 186px;
- }
-.outside{
-  margin-top: -10px;
-  width: 80px;
-  display: flex;
-}
-.outside button{  
-  margin: 0 2px;
-}
-.inside{
-  margin-top: 15px;
-  width: 80px;
-  display: flex;
-}
-.inside button{  
-  margin: 0 2px;
-  margin-right: -10px;
-}
-.form-control {
-  width: 30%;
-  display: inline-block;
-  margin-right: 10px;
-}
-.name {
-  font-weight: 700;
-}
-.expertise-label {
-  display: block;
-  font-weight: 700;
-  margin-top: 10px;
-}
-.btn-more {
-  margin-top: 10px;
-  width: 100%;
-}
-.label {
-  font-weight: normal;
-}
-.status {
-  position: absolute; 
-  bottom: 60px; 
-  right: 15px;
-}
-
-
-li {
-  list-style: none; 
-}
-
-.inside .fa-download{
-  color: CadetBlue; 
-  position: absolute; 
-  bottom: 85px; 
-  right: 110px; 
-  font-size: 24px;
-  animation: beat-fade 1s infinite ease-in-out;
-}
-
-.inside .fa-check-circle{
-  color: green; 
-  position: absolute; 
-  bottom: 85px; 
-  right: 20px; 
-  font-size: 26px;
-  animation: beat-fade 0.5s;
-}
-
-.inside .fa-pause-circle-o{
-  color: orange; 
-  position: absolute; 
-  bottom: 85px; 
-  right: 63px; 
-  font-size: 28px;
-  animation: beat-fade 0.5s;
-}
-
-.inside .fa-times-circle{
-  color: FireBrick; 
-  position: absolute; 
-  bottom: 85px; 
-  right: 20px; 
-  font-size: 26px;
-  animation: beat-fade 0.5s;
-}
-.fa-check-circle{
-  color: green; 
-  position: absolute; 
-  top: 15px; 
-  right: 15px; 
-  
-  animation: beat-fade 0.5s;
-  transform: scale(2.5); 
-}
-
-.fa-pause-circle-o{
-  color: orange; 
-  position: absolute; 
-  top: 15px; 
-  right: 15px; 
-  
-  animation: beat-fade 0.5s;
-  transform: scale(2.5); 
-}
 
 .loadInfo{
   z-index: 4;
@@ -970,245 +320,95 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
   text-align: center;
 }
 
-</style>
+.menuSelectedColor {    
+	border-left: solid 7px #311B92 !important;
+    background-color: #E8E9EE !important;
+	color: #311B92 !important;
+	font-weight:bold;
+}
 
-<body>
 
-<section class="loginSection"  style="display: none;">
-  <div id="back">
-    <canvas id="canvas" class="canvas-back"></canvas>
-    <div class="backRight">    
-    </div>
-    <div class="backLeft">
-    </div>
-  </div>
+.card{
+  font-family: 'Nunito', sans-serif;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+  height: 120px;
+  align-items: center; 
+   display: flex; 
+  text-decoration: none; 
+}
 
-  <div id="slideBox">
-    <div class="topLayer">
-      <div class="left">
-        <div class="content">
-          <h2>Recuperar contraseña</h2>
-      
-          <form id="form-signup" method="post" onsubmit="return false;">
-            <div class="form-element form-stack">
-              <label for="recover" class="form-label">Email</label>
-              <input id="recover" type="email" name="recover">
-            </div>
-            <div class="form-element form-stack">
-              <label for="recover2" class="form-label">Confirmar Email</label>
-              <input id="recover2" type="email" name="recover2">
-            </div>
-            <div class="form-element form-submit">
-              <button id="signUp" class="signup" type="submit" name="signup">Enviar correo</button>
-              <button id="goLeft" class="signup off" style="font-size: 13px; margin-top: 10px;">Iniciar sesión</button> 
-            </div>
-          </form>
-            <div style="color: gainsboro; font-weight: 400; font-size: 13px; margin-top: 15px;"> Recibiras un email con los pasos a seguir para que puedas recuperar tu cuenta </div>
-        </div>
-      </div>
-    
-      <div class="right">
-        <div class="content">
-          <h2>Inicio de sesión</h2>
-          <div id="form-login">
-            <div class="form-element form-stack">
-              <label for="email-login" class="form-label">Email</label>
-              <input id="email-login" type="email" name="email-login">
-            </div>
-            
-            
-            <div class="form-element form-stack">
-              <label for="password-login" class="form-label">Password</label>
-              <input id="password-login" type="password" name="password-login">
-            </div>
-      
-            <div class="form-element form-submit">
-              <button id="logIn" class="login" onclick="login(this)" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Cargando...">Iniciar sesión</button>
-              <button id="goRight" class="login off" name="signup" style="font-size: 13px; margin-top: 10px;">Recuperar contraseña</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-  <section class="mainSection" style="display: none;">
-     <div ng-app="studentsApp">
-<div class="layout has-sidebar fixed-sidebar fixed-header">
-      <aside id="sidebar" class="sidebar break-point-sm has-bg-image">
-        <a id="btn-collapse" class="sidebar-collapser"><i class="ri-arrow-left-s-line"></i></a>
-        <div class="image-wrapper">
-          <img src="assets/images/sidebar-bg.jpg" alt="sidebar background" />
-        </div>
-        <div class="sidebar-layout">
-          <div class="sidebar-header">
-            <div class="pro-sidebar-logo">
-              <div>🎹</div>
-              <h5>Taller de Piano</h5>
-            </div>
-          </div>
-          <div class="sidebar-content">
-            <nav class="menu open-current-submenu">
-              <ul >
-           
-           
-                <li class="menu-header" style="padding-top: 20px"><span> MATRÍCULA</span></li>
-                
-                 <li class="menu-item" id="profile">
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-user-3-fill"></i>
-                    </span>
-         <span class="menu-title">Perfil</span>
-     <span class="menu-suffix">
-    <span class="badge danger">!</span></span>
-                  </a>
-                </li>   
-                
-            <li class="menu-item" id="assignments" >
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-calendar-schedule-fill"></i>
-                    </span>
-     <span class="menu-title">Asignaciones</span> 
-      <span class="menu-suffix">
-    <span class="badge danger">!</span></span>
-   
-              </a>
-      </li>         
-  <li class="menu-item" id="manual">
-                  <a href="#">
-                    <span class="menu-icon">
-                     
-                       <i class="ri-book-2-fill"></i>
-                    </span>
-         <span class="menu-title">Manual de trabajo</span>
-                  </a>
-                </li>   
-                
-         <li class="menu-header" style="padding-top: 20px"><span> APOYO DIDÁCTICO</span></li>              
-                
-      <li class="menu-item" id="service">
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-customer-service-2-fill"></i>
-                    </span>
-                    <span class="menu-title">Asesorías</span>
-                  </a>
-                </li>     
-                
-      
-      <li class="menu-item sub-menu" id="apps" onclick="event.preventDefault();">
-                  <a href="#" class="sub-men" > 
-                    <span class="menu-icon">
-                      <i class="ri-layout-2-fill"></i>
-                    </span>
-                    <span class="menu-title">Recursos</span>
-                  </a>
-                  <div class="sub-menu-list">
-                    <ul>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-icon">
-                      <i class="ri-timer-flash-fill"></i>
-                    </span>
-                          <span class="menu-title">Metrónomo</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-icon">
-                      <i class="ri-music-2-fill"></i>
-                    </span>
-                          <span class="menu-title">Solfeo</span>
-                        </a>
-                      </li>
-                        <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-icon">
-                      <i class="ri-file-music-fill"></i>
-                    </span>
-                          <span class="menu-title">Acordes</span>
-                        </a>
-                      </li>
-        <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-icon">
-                      <i class="ri-donut-chart-fill"></i>
-                    </span>
-                          <span class="menu-title">Circulo de quintas</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                 </li>    
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
 
-                 <li class="menu-header" style="padding-top: 20px"><span> LINEAMIENTOS </span></li>  
-        <li class="menu-item" id="regulation">
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-git-repository-fill"></i>
-                    </span>
-                    <span class="menu-title">Reglamento</span>
-                  </a>
-                </li>
-
-                 <li class="menu-item" id="events">
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-newspaper-fill"></i>
-                    </span>
-                    <span class="menu-title">Eventos</span>
-                  </a>
-                </li>   
-                
-     <li class="menu-item" id="structure">
-                  <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-bank-fill"></i>
-                    </span>
-                    <span class="menu-title">Estructura</span>
-                  </a>
-                </li>
-                
+.list .card h3{
+  font-weight: 600;
+  font-size: 1.7rem;
   
-                
-              </ul>
-            </nav>
-          </div>
-          <div class="sidebar-footer">
-            <div class="footer-box">
-              <div>
-                <img
-                  class="react-logo"
-                  src="https://i.ibb.co/RNPp9dP/wepik-20230829144554c-Uoc.png"
-                  alt="react"
-                />
-              </div>
-              <div style="padding: 0 10px">
-                <span style="display: block; margin-bottom: 10px"
-                  >Taller de Piano
-                </span>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-      <div id="overlay" class="overlay"></div>
-      <div class="layout">
-        <main class="content">
-          
-            <a id="btn-toggle" href="#" class="sidebar-toggler break-point-sm">
-              <i class="ri-menu-line ri-xl"></i>
-            </a>
-                      
-          
-<div class="contents profil" id="profile-content">
-  <div >
-    <style>
-.dashboard-container {
+}
+
+.card img{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  max-height: 120px;
+}
+
+.card-1{
+  background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-2{
+   background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-3{
+   background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
+
+
+ .iframe-container {
+   overflow: hidden;
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            height:  88vh;
+        }
+
+        /* Estilo para hacer el iframe responsivo */
+        .iframe-container iframe {
+          position: absolute;
+          top: 0;
+        left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+  .dashboard-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
@@ -1232,7 +432,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
 .profile-user-data {padding: 10px 0;}
 .profile-user-data > * {float: left;}
 .profile-user-data img { margin-right: 10px; max-width: 100px;}
-.profile-user-data .main-data {padding: 30px 0 20px; width: calc(100% - 115px);}
+.profile-user-data .main-data {padding: 10px 0 20px; margin-bottom: 15px; width: calc(100% - 115px);}
 .profile-user-data .main-data h4 {margin: 0; font-size: 20px; font-weight: }
 .profile-user-data .main-data span {font-size: 12px;}
 
@@ -1328,106 +528,301 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
 
 
 .bar-column {
-	position: absolute;
-  width: 50%;
-  margin-left: 2%;
+  
+  position: absolute;
+  width: 60%;
+  margin-top: 15px;
   margin-right: 2%;
-
 }
 
 .bar {
-	height: 8px;
-	width: 100%;
-	border-radius: 4px;
-	background-color: #484B53;
-	position: absolute;
+  height: 8px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #484B53;
+  position: absolute;
 }
 
 .fill {
-	height: 8px;
-	border-radius: 4px;
-	background-color: #FF8095;
-	box-shadow: 0px 0px 30px #FF2AA6;
-	position: absolute;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #FF8095;
+  box-shadow: 0px 0px 30px #FF2AA6;
+  position: absolute;
 }
 
 .fill-u {
-	width: 50%;
-	animation-name: filling-u;
-	animation-duration: 1s;
-	animation-timing-function: ease-out;
-	animation-iteration-count: initial;
+  width: 50%;
+  animation-name: filling-u;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: initial;
+}
+
+@media screen and (max-width: 768px) {
+  
 }
 
 @keyframes filling-u {
-	0% {
-		box-shadow: 0px 0px 0px #FF2AA6;
-		width: 0px;
-	}
-	100% {
-		box-shadow: 0px 0px 30px #FF2AA6;
-		width: 50%;
-	}
+  0% {
+    box-shadow: 0px 0px 0px #FF2AA6;
+    width: 0px;
+  }
+  100% {
+    box-shadow: 0px 0px 30px #FF2AA6;
+    width: 50%;
+  }
 }
+
+
+
+
+
+
+.documents {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-auto-rows: 214px;
+  grid-gap: 12px;
+  height: auto;
+  background-color: #FFF;
+}
+
+.document {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0 0;
+  flex-direction: column;
+}
+.document__img {
+  width: 105px;
+  height: 136px;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/doc-1.png");
+  background-size: cover;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.document__img:hover {
+  transform: translateY(-4px);
+}
+.document__title {
+  margin: 8px 0 2px;
+  color: #777;
+}
+.document__date {
+  font-size: 10px;
+}
+
+
+/*.doc-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 20px;
+  -webkit-column-break-inside: avoid;
+}*/
 
 </style>
 
+<body>
+
+<section class="loginSection"  style="display: none;">
+  <div id="back">
+    <canvas id="canvas" class="canvas-back"></canvas>
+    <div class="backRight">    
+    </div>
+    <div class="backLeft">
+    </div>
+  </div>
+
+  <div id="slideBox">
+    <div class="topLayer">
+      <div class="left">
+        <div class="content">
+          <h2>Recuperar contraseña</h2>
+      
+          <form id="form-signup" method="post" onsubmit="return false;">
+            <div class="form-element form-stack">
+              <label for="recover" class="form-label">Email</label>
+              <input id="recover" type="email" name="recover">
+            </div>
+            <div class="form-element form-stack">
+              <label for="recover2" class="form-label">Confirmar Email</label>
+              <input id="recover2" type="email" name="recover2">
+            </div>
+            <div class="form-element form-submit">
+              <button id="signUp" class="signup" type="submit" name="signup">Enviar correo</button>
+              <button id="goLeft" class="signup off" style="font-size: 13px; margin-top: 10px;">Iniciar sesión</button> 
+            </div>
+          </form>
+            <div style="color: gainsboro; font-weight: 400; font-size: 13px; margin-top: 15px;"> Recibiras un email con los pasos a seguir para que puedas recuperar tu cuenta </div>
+        </div>
+      </div>
+    
+      <div class="right">
+        <div class="content">
+          <h2>Inicio de sesión</h2>
+          <div id="form-login">
+            <div class="form-element form-stack">
+              <label for="email-login" class="form-label">Email</label>
+              <input id="email-login" type="email" name="email-login">
+            </div>
+            
+            
+            <div class="form-element form-stack">
+              <label for="password-login" class="form-label">Password</label>
+              <input id="password-login" type="password" name="password-login">
+            </div>
+      
+            <div class="form-element form-submit">
+              <button id="logIn" class="login" onclick="login(this)" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Cargando...">Iniciar sesión</button>
+              <button id="goRight" class="login off" name="signup" style="font-size: 13px; margin-top: 10px;">Recuperar contraseña</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="mainSection" style="display: none;">
+    
+     
+ <div ng-app="studentsApp">
+
+<ion-nav-bar class="nav-title-slide-ios bar-stable">
+    <ion-nav-back-button icon="caret-back" style="color: black">regresar
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-nav-view animation="slide-right"></ion-nav-view>
+
+    
+  <script id="menu.html" type="text/ng-template">
+    <ion-side-menus >
+
+      <ion-side-menu side="right" expose-aside-when="large">
+        <ion-header-bar class="bar-stable">
+          <h1 class="title">Menu</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ul class="list">
+            <a href="#/menu/tab/record" class="item" ng-class="(activeMenuClr=='record')?'menuSelectedColor':''" ng-click="activeMenuClr = 'record'" menu-toggle="right" ><i class="ri-home-2-fill"></i>&nbsp&nbspInicio</a>
+            <a href="#/menu/lessons" class="item" ng-class="(activeMenuClr=='lessons')?'menuSelectedColor':''" ng-click="activeMenuClr = 'lessons'" menu-toggle="right"><i class="ri-presentation-fill"></i>&nbsp&nbspLecciones</a>
+               <a href="#/menu/tutorship/chat" class="item" ng-class="(activeMenuClr=='chat')?'menuSelectedColor':''" ng-click="activeMenuClr = 'chat'"  menu-toggle="right"><i class="ri-account-pin-box-fill"></i>&nbsp&nbspTutor</a>
+            <a href="#/menu/resources" ng-class="(activeMenuClr=='resources')?'menuSelectedColor':''" ng-click="activeMenuClr = 'resources'" class="item" menu-toggle="right"><i class="ri-dashboard-fill"></i>&nbsp&nbspRecursos</a>
+            
+             <a href="#/menu/about" class="item" ng-class="(activeMenuClr=='about')?'menuSelectedColor':''" ng-click="activeMenuClr = 'about'" menu-toggle="right"><i class="ri-information-2-fill"></i>&nbsp&nbspAcerca de</a>
+          </ul>
+        </ion-content>
+    <ion-footer-bar>
+  <button class="button pull-right"><i class="icon ri-logout-box-r-line"></i>Salir</button>
+</ion-footer-bar>
+      </ion-side-menu>
+
+      <ion-side-menu-content >        
+        <ion-nav-view name="menuContent"></ion-nav-view>
+      </ion-side-menu-content>
+
+    </ion-side-menus>
+  </script>    
+    
+  <script id="tabs.html" type="text/ng-template">
+    <ion-nav-bar class="bar-stable" >
+               
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+        
+
+    <ion-tabs class="tabs-icon-top tabs-stable"  >
+      <ion-tab title="Comunidad" icon="ion-ios-people" href="#/menu/tab/comunity">
+        <ion-nav-view name="comunity-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab  icon="ion-mic-a" href="#/menu/tab/record" >
+        <ion-nav-view name="record-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="Perfil" icon="ion-ios-contact" href="#/menu/tab/profile">
+        <ion-nav-view name="profile-tab"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+
+  </script>
+
+  <script id="comunity.html" type="text/ng-template">
+    <ion-view title="Comunidad">
+      <ion-content >
+       
+      <?!= include('comunity'); ?> 
+    
+      </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="record.html" type="text/ng-template">
+    <ion-view title="Entrega de actividad">
+      <ion-content>
+       
+    <?!= include('record'); ?> 
+    
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    <script id="profile.html" type="text/ng-template">
+    <ion-view title="Perfil">
+      <ion-content >
+       
+       
 
 
-<div class="dashboard-container" ng-controller="Controller1" ng-cloak>
+
+
+<div class="dashboard-container">
   <!-- Profile Data -->
-  <div class="profile-student">
+  <div>
     <div class="row">
       <div class="col-sm-5">
         <div class="profile-user-data clearfix">
-          <img class="img-circle" src="http://placehold.it/100x100" title="Diego Alejandro Rodríguez Montenegro" alt="Diego Alejandro Rodríguez Montenegro">
-          <div class="main-data">
-            <h4>{{ userData.name }}</h4>
-            <span><em>Grado 7</em></span>
-          <br><br>
-				<div class="bar-column">
-					<div class="bar u">
-						<div class="fill fill-u">
-						</div>
-					</div>
-				</div>
-      
+          <img class="img-circle" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" >
+          <div class="main-data" >
+            <h4>{{userData.name}}</h4>
+            <div style="margin-top: 5px">     Nivel 2 - <span>Bloque 2</span> </div>
+               <div class="bar-column">
+          <div class="bar u">
+            <div class="fill fill-u">
+            </div>
           </div>
-          
-          
-          
+        </div>  
+          </div> 
         </div>
+        
         <div class="user-stats clearfix">
-          <div class="pull-left achievement-count"><i class="fa fa-trophy text-orange"></i><span class="acive">12</span>/<span>999</span> piezas</div>
-          <ul class="pull-right currency-count list-inline">
-            <li><i class="fa fa-star-o"></i> <span>99,999.99</span></li>
-            <li><i class="fa fa-dollar"></i> <span>99,999.99</span></li>
+          <div class="pull-left achievement-count"><i class="fa fa-calendar text-orange"></i><span class="acive">1</span>/<span>4</span> asistencias</div> <br><br>
+          <ul class="pull-left currency-count list-unstyled">
+             <li>Próximo pago: <span>Domingo 21 de abril</span></li>
+            <li>Reposiciones: <span>1/2 </span></li>   
+      <br>     <li> Horario de clase: 
+              <ul >
+                 <li>Miércoles de 4:00 a 5:00 PM</li>   
+                <li>Jueves de 4:00 a 5:00 PM</li>   
+              </ul>
+            </li>
           </ul>
         </div>
-        <div class="user-achievements">
-          <h3 class="text-orange text-center"><i class="fa fa-trophy"></i> Últimos logros obtenidos</h3>
-          <ul class="list-inline">
-            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
-            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
-            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
-            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
-            <li><a href="javascript:void(0)" data-toggle="popover" data-trigger="focus" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" data-container="body" data-placement="right"><i class="fa fa-thumbs-o-up"></i></a></li>
-            <li><a class="see-more" href="javascript:void(0)"><span>+6</span> <small>Ver todos</small></a></li>
-          </ul>
-        </div>
+       
         <div class="dashboard-panel registry-log-panel">
           <div class="panel-header">
             <h4><i class="fa fa-fw fa-clock-o"></i> Registro de actividad</h4>
-            <div class="dropdown">
-                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="javascript:void(0)">Editar</a></li>
-                  <li><a href="javascript:void(0)">Eliminar</a></li>
-                </ul>
-              </div>
+          
           </div>
           <div class="panel-body log-list-container">
-            <ul class="list-unstyled log-list">
+          
+             <ul class="list-unstyled log-list">
               <li>
                 <span>Nam euismod dignissim odio</span>
                 <small>2018/01/21</small>
@@ -1453,342 +848,382 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
                 <small>2018/01/21</small>
               </li>
             </ul>
+            
           </div>
         </div>
       </div>
       <div class="col-sm-7">
         <div class="dashboard-panel achievement-list-panel">
           <div class="panel-header">
-            <h4><i class="fa fa-fw fa-trophy"></i> Logros</h4>
-            <div class="dropdown">
-                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="javascript:void(0)">Editar</a></li>
-                  <li><a href="javascript:void(0)">Eliminar</a></li>
-                </ul>
-              </div>
+          <h4><i class="fa fa-fw fa-book"></i> Manuales</h4>
           </div>
           <div class="panel-body">
-            <ul class="list-unstyled">
-              <li>
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
-                </div>
-              </li>
-              <li class="completed">
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star"></i></a>
-                </div>
-              </li>
-              <li>
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
-                </div>
-              </li>
-              <li>
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
-                </div>
-              </li>
-              <li class="completed">
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star"></i></a>
-                </div>
-              </li>
-              <li>
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
-                </div>
-              </li>
-              <li>
-                <div class="achievement-icon"><i class="fa fa-thumbs-up"></i></div>
-                <div class="achievement-content">
-                  <strong>Nombre del Logro</strong>
-                  <p>Etiam sapien libero, tincidunt ac ultricies vitae, pellentesque nec neque. Nam euismod dignissim odio</p>
-                </div>
-                <div class="achievement-actions">
-                  <a href="javascript:void(0)">+120 <i class="fa fa-fw fa-star-o"></i></a>
-                </div>
-              </li>
-            </ul>
+            <div class="documents">
+            <div class="document">
+              <div class="document__img"></div>
+              <div class="document__title">tesla-patents</div>
+              <div class="document__date">07/16/2018</div>
+            </div>
+            <div class="document">
+              <div class="document__img"></div>
+              <div class="document__title">yearly-budget</div>
+              <div class="document__date">09/04/2018</div>
+            </div>
+            <div class="document">
+              <div class="document__img"></div>
+              <div class="document__title">top-movies</div>
+              <div class="document__date">10/10/2018</div>
+            </div>
+            <div class="document" style="display: none;">
+              <div class="document__img"></div>
+              <div class="document__title">trip-itinerary</div>
+              <div class="document__date">11/01/2018</div>
+              </div>     
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="store-header">
-    <h2 class="text-orange"><i class="fa fa-shopping-basket"></i> Tienda</h2>
-  </div>
-  
-  <!-- Store Catalog -->
-  <div>
-     <div class="row">
-      <div class="col-sm-6">
-        <div class="dashboard-panel store-list-panel">
-          <div class="panel-header">
-            <h4><i class="fa fa-fw fa-star-o"></i> Premios para ti</h4>
-            <div class="dropdown">
-                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="javascript:void(0)">Editar</a></li>
-                  <li><a href="javascript:void(0)">Eliminar</a></li>
-                </ul>
-              </div>
-          </div>
-          <div class="panel-body">
-            <ul class="list-unstyled">
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-               <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-star-o"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="dashboard-panel store-list-panel">
-          <div class="panel-header">
-            <h4><i class="fa fa-fw fa-dollar"></i> Premios para alguien más</h4>
-            <div class="dropdown">
-                <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="javascript:void(0)">Editar</a></li>
-                  <li><a href="javascript:void(0)">Eliminar</a></li>
-                </ul>
-              </div>
-          </div>
-          <div class="panel-body">
-            <ul class="list-unstyled">
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-dollar"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-dollar"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-dollar"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Nombre del Premio</strong>
-                  <small><i class="fa fa-dollar"></i> 9,000</small>
-                </div>
-                <div class="prize-actions"><a href="javascript:void(0)" class="btn btn-sm btn-default">Comprar</a></div>
-              </li>
-              <li>
-                <div class="prize-thumbnail">
-                  <div style="background-image: url(http://placehold.it/100x100)"></div>
-                </div>
-                <div class="prize-description">
-                  <strong>Cerrar sesion</strong>
-                </div>
-                <div class="prize-actions"><button class="btn btn-sm" onclick="logout()">SALIR</button></div>
-              </li>
             
-           
-            </ul>
+            
+          
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+  
+  
 </div>
+    
+      </ion-content>
+    </ion-view>
+  </script>
+
+ 
 
 
-  </div> 
-</div>    
-          
-<div class="contents" id="assignments-content" >
-  <div style="display: none;">
-    <?php require('./fileupload.php') ?>
-  </div> 
-</div>       
-   
-  <div class="contents" id="manual-content" >
-  <div style="display: none;">
-  <?!= include('workbooks'); ?>
-  </div> 
-</div>   
+  <script id="lessons.html" type="text/ng-template">
+    <ion-view title="Actividades">
 
-<div class="contents" id="service-content" >
-  <div style="display: none;">
-    <?!= include('advising'); ?>
-  </div> 
-</div>      
+      <ion-nav-bar class="bar-calm">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
 
- <div class="contents" id="apps-content" >
-  <div id="apps-content1" style="display: none;">
-      <?!= include('metronome'); ?>
-  </div> 
-  <div id="apps-content2" style="display: none;">
-      <?!= include('solfege'); ?>
-  </div> 
-  <div id="apps-content3" style="display: none;">
-      <?!= include('chords'); ?>
-  </div> 
-  <div id="apps-content4" style="display: none;">
-      <?!= include('5ths circle'); ?>
-  </div> 
-</div>   
-
-
-          
-<div class="contents" id="regulation-content" >
-  <div style="display: none;">
-    <?!= include('regulation'); ?>
-  </div> 
-</div>  
-
-<div class="contents" id="events-content" >
-  <div style="display: none;">
-    <?!= include('events'); ?>
-  </div> 
-</div>  
-          
- <div class="contents" id="structure-content" >
-  <div style="display: none;">
-    <?!= include('structure'); ?>
-  </div> 
-</div>       
-                   
+     <ion-content>
+       
+    <div class="list">
         
-         
-        </main>
-        <div class="overlay"></div>
-      </div>
+             <a class="card card-3" href="#/menu/nivelprincipiante" style="text-decoration: none; ">
+          <h3>Nivel Principiante</h3>
+          </a>
+        
+    
+    <a class="card card-1" href="#/menu/nivelintermedio" style="text-decoration: none; ">
+            <h3>Nivel Intermedio</h3>
+          </a>
+    
+     <a class="card card-2" href="#/menu/nivelavanzado" style="text-decoration: none; ">
+            <h3>Nivel Avanzado</h3>
+          </a>
+
+    </div> 
+
+      </ion-content>
+
+    </ion-view>
+  </script>   
+    
+   
+
+
+    
+    
+    <script id="nivelprincipiante.html" type="text/ng-template">
+     <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+            <div class="iframe-container"><iframe src="https://git.tallerdepiano.app//lessons" frameborder="0" allowfullscreen></iframe></div>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    
+    
+     <script id="nivelintermedio.html" type="text/ng-template">
+     <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+            <div class="iframe-container"><iframe src="https://git.tallerdepiano.app//lessons" frameborder="0" allowfullscreen></iframe></div>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    
+    
+     <script id="nivelavanzado.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+              <div class="iframe-container"><iframe src="https://git.tallerdepiano.app//lessons" frameborder="0" allowfullscreen></iframe></div>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+<script id="tutorship.html" type="text/ng-template">
+   <ion-nav-bar class="bar-stable" >
+               
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+        
+
+    <ion-tabs class="tabs-icon-top tabs-stable"  >
+      <ion-tab title="Calendario" icon="ion-android-calendar" href="#/menu/tutorship/calendar">
+        <ion-nav-view name="calendar-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="Chat" icon="ion-chatboxes" href="#/menu/tutorship/chat" >
+        <ion-nav-view name="chat-tab"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+  </script>
+    
+    
+    <script id="chat.html" type="text/ng-template">
+    <ion-view title="Chat">
+      <ion-content >
+       
+       <?!= include('chat'); ?> 
+    
+      </ion-content>
+    </ion-view>
+  </script>
+    
+    
+    <script id="calendar.html" type="text/ng-template">
+    <ion-view title="Calendario">
+      <ion-content >
+       
+        <?!= include('calendar'); ?> 
+    
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+
+
+    <script id="resources.html" type="text/ng-template">
+    <ion-view title="Apps musicales">
+
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+
+     <ion-content>
+       
+    <div class="list">
+          <div class="item item-divider">
+            Apps de apoyo
+          </div>  
+
+     
+      <a class="item item-avatar" href="#/menu/metronome">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/42/1e/07/421e07cc-b33b-e384-1995-06183618693a/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/460x0w.webp">
+           <h2> Metrónomo</h2>
+     <p> metronome beats </p>
+          </a>
+          
+          <a class="item item-avatar" href="#/menu/repertoire">
+            <img src="https://play-lh.googleusercontent.com/MCS3HJVIDgTZp6oCMmTwYfItUXncCNCXtVDDRV1rT8QdWr7Lqp_kfcRl-ls4l20pmKDl=s96-rw">
+           <h2> Repertorio </h2>
+     <p> Tus piezas terminadas</p>
+          </a>
+     
+      <div class="item item-divider">
+           Apps complementarias
+          </div>  
+     
+     
+      <a class="item item-avatar" href="#/menu/notereader">
+            <img src="">
+           <h2> Lectura de notas </h2>
+     <p> Entrenamiento melódico</p>
+          </a>
+     
+      <a class="item item-avatar" href="#/menu/rhythmreader">
+            <img src="">
+           <h2> Dictado ritmico </h2>
+     <p> Entrenamiento rítmico</p>
+          </a>
+     
+       <a class="item item-avatar" href="#/menu/chords">
+            <img src="">
+           <h2> Chord Master </h2>
+     <p> Entrenamiento armónico</p>
+          </a>
+
+      <a class="item item-avatar" href="#/menu/circlefifths">
+            <img src="">
+           <h2> Circulo de quintas </h2>
+     <p> Entrenamiento armónico</p>
+          </a>
+        
+
+     
+      </ion-content>
+      
+     
+    </ion-view>
+  </script>   
+
+
+    
+     <script id="metronome.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+       <div class="iframe-container"><iframe src="https://embed.metronome.app/" frameborder="0" allowfullscreen></iframe></div>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+   <script id="repertoire.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+        <h2>Repertorio</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+ <script id="notereader.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+        <h2>Lectura de notas</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+ <script id="rhythmreader.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+        <h2>Lectura ritmica</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+   <script id="chords.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+        <h2>Acordes</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+     <script id="circlefifths.html" type="text/ng-template">   
+       <ion-view>
+      <ion-content >
+
+          <ion-back-button></ion-back-button>
+
+        <h2>Circulo de quintas</h2>
+       
+      </ion-content>
+    </ion-view>
+  </script>
+
+
+
+
+
+<script id="about.html" type="text/ng-template">
+ 
+   <ion-view title="Acerca de">
+
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
+        </ion-nav-buttons>      
+    </ion-nav-bar>
+
+
+     <ion-content>
+       
+<h2> About us </h2>
+
+     
+      </ion-content>
+      
+     
+    </ion-view>
+  </script>   
+
+
+
+   
+
+
+
+
+
+  <script id="modal.html" type="text/ng-template">
+    <div class="modal">
+      <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">Modal</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+      </ion-header-bar>
+      
+      <ion-content class="padding">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">To</span>
+            <input type="text">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Message</span>
+            <textarea rows="4"></textarea>
+          </label>
+        </div>
+        <button class="button icon icon-right ion-arrow-right-c button-balanced button-block">Send</button>
+      </ion-content>
     </div>
-</div>
+  </script>  
+  </div>
+
   </section>
 
   <section class="preloader" >
@@ -1797,6 +1232,290 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
   </section> 
 
 </body>
+
+
+
+
+
+
+
+<script>
+  var app = angular.module('studentsApp', ['ionic']);
+app
+.config(function ($stateProvider, $urlRouterProvider) {
+
+  
+  $stateProvider
+    .state('menu', {
+      url: "/menu",
+      abstract: true,
+      templateUrl: "menu.html",
+      controller: 'MenuCtrl'
+    })
+    .state('menu.tabs', {
+      url: "/tab",
+      views: {
+        'menuContent' :{
+          templateUrl: "tabs.html"
+        }
+      }
+    })
+    .state('menu.tabs.comunity', {
+      url: "/comunity",
+      views: {
+        'comunity-tab': {
+          templateUrl: "comunity.html"
+        }
+      }
+    })
+    .state('menu.tabs.record', {
+      url: "/record",
+      views: {
+        'record-tab': {
+          templateUrl: "record.html"
+        }
+      }
+    })
+  .state('menu.tabs.profile', {
+      url: "/profile",
+      views: {
+        'profile-tab': {
+          templateUrl: "profile.html",
+          controller: "Controller1"
+        }
+      }
+    })
+
+
+    .state('menu.lessons', {
+      url: "/lessons",
+      views: {
+        'menuContent': {
+          templateUrl: "lessons.html",
+          controller: 'NewsListController'
+        }
+      }
+    }) 
+
+
+    .state('menu.resources', {
+      url: "/resources",
+      views: {
+        'menuContent': {
+          templateUrl: "resources.html"
+        }
+      }
+    })
+   .state('menu.metronome', {
+      url: "/metronome",
+      views: {
+        'menuContent': {
+          templateUrl: "metronome.html"
+        }
+      }
+    })
+   .state('menu.repertoire', {
+      url: "/repertoire",
+      views: {
+        'menuContent': {
+          templateUrl: "repertoire.html"
+        }
+      }
+    })
+    .state('menu.notereader', {
+      url: "/notereader",
+      views: {
+        'menuContent': {
+          templateUrl: "notereader.html"
+        }
+      }
+    })
+  .state('menu.rhythmreader', {
+      url: "/rhythmreader",
+      views: {
+        'menuContent': {
+          templateUrl: "rhythmreader.html"
+        }
+      }
+    })
+  .state('menu.chords', {
+      url: "/chords",
+      views: {
+        'menuContent': {
+          templateUrl: "chords.html"
+        }
+      }
+    })
+  .state('menu.circlefifths', {
+      url: "/circlefifths",
+      views: {
+        'menuContent': {
+          templateUrl: "circlefifths.html"
+        }
+      }
+    })
+   .state('menu.nivelprincipiante', {
+      url: "/nivelprincipiante",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelprincipiante.html"
+        }
+      }
+    })
+  .state('menu.nivelintermedio', {
+      url: "/nivelintermedio",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelintermedio.html"
+        }
+      }
+    })
+  .state('menu.nivelavanzado', {
+      url: "/nivelavanzado",
+      views: {
+        'menuContent': {
+          templateUrl: "nivelavanzado.html"
+        }
+      }
+    })
+    .state('menu.tutorship', {
+      url: "/tutorship",
+      views: {
+        'menuContent': {
+          templateUrl: "tutorship.html"
+        }
+      }
+    })
+   .state('menu.tutorship.chat', {
+      url: "/chat",
+      views: {
+        'chat-tab': {
+          templateUrl: "chat.html",
+          controller: "Controller2"
+        }
+      }
+    })
+    .state('menu.tutorship.calendar', {
+      url: "/calendar",
+      views: {
+        'calendar-tab': {
+          templateUrl: "calendar.html"
+        }
+      }
+    })
+ 
+    .state('menu.about', {
+      url: "/about",
+      views: {
+        'menuContent': {
+          templateUrl: "about.html"
+        }
+      }
+    })
+
+    ;
+
+  $urlRouterProvider.otherwise("menu/tab/record");
+
+})
+
+          
+
+.controller('MenuCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal) {
+  $scope.toggleRight = function() {
+    $ionicSideMenuDelegate.toggleRight();
+  };
+ })
+
+
+.controller('NewsListController', function ($scope, $location) {
+      
+      $scope.news = [
+ { id: 1, name: 'Nivel Principiante', material: "Material de trabajo preparatorio" },
+   { id: 2, name: 'Nivel Intermedio', material: "material de nivel 1" },
+   { id: 3, name: 'Nivel Avanzado', material: "material de nivel 2" }
+        ];
+      
+      $scope.onSelectNews = function(n) {
+        //$state.go('menu.detail', { NewsId: n.id });
+        $location.url('/menu/detail/' + n.name);
+      }
+      
+    });
+
+    app.factory('SharedState', ["$http", function($http) {
+  var service = {};
+
+  service.getData = function() {
+    var requestData = {
+      action: "getData",
+      email: localStorage.getItem('MStoken'),
+      encryption: "si"
+    };
+
+    var config = {
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      followRedirects: true
+    };
+
+    return $http.post('https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec', requestData, config)
+      .then(function(response) {
+        return response.data;
+      });
+  };
+
+  return service;
+}]);
+
+app.controller('Controller1', ["$scope", "SharedState", function($scope, SharedState) {
+  SharedState.getData()
+    .then(function(userData) {
+      $scope.userData = userData;
+    })
+   
+}]);
+
+app.controller('Controller2', ["$scope", "SharedState", function($scope, SharedState) {
+  SharedState.getData()
+    .then(function(userData) {
+      $scope.userData = userData;
+    })
+   
+}]);
+
+
+  /*.controller('Controller1', ['$http', '$scope', function($http, $scope) {
+  $scope.userData = [];
+
+  var requestData = {
+    action: "getData",
+    email: localStorage.getItem('MStoken'),
+    encryption: "si"
+  };
+
+  var config = {
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    followRedirects: true, 
+  };
+
+  $http.post('https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec', requestData, config)
+    .then(function(response) {
+      $scope.userData = response.data;
+    })
+}]);*/
+
+
+
+    </script>
+
+
+
+
+
 
 
 <script>
@@ -1825,7 +1544,7 @@ $(window).on('load', function() {
       $('.preloader').css({'display':'none'})  
       $('.loginSection').css({'display':'none'})  
       $('.mainSection').fadeIn('slow')
-      loadData(api, storedToken, "si");    
+      //loadData(api, storedToken, "si");    
     } else {
       localStorage.removeItem('MStoken');
       $('.preloader').css({'display':'none'});
@@ -1874,13 +1593,14 @@ $(window).on('load', function() {
         $('.preloader').css({'display':'none'})  
         $('.loginSection').css({'display':'none'})  
         $('.mainSection').fadeIn('slow')
-        loadData(api, email, "no");    
+        //loadData(api, email, "no");    
       } else {
         alert('Información de ingreso inválida');
         $button.button('reset');
       }
     })
 }
+
 
 
 function loadData(api, mail, encryption) {
@@ -1901,15 +1621,11 @@ function loadData(api, mail, encryption) {
     .then(answer => answer.text())
     .then(ans => {
       //var content = JSON.parse(ans);
-      angular.module('studentsApp', [])
-      .controller('Controller1', ['$http', '$scope', function($http, $scope) {
-        $scope.userData = JSON.parse(ans) || {};       
+      app.controller('Controller1', ['$http', '$scope', function($http, $scope) {
+        $scope.userData = JSON.parse(ans) || {};          
       }]);
       angular.bootstrap(document, ['studentsApp']);
       showMain(); 
-      $(function () {
-        $('[data-toggle="popover"]').popover()
-      });
     });
   }
 
@@ -2114,319 +1830,4 @@ view.onResize = function paperOnResize() {
 };
 </script>
 
-<script>
-   function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}const ANIMATION_DURATION = 300;
 
-const SIDEBAR_EL = document.getElementById("sidebar");
-
-const MENU_ITEM = document.querySelectorAll(
-".menu > ul > .menu-item:not(.sub-menu)");
-
-const SUBMENU_ITEMS = document.querySelectorAll(".sub-menu-list > ul > li.menu-item");
-
-const SUB_MENU_ELS = document.querySelectorAll(
-".menu > ul > .menu-item.sub-menu");
-
-const FIRST_SUB_MENUS_BTN = document.querySelectorAll(
-".menu > ul > .menu-item.sub-menu > a");
-
-const INNER_SUB_MENUS_BTN = document.querySelectorAll(
-".menu > ul > .menu-item.sub-menu .menu-item.sub-menu > a");
-
-
-class PopperObject {
-
-  constructor(reference, popperTarget) {_defineProperty(this, "instance", null);_defineProperty(this, "reference", null);_defineProperty(this, "popperTarget", null);
-    this.init(reference, popperTarget);
-  }
-
-  init(reference, popperTarget) {
-    this.reference = reference;
-    this.popperTarget = popperTarget;
-    this.instance = Popper.createPopper(this.reference, this.popperTarget, {
-      placement: "right",
-      strategy: "fixed",
-      resize: true,
-      modifiers: [
-      {
-        name: "computeStyles",
-        options: {
-          adaptive: false } },
-
-
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["left", "right"] } }] });
-
-    document.addEventListener(
-    "click",
-    e => this.clicker(e, this.popperTarget, this.reference),
-    false);
-
-
-    const ro = new ResizeObserver(() => {
-      this.instance.update();
-    });
-
-    ro.observe(this.popperTarget);
-    ro.observe(this.reference);
-  }
-
-  clicker(event, popperTarget, reference) {
-    if (
-    SIDEBAR_EL.classList.contains("collapsed") &&
-    !popperTarget.contains(event.target) &&
-    !reference.contains(event.target))
-    {
-      this.hide();
-    }
-  }
-
-  hide() {
-    this.instance.state.elements.popper.style.visibility = "hidden";
-  }}
-
-
-class Poppers {
-
-
-  constructor() {_defineProperty(this, "subMenuPoppers", []);
-    this.init();
-  }
-
-  init() {
-    SUB_MENU_ELS.forEach(element => {
-      this.subMenuPoppers.push(
-      new PopperObject(element, element.lastElementChild));
-
-      this.closePoppers();
-    });
-  }
-
-  togglePopper(target) {
-    if (window.getComputedStyle(target).visibility === "hidden")
-    target.style.visibility = "visible";else
-    target.style.visibility = "hidden";
-  }
-
-  updatePoppers() {
-    this.subMenuPoppers.forEach(element => {
-      element.instance.state.elements.popper.style.display = "none";
-      element.instance.update();
-    });
-  }
-
-  closePoppers() {
-    this.subMenuPoppers.forEach(element => {
-      element.hide();
-    });
-  }}
-
-const slideUp = (target, duration = ANIMATION_DURATION) => {
-  const { parentElement } = target;
-  parentElement.classList.remove("open");
-  target.style.transitionProperty = "height, margin, padding";
-  target.style.transitionDuration = `${duration}ms`;
-  target.style.boxSizing = "border-box";
-  target.style.height = `${target.offsetHeight}px`;
-  target.offsetHeight;
-  target.style.overflow = "hidden";
-  target.style.height = 0;
-  target.style.paddingTop = 0;
-  target.style.paddingBottom = 0;
-  target.style.marginTop = 0;
-  target.style.marginBottom = 0;
-  window.setTimeout(() => {
-    target.style.display = "none";
-    target.style.removeProperty("height");
-    target.style.removeProperty("padding-top");
-    target.style.removeProperty("padding-bottom");
-    target.style.removeProperty("margin-top");
-    target.style.removeProperty("margin-bottom");
-    target.style.removeProperty("overflow");
-    target.style.removeProperty("transition-duration");
-    target.style.removeProperty("transition-property");
-  }, duration);
-};
-const slideDown = (target, duration = ANIMATION_DURATION) => {
-  const { parentElement } = target;
-  parentElement.classList.add("open");
-  target.style.removeProperty("display");
-  let { display } = window.getComputedStyle(target);
-  if (display === "none") display = "block";
-  target.style.display = display;
-  const height = target.offsetHeight;
-  target.style.overflow = "hidden";
-  target.style.height = 0;
-  target.style.paddingTop = 0;
-  target.style.paddingBottom = 0;
-  target.style.marginTop = 0;
-  target.style.marginBottom = 0;
-  target.offsetHeight;
-  target.style.boxSizing = "border-box";
-  target.style.transitionProperty = "height, margin, padding";
-  target.style.transitionDuration = `${duration}ms`;
-  target.style.height = `${height}px`;
-  target.style.removeProperty("padding-top");
-  target.style.removeProperty("padding-bottom");
-  target.style.removeProperty("margin-top");
-  target.style.removeProperty("margin-bottom");
-  window.setTimeout(() => {
-    target.style.removeProperty("height");
-    target.style.removeProperty("overflow");
-    target.style.removeProperty("transition-duration");
-    target.style.removeProperty("transition-property");
-  }, duration);
-};
-
-const slideToggle = (target, duration = ANIMATION_DURATION) => {
-  if (window.getComputedStyle(target).display === "none")
-  return slideDown(target, duration);
-  return slideUp(target, duration);
-};
-
-const PoppersInstance = new Poppers();
-
-/**
- * wait for the current animation to finish and update poppers position
- */
-const updatePoppersTimeout = () => {
-  setTimeout(() => {
-    PoppersInstance.updatePoppers();
-  }, ANIMATION_DURATION);
-};
-
-/**
- * sidebar collapse handler
- */
-document.getElementById("btn-collapse").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("collapsed");
-  PoppersInstance.closePoppers();
-  if (SIDEBAR_EL.classList.contains("collapsed"))
-  FIRST_SUB_MENUS_BTN.forEach(element => {
-    element.parentElement.classList.remove("open");
-  });
-
-  updatePoppersTimeout();
-});
-
-/**
- * sidebar toggle handler (on break point )
- */
-document.getElementById("btn-toggle").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("toggled");
-  updatePoppersTimeout();
-});
-
-/**
- * toggle sidebar on overlay click
- */
-document.getElementById("overlay").addEventListener("click", () => {
-  SIDEBAR_EL.classList.toggle("toggled");  
-});
-
-const defaultOpenMenus = document.querySelectorAll(".menu-item.sub-menu.open");
-
-defaultOpenMenus.forEach(element => {
-  element.lastElementChild.style.display = "block";
-});
-
-/**
- * handle top level submenu click
- */
-FIRST_SUB_MENUS_BTN.forEach(element => {
-  element.addEventListener("click", () => {
-    if (SIDEBAR_EL.classList.contains("collapsed"))
-    PoppersInstance.togglePopper(element.nextElementSibling);
-    else{      
-      const parentMenu = element.closest(".menu.open-current-submenu");
-      if (parentMenu)
-      parentMenu.
-      querySelectorAll(":scope > ul > .menu-item.sub-menu > a").
-      forEach(
-      (el) =>
-      window.getComputedStyle(el.nextElementSibling).display !==
-      "none" && slideUp(el.nextElementSibling));
-
-      slideToggle(element.nextElementSibling);
-    }
-  });
-});
-
-/**
- * handle inner submenu click
- */
-INNER_SUB_MENUS_BTN.forEach(element => {
-  element.addEventListener("click", () => {
-    slideToggle(element.nextElementSibling);
-  });
-});
-
-
-MENU_ITEM.forEach(element => {
-  element.addEventListener("click", () => {
-    SIDEBAR_EL.classList.toggle("toggled");
-
-  var id = element.getAttribute("id");    
-  var contentDivs = document.querySelectorAll('.contents > div');
-
-    contentDivs.forEach(function(div) {
-      var idc = div.parentElement.getAttribute("id");
-      if (idc === id + '-content') {
-        div.style.display = 'block';
-        div.classList.add('anim');
-        event.preventDefault();
-      } else {
-        div.style.display = 'none';
-        div.classList.remove('anim');
-        
-      }
-    });
-    
-    MENU_ITEM.forEach(item => {
-      item.classList.remove('selected');
-    });
-    SUBMENU_ITEMS.forEach(item => {
-      item.classList.remove('selected');
-    });
-    element.classList.add('selected');
-      
-  })
-});
-
-
-SUBMENU_ITEMS.forEach((subMenuItem) => {
-  subMenuItem.addEventListener("click", () => {
-    SIDEBAR_EL.classList.toggle("toggled");
-     
-
-    // Get the index of the clicked sub-menu item within its parent
-    var clickedIndex = Array.from(subMenuItem.parentNode.children).indexOf(subMenuItem);
-
-    // Extract the content section ID from the clicked sub-menu item's parent ID
-    var parentId = subMenuItem.parentElement.parentElement.parentElement.getAttribute("id");
-    var contentDiv = document.getElementById(`${parentId}-content${clickedIndex + 1}`);
-
-    if (contentDiv) {
-      // Hide all content sections
-      var allContentDivs = document.querySelectorAll('.contents > div');
-      allContentDivs.forEach(div => {
-        div.style.display = 'none';
-      });
-
-      // Display the corresponding content section
-      contentDiv.style.display = 'block'; 
-    }
-    
-    MENU_ITEM.forEach(item => {
-      item.classList.remove('selected');
-    });
-    SUBMENU_ITEMS.forEach(item => {
-      item.classList.remove('selected');
-    });
-    subMenuItem.classList.add('selected');
-  });
-});   
-
-</script>
