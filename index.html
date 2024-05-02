@@ -1,15 +1,16 @@
-<html >
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link href="https://code.ionicframework.com/1.3.3/css/ionic.min.css" rel="stylesheet">
   <script src="https://code.ionicframework.com/1.3.3/js/ionic.bundle.min.js"></script>
-  
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.3/paper-full.min.js">
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 </head>
 
@@ -49,18 +50,6 @@
   }
 }
 
-.iframe-container {
-            position: relative;
-            overflow: hidden;
-            max-width: 100%;
-            height: 500px;
-        }
-
-.iframe-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
 
 
 
@@ -408,223 +397,6 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
         }
 
 
-  .dashboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-.text-orange {color: #ff8300}
-
-/*-- Dashboard panel --*/
-.dashboard-panel {margin: 10px 0 20px; }
-.dashboard-panel .panel-header {position: relative; background: #8a8a8d; color: #FFF; }
-.dashboard-panel .panel-header > * {display: block; }
-.dashboard-panel .panel-header h4 {margin: 0; padding: 12px; font-size: 21px; }
-.dashboard-panel .panel-header h4 i {color: #d8d8d8; }
-.dashboard-panel .panel-header .dropdown {position: absolute; top: 50%; right: 5px; margin: -17px 0 0 0; }
-.dashboard-panel .panel-header .dropdown > a {display: block; border-left: 1px solid #FFF; padding: 8px 15px 6px; color: #FFF; font-size: 18px; line-height: 1; }
-.dashboard-panel .panel-header .dropdown > a:hover,
-.dashboard-panel .panel-header .dropdown > a:focus {background: rgba(255,255,255,0.1); }
-.dashboard-panel .panel-body {margin-top: 10px; max-height: 225px; border: 1px solid #d8d8d8; overflow-y: auto; }
- 
-/*-- Datos del usuario --*/
-.profile-user-data {padding: 10px 0;}
-.profile-user-data > * {float: left;}
-.profile-user-data img { margin-right: 10px; max-width: 100px;}
-.profile-user-data .main-data {padding: 10px 0 20px; margin-bottom: 15px; width: calc(100% - 115px);}
-.profile-user-data .main-data h4 {margin: 0; font-size: 20px; font-weight: }
-.profile-user-data .main-data span {font-size: 12px;}
-
-/*-- Números del usuario --*/
-.user-stats {padding: 20px 5px; border-top: 3px solid #e6e6e6;}
-.user-stats > * {margin: 0;}
-.user-stats .achievement-count {font-size: 20px;}
-.user-stats .achievement-count i {margin-right: 10px;  font-size: 28px;}
-.user-stats .achievement-count span {margin: 0 5px; color: #55565a; opacity: 0.6;}
-.user-stats .achievement-count span.acive {font-size: 28px; opacity: 1;}
-.user-stats .currency-count li {padding: 2px 0 2px 5px;}
-.user-stats .currency-count li span {color: #77777a; font-size: 18px;}
-.user-stats .currency-count li i {
-  width: 34px; height: 34px;
-  padding: 8px 0;
-  background: #ff8300;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 3px #ff8300, inset 0 0 0 5px rgba(255,255,255,0.4);
-  color: #FFF;
-  font-size: 19px;
-  text-align: center;
-  
-}
-
-/*-- Últimos logros obtenidos --*/
-.user-achievements {padding: 15px 20px 10px; background: #eff3f9;}
-.user-achievements h3 {margin: 0 0 20px 0;}
-.user-achievements ul li {width: calc(100% /6 - 5px); padding: 3px; vertical-align: middle;}
-.user-achievements ul li a {display: block; height: 54px; width: 54px; margin: auto; padding: 8px 0; border: 3px solid #77777a; border-radius: 50%; color: #a5a5a5; font-size: 12px; text-align: center;}
-.user-achievements ul li a i {font-size: 31px;}
-.user-achievements ul li a:hover,
-.user-achievements ul li a:focus {background: rgba(0,0,0,0.08)}
-.user-achievements ul li a.see-more {border: none; width: 100%; padding: 10px 0; border-radius: 0; color: #ff6b00; line-height: 0.8}
-.user-achievements ul li a.see-more > * {display: block;}
-.user-achievements ul li a.see-more span {font-size: 28px; margin-bottom: 5px;}
-.user-achievements ul li a.see-more small {display: block; margin-top: 0; font-size: 12px; text-decoration: underline;}
-.user-achievements ul li a.see-more:hover,
-.user-achievements ul li a.see-more:focus {background: rgba(0,0,0,0.05); text-decoration: none;}
-.popover {background: #333; padding: 8px; color: #FFF; font-size: 12px; border-radius: 0}
-.popover > * {background: transparent;}
-.popover .arrow:after {border-right-color: #333 !important;}
-.popover .popover-title,
-.popover .popover-content {padding: 2px;}
-.popover .popover-title {font-size: 12px; font-weight: bold; border: none}
-
-/*-- Registro de actividad --*/
-.log-list-container {margin: 0; }
-.log-list-container ul {position: relative; margin: -15px 0; padding: 0; }
-.log-list-container ul:before {content: ""; display: block; position: absolute; top: 20px; bottom: 20px; left: 8px; width: 4px; background: #a5a5a5; }
-.log-list-container li {display: block; position: relative; padding: 10px 15px 10px 35px; color: #666; font-size: 12px;}
-.log-list-container li > * {display: block; }
-.log-list-container li:before {content: "\f11d"; display: block; position: absolute; top: 50%; left: -5px; width: 30px; height: 30px; margin-top: -15px; padding: 7px 0; background: #a5a5a5; border-radius: 50%; color: #FFF; font: normal normal normal 16px/1 FontAwesome; text-align: center; }
-.log-list-container li small {opacity: 0.7; }
-
-/*-- Logros --*/
-.achievement-list-panel .panel-body {padding: 0 10px; max-height: 570px;}
-.achievement-list-panel .panel-body .list-unstyled li {padding: 10px 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align:center; -ms-flex-align:center; -ms-grid-row-align:center; align-items:center;}
-.achievement-list-panel .panel-body .list-unstyled li:not(:last-child) {border-bottom: 1px dashed #cccccc}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-icon {-webkit-box-flex: 1;-ms-flex: 1 0 70px; flex: 1 0 70px; margin-right: 15px;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-icon i {display: block; height: 70px; width: 70px; padding: 11px 0; border: 3px solid #cccccc; border-radius: 50%; color: #cccccc; font-size: 40px; text-align: center;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-content {color: #55565a;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-content > * {display: block;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-content strong {font-size: 15px;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-content p {margin: 0; font-size: 14px;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-actions {margin-left: 15px;}
-.achievement-list-panel .panel-body .list-unstyled li .achievement-actions a {display: block; color: #55565a; font-size: 18px; white-space: nowrap; }
-.achievement-list-panel .panel-body .list-unstyled li .achievement-actions a i {font-size: 21px !important;}
-
-.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-icon i {position: relative; border-color: #ff9e16; color: #ff9e16}
-.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-icon i:after {content: "\f00c"; display: block; position: absolute; top: 0px; right: 0px; width: 18px; height: 18px; padding: 3px 0; background: #ff9e16; border-radius: 50%; color: #FFF; font: normal normal normal 13px/1 FontAwesome; text-align: center;}
-.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-content strong {color: #ff9e16}
-.achievement-list-panel .panel-body .list-unstyled li.completed .achievement-actions a {font-weight: bold; color: #ff9e16}
-
-
-/*-- Tienda --*/
-.store-header {margin-bottom: 15px; padding: 3px 15px; border-bottom: 5px solid #ff9e16;}
-.store-header i {margin-right: 10px;}
-
-.store-list-panel .panel-body {max-height: 420px;}
-.store-list-panel .panel-body .list-unstyled li {padding: 10px 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align:center; -ms-flex-align:center; -ms-grid-row-align:center; align-items:center;}
-.store-list-panel .panel-body .list-unstyled li > * {}
-.store-list-panel .panel-body .list-unstyled li .prize-thumbnail {-webkit-box-flex: 0;-ms-flex: 0 0 90px; flex: 0 0 90px; margin-right: 15px;}
-.store-list-panel .panel-body .list-unstyled li .prize-thumbnail div {width: 100%; padding-top: 70%; background: center center no-repeat; background-size: cover}
-.store-list-panel .panel-body .list-unstyled li .prize-description {-webkit-box-flex: 1;-ms-flex: 1 0 auto; flex: 1 0 auto; margin-right: 15px;}
-.store-list-panel .panel-body .list-unstyled li .prize-description > * {display: block; width: 100%;}
-.store-list-panel .panel-body .list-unstyled li .prize-description small i {height: 18px; width: 18px; padding: 4px 0; background: rgba(0,0,0,0.7); border-radius: 50%; color: #FFF; text-align: center;}
-.store-list-panel .panel-body .list-unstyled li .prize-actions {padding: 10px 0 10px 20px}
-.store-list-panel .panel-body .list-unstyled li .prize-actions .btn {padding: 7px 18px; border-radius: 0; background: #dddddd; text-transform: uppercase; border: none;}
-.store-list-panel .panel-body .list-unstyled li .prize-actions .btn:hover,
-.store-list-panel .panel-body .list-unstyled li .prize-actions .btn:focus {background: #ff9e16; color: #FFF;}
-
-
-
-
-.bar-column {
-  
-  position: absolute;
-  width: 60%;
-  margin-top: 15px;
-  margin-right: 2%;
-}
-
-.bar {
-  height: 8px;
-  width: 100%;
-  border-radius: 4px;
-  background-color: #484B53;
-  position: absolute;
-}
-
-.fill {
-  height: 8px;
-  border-radius: 4px;
-  background-color: #FF8095;
-  box-shadow: 0px 0px 30px #FF2AA6;
-  position: absolute;
-}
-
-.fill-u {
-  width: 50%;
-  animation-name: filling-u;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: initial;
-}
-
-@media screen and (max-width: 768px) {
-  
-}
-
-@keyframes filling-u {
-  0% {
-    box-shadow: 0px 0px 0px #FF2AA6;
-    width: 0px;
-  }
-  100% {
-    box-shadow: 0px 0px 30px #FF2AA6;
-    width: 50%;
-  }
-}
-
-
-
-
-
-
-.documents {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-  grid-auto-rows: 214px;
-  grid-gap: 12px;
-  height: auto;
-  background-color: #FFF;
-}
-
-.document {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px 0 0;
-  flex-direction: column;
-}
-.document__img {
-  width: 105px;
-  height: 136px;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/doc-1.png");
-  background-size: cover;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.document__img:hover {
-  transform: translateY(-4px);
-}
-.document__title {
-  margin: 8px 0 2px;
-  color: #777;
-}
-.document__date {
-  font-size: 10px;
-}
-
-
-/*.doc-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: #fff;
-  margin-bottom: 20px;
-  -webkit-column-break-inside: avoid;
-}*/
-
 </style>
 
 <body>
@@ -690,7 +462,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
 
   <section class="mainSection" style="display: none;">
     
-     
+      
  <div ng-app="studentsApp">
 
 <ion-nav-bar class="nav-title-slide-ios bar-stable">
@@ -719,7 +491,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
           </ul>
         </ion-content>
     <ion-footer-bar>
-  <button class="button pull-right"><i class="icon ri-logout-box-r-line"></i>Salir</button>
+  <button class="button pull-right" ng-click="logout()"><i class="icon ri-logout-box-r-line"></i>Salir</button>
 </ion-footer-bar>
       </ion-side-menu>
 
@@ -757,7 +529,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
     <ion-view title="Comunidad">
       <ion-content >
        
-      <?!= include('comunity'); ?> 
+      
     
       </ion-content>
     </ion-view>
@@ -767,7 +539,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
     <ion-view title="Entrega de actividad">
       <ion-content>
        
-    <?!= include('record'); ?> 
+    
     
       </ion-content>
     </ion-view>
@@ -777,121 +549,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
     <ion-view title="Perfil">
       <ion-content >
        
-       
-
-
-
-
-<div class="dashboard-container">
-  <!-- Profile Data -->
-  <div>
-    <div class="row">
-      <div class="col-sm-5">
-        <div class="profile-user-data clearfix">
-          <img class="img-circle" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" >
-          <div class="main-data" >
-            <h4>{{userData.name}}</h4>
-            <div style="margin-top: 5px">     Nivel 2 - <span>Bloque 2</span> </div>
-               <div class="bar-column">
-          <div class="bar u">
-            <div class="fill fill-u">
-            </div>
-          </div>
-        </div>  
-          </div> 
-        </div>
         
-        <div class="user-stats clearfix">
-          <div class="pull-left achievement-count"><i class="fa fa-calendar text-orange"></i><span class="acive">1</span>/<span>4</span> asistencias</div> <br><br>
-          <ul class="pull-left currency-count list-unstyled">
-             <li>Próximo pago: <span>Domingo 21 de abril</span></li>
-            <li>Reposiciones: <span>1/2 </span></li>   
-      <br>     <li> Horario de clase: 
-              <ul >
-                 <li>Miércoles de 4:00 a 5:00 PM</li>   
-                <li>Jueves de 4:00 a 5:00 PM</li>   
-              </ul>
-            </li>
-          </ul>
-        </div>
-       
-        <div class="dashboard-panel registry-log-panel">
-          <div class="panel-header">
-            <h4><i class="fa fa-fw fa-clock-o"></i> Registro de actividad</h4>
-          
-          </div>
-          <div class="panel-body log-list-container">
-          
-             <ul class="list-unstyled log-list">
-              <li>
-                <span>Nam euismod dignissim odio</span>
-                <small>2018/01/21</small>
-              </li>
-              <li>
-                <span>Sed aliquam placerat posuere. Sed sed lacinia erat.</span>
-                <small>2018/01/21</small>
-              </li>
-              <li>
-                <span>Phasellus vestibulum varius quam a ultrices.</span>
-                <small>2018/01/21</small>
-              </li>
-              <li>
-                <span>Vivamus luctus felis ex, et aliquam orci malesuada rhoncus.</span>
-                <small>2018/01/21</small>
-              </li>
-              <li>
-                <span>Sed aliquam placerat posuere. Sed sed lacinia erat.</span>
-                <small>2018/01/21</small>
-              </li>
-              <li>
-                <span>Nam euismod dignissim odio</span>
-                <small>2018/01/21</small>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-7">
-        <div class="dashboard-panel achievement-list-panel">
-          <div class="panel-header">
-          <h4><i class="fa fa-fw fa-book"></i> Manuales</h4>
-          </div>
-          <div class="panel-body">
-            <div class="documents">
-            <div class="document">
-              <div class="document__img"></div>
-              <div class="document__title">tesla-patents</div>
-              <div class="document__date">07/16/2018</div>
-            </div>
-            <div class="document">
-              <div class="document__img"></div>
-              <div class="document__title">yearly-budget</div>
-              <div class="document__date">09/04/2018</div>
-            </div>
-            <div class="document">
-              <div class="document__img"></div>
-              <div class="document__title">top-movies</div>
-              <div class="document__date">10/10/2018</div>
-            </div>
-            <div class="document" style="display: none;">
-              <div class="document__img"></div>
-              <div class="document__title">trip-itinerary</div>
-              <div class="document__date">11/01/2018</div>
-              </div>     
-          </div>
-            
-            
-          
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-</div>
     
       </ion-content>
     </ion-view>
@@ -1003,7 +661,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
     <ion-view title="Chat">
       <ion-content >
        
-       <?!= include('chat'); ?> 
+      
     
       </ion-content>
     </ion-view>
@@ -1014,7 +672,7 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
     <ion-view title="Calendario">
       <ion-content >
        
-        <?!= include('calendar'); ?> 
+       
     
       </ion-content>
     </ion-view>
@@ -1234,18 +892,12 @@ button:focus.off.login, button:active.off.login, button:hover.off.login {
 </body>
 
 
-
-
-
-
-
 <script>
   var app = angular.module('studentsApp', ['ionic']);
 app
 .config(function ($stateProvider, $urlRouterProvider) {
 
-  
-  $stateProvider
+   $stateProvider
     .state('menu', {
       url: "/menu",
       abstract: true,
@@ -1280,8 +932,7 @@ app
       url: "/profile",
       views: {
         'profile-tab': {
-          templateUrl: "profile.html",
-          controller: "Controller1"
+          templateUrl: "profile.html"
         }
       }
     })
@@ -1390,8 +1041,7 @@ app
       url: "/chat",
       views: {
         'chat-tab': {
-          templateUrl: "chat.html",
-          controller: "Controller2"
+          templateUrl: "chat.html"
         }
       }
     })
@@ -1415,17 +1065,51 @@ app
 
     ;
 
- 
+  $urlRouterProvider.otherwise("menu/tab/record");
 
 })
 
           
 
-.controller('MenuCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal) {
+.controller('MenuCtrl', ['$http', '$scope', '$ionicSideMenuDelegate', '$ionicModal', function($http, $scope, $ionicSideMenuDelegate, $ionicModal) {
   $scope.toggleRight = function() {
     $ionicSideMenuDelegate.toggleRight();
   };
- })
+
+  $scope.logout = function() {
+    $('.preloader').fadeIn('slow');
+
+    var requestData = {
+      action: "removeToken",
+      token: localStorage.getItem('MStoken')
+    };
+
+    var config = {
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      followRedirects: true
+    };
+
+    $http.post('https://script.google.com/macros/s/AKfycbwRz1ijX8Tlpk7Ydc3jTSWZD0661ZEcwEIW_CrTNxDG0I6bYt1_3CZ7g4lLYTGBf28p/exec', requestData, config)
+      .then(function(response) {
+        if (response.data.status === "success") {
+          localStorage.removeItem('MStoken');
+          $('.preloader').css({ 'display': 'none' });
+          $('.loginSection').fadeIn('slow');
+          $('.mainSection').css({ 'display': 'none' });
+          loadForm();
+        }
+      })
+      .catch(function(error) {
+        console.error('Error during logout:', error);
+        // Ocultar preloader en caso de error
+        $('.preloader').css({ 'display': 'none' });
+      });
+  };
+
+
+ }])
 
 
 .controller('NewsListController', function ($scope, $location) {
@@ -1443,7 +1127,7 @@ app
       
     });
 
-    app.factory('SharedState', ["$http", function($http) {
+  /*  app.factory('SharedState', ["$http", function($http) {
   var service = {};
 
   service.getData = function() {
@@ -1474,19 +1158,23 @@ app.controller('Controller1', ["$scope", "SharedState", function($scope, SharedS
     .then(function(userData) {
       $scope.userData = userData;
     })
-   
+    .catch(function(error) {
+      console.error('Error fetching data:', error);
+    });
 }]);
 
 app.controller('Controller2', ["$scope", "SharedState", function($scope, SharedState) {
   SharedState.getData()
     .then(function(userData) {
-      $scope.userData = userData;
+      $scope.userData2 = userData;
     })
-   
+    .catch(function(error) {
+      console.error('Error fetching data:', error);
+    });
 }]);
 
 
-  /*.controller('Controller1', ['$http', '$scope', function($http, $scope) {
+  .controller('Controller1', ['$http', '$scope', function($http, $scope) {
   $scope.userData = [];
 
   var requestData = {
