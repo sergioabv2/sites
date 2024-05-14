@@ -1,0 +1,51 @@
+
+<html>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-messaging-compat.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <div>Notification data will receive here if the app is open and focused.</div>
+    <div class="message" style="min-height: 80px;"></div>
+    <div>Device Token: </div>
+</div>
+  </body>
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyDL3mXVkWVNHNb5BvG94M1E18_NiOgn4qQ",
+  authDomain: "notifications-3e3bd.firebaseapp.com",
+  projectId: "notifications-3e3bd",
+  storageBucket: "notifications-3e3bd.appspot.com",
+  messagingSenderId: "205309097881",
+  appId: "1:205309097881:web:b314395b0beaaa740a0508",
+  measurementId: "G-7E5QXN171E"
+};
+const app = firebase.initializeApp(firebaseConfig)
+const messaging = firebase.messaging()
+messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgRm9tZjae-4zA2efk-PZFB-LsFNuUSFY8t4QmlcNs" })
+
+messaging.onMessage((payload) => {
+    console.log('Message received ', payload);
+    const messagesElement = document.querySelector('.message')
+    const dataHeaderElement = document.createElement('h5')
+    const dataElement = document.createElement('pre')
+    dataElement.style = "overflow-x: hidden;"
+    dataHeaderElement.textContent = "Message Received:"
+    dataElement.textContent = JSON.stringify(payload, null, 2)
+    messagesElement.appendChild(dataHeaderElement)
+    messagesElement.appendChild(dataElement)
+})
+
+messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgRm9tZjae-4zA2efk-PZFB-LsFNuUSFY8t4QmlcNs" }).then((currentToken) => {
+    console.log(currentToken);
+    document.querySelector('body').append(currentToken)
+    sendTokenToServer(currentToken)
+}).catch((err) => {
+    console.log(err);
+    // if error
+    setTokenSentToServer(false)
+})
+
+  </script>
+</html>
