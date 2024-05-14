@@ -1,0 +1,489 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+
+
+<style>
+  body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.photo {
+  border-radius: 45px;
+  margin-right: 20px;
+  width: 90px;
+  height: 90px;
+}
+.attend{
+    width: 186px;
+ }
+.outside{
+  margin-top: -10px;
+  width: 80px;
+  display: flex;
+}
+.outside button{  
+  margin: 0 2px;
+}
+.inside{
+  margin-top: 15px;
+  width: 80px;
+  display: flex;
+}
+.inside button{  
+  margin: 0 2px;
+  margin-right: -10px;
+}
+.form-control {
+  width: 30%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.name {
+  font-weight: 700;
+}
+.expertise-label {
+  display: block;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.btn-more {
+  margin-top: 10px;
+  width: 100%;
+}
+.label {
+  font-weight: normal;
+}
+.status {
+  position: absolute; 
+  bottom: 60px; 
+  right: 15px;
+}
+
+
+li {
+  list-style: none; 
+}
+
+.inside .fa-download{
+  color: CadetBlue; 
+  position: absolute; 
+  bottom: 85px; 
+  right: 110px; 
+  font-size: 24px;
+  animation: beat-fade 1s infinite ease-in-out;
+}
+
+.fa-check-circle{
+  color: green; 
+  position: absolute; 
+  top: 15px; 
+  right: 15px; 
+  
+  animation: beat-fade 0.5s;
+  transform: scale(2.5); 
+}
+
+.fa-pause-circle-o{
+  color: orange;
+  position: absolute; 
+  top: 15px; 
+  right: 15px; 
+  
+  animation: beat-fade 0.5s;
+  transform: scale(2.5); 
+}
+
+
+
+.loadInfo{
+  z-index: 4;
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+@media only screen and (min-width: 990px) {
+  .col-md-2{
+    margin-top: 130px;
+    margin-left: -20px;
+  }
+  
+  
+}
+
+
+
+@keyframes beat-fade {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(2.4);
+  }
+  
+  50% {
+    opacity: 0.5;
+    transform: scale(4);
+  }
+}
+
+
+
+
+
+
+ .video-container {
+             position: relative;
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto;
+        }
+
+video {
+
+  /*max-width: 600px;
+  min-height: 400px;
+  height: auto;*/
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-color: black;  
+  margin-bottom: 10px;
+}
+
+div {
+  flex-basis: 100%;
+}
+
+button { margin: 0 .5rem }
+</style>
+
+
+<div class="video-container">
+<video id="video" autoplay muted></video>
+</div>
+
+<div>
+<button onClick="recordStream()">Record camera</button>
+<button onClick="recordScreenAndAudio()">Record Screen and audio</button>
+<button onClick="stopRecording()">Stop!</button>
+</div>
+
+
+  <div id="students" ng-app="studentsApp" ng-controller="studentsCtrl">
+<div id="users">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+    <input ng-model="query" class="search form-control" placeholder="Buscar" type="text" id="query" />   
+        <br>
+  <div ng-model="orderList">
+    <button class="btn btn-warning" ng-click="filterByColor('orange')">
+    Recibidos
+  </button>
+     <button class="btn btn-primary" ng-click="filterByColor('green')" >
+    Todos
+  </button>
+  
+    
+    </div>
+        
+      </div>
+    </div>
+<br>     
+        
+    <li ng-repeat="student in filteredStudents | filter: { name: query } | orderBy: orderList" id="active" ng-click="$event.preventDefault();$event.stopPropagation()"> 
+   
+        <div class="list-group list">
+          <a href="#" class="list-group-item" ng-style="{'background-color': loadingInfo.loading && loadingInfo.index === $index ? loadingInfo.loadingColor : 'inherit'}">
+            
+      <div class="loadInfo" ng-show="loadingInfo.loading && loadingInfo.index === $index">
+        <i class="fa fa-cog fa-spin" style="font-size: 27px;"></i>
+        Cargando...
+      </div>
+            
+            <i ng-show="student.iconExtend" class="fa fa-pause-circle-o"></i>    
+          <i ng-show="student.iconEvaluate" class="fa fa-check-circle"></i>  
+            
+        <div class="col-md-10">  
+              <h4 class="list-group-item-heading name">{{student.name}}</h4>     
+     <h5 class="list-group-item-text title" style="font-size: 15px;">Nivel Preparatorio</h5>  
+   <span class="label label-default expertise lessonTag" ng-click="abrirNuevaPestana('https://www.facebook.com');$event.preventDefault();$event.stopPropagation()">
+  3. Lección: Intervalos de 2da y 3era
+</span> <br>          
+   <span class="label label-default expertise lessonTag" ng-click="abrirNuevaPestana('https://www.facebook.com');$event.preventDefault();$event.stopPropagation()">
+  3. Pieza: Mountain Climbing
+</span>
+   <div style="font-weight: 600; margin-top:5px;">  Fecha de entrega: <br>
+        <span style="font-weight: 400;"> {{student.schedule}} </span></div>         
+            </div>    
+            
+           <div class="col-md-2">             
+          
+             
+              <div class="inside" >
+         <button type="button" class="btn btn-success" ng-click="toggleEvaluate(student);$event.preventDefault();$event.stopPropagation()" style="position: absolute; bottom: 55px; right: 5px;">Evaluar &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" ></i></button>
+                <button type="button" class="btn btn-warning" ng-click="toggleExtension(student);$event.preventDefault();$event.stopPropagation()" style="position: absolute; bottom: 15px; right: 5px;">Prorroga &nbsp; <i class="fa fa-chevron-circle-right" aria-hidden="true" ></i></button>  
+           </div>    
+             
+            </div>         
+            <div class="clearfix"></div>
+          </a>
+          
+        </div>
+  
+    </li>
+  
+  </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var studentsApp = angular.module('studentsApp', []);
+
+
+studentsApp.controller('studentsCtrl', ['$http', '$scope', function($http, $scope) {
+  $scope.students = [];
+  $scope.orderList = 'name';
+
+  $http({
+    method: 'GET',
+    url: 'https://script.google.com/macros/s/AKfycbxOqxZIRpmYVUHlOqM3it1ofWAE9CqmlCsi47agePqX901UNIei-qKTWJLaobRsX75tfw/exec',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then(function(response) {
+    $scope.students = response.data;
+     $scope.filterByColor('orange');
+  });
+  
+ 
+  $scope.myFunc = function(student) {
+    alert(student.name);
+  }
+  
+  $scope.toggleEvaluate = function(student) {
+    student.iconEvaluate = !student.iconEvaluate;
+    student.iconExtend = null;
+  };
+  
+  $scope.toggleExtension = function(student) {
+    student.iconExtend = !student.iconExtend;
+    student.iconEvaluate = null;
+  };
+  
+  
+  
+  $scope.abrirNuevaPestana = function(URL) {
+    window.open(URL, '_blank');
+  };
+  
+  
+  $scope.loadingInfo = {
+  index: null,
+  loadingColor: null,
+  loading: false
+};
+
+$scope.showLoading = function(index) {
+  $scope.loadingInfo.index = index;
+  $scope.loadingInfo.loading = true;
+  // Cambiar el color a silver
+  $scope.loadingInfo.loadingColor = 'silver';
+};
+
+$scope.hideLoading = function() {
+  $scope.loadingInfo.index = null;
+  $scope.loadingInfo.loading = false;
+  $scope.loadingInfo.loadingColor = null;
+};
+
+$scope.loadScreen = function(index) {
+  if ($scope.loadingInfo.index === index) {
+    $scope.hideLoading();
+  } else {
+    $scope.showLoading(index);
+  }
+};
+  
+  
+   $scope.toggleBackground = function(student) {
+    // Cambia el estado del fondo según el estado actual
+    student.backgroundActive = !student.backgroundActive;
+
+    // Actualiza el color predeterminado a rojo después de presionar el botón
+    if (student.backgroundActive) {
+      student.backgroundDefaultColor = 'red';
+    } else {
+      student.backgroundDefaultColor = student.color;
+    }
+  };
+  
+ $scope.setOrder = function(color) {
+    $scope.orderList = color;
+    $scope.students = $scope.students.filter(function(student) {
+      if ($scope.orderList === 'green' && student.color === 'green') {
+        return true;
+      } else if ($scope.orderList === 'orange' && student.color === 'orange') {
+        return true;
+      } else if ($scope.orderList === 'red' && student.color === 'red') {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+
+   $scope.filteredStudents = [];
+
+  $scope.filterByColor = function(color) {
+    $scope.filteredStudents = $scope.students.filter(function(student) {
+      return student.color === color;
+    });
+  };
+  
+  
+   
+  
+}]);
+
+
+
+
+
+
+const video = document.getElementById('video')
+
+async function captureMediaDevices(mediaConstraints = {
+    video: {
+      width: 1280,
+      height: 720
+    },
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true,
+      sampleRate: 44100
+    }
+  }) {
+  const stream = await navigator.mediaDevices.getUserMedia(mediaConstraints)
+  
+  video.src = null
+  video.srcObject = stream
+  video.muted = true
+  
+  return stream
+}
+
+async function captureScreen(mediaConstraints = {
+    video: {
+      cursor: 'always',
+      resizeMode: 'crop-and-scale'
+    }
+  }) {
+  const screenStream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints)
+  
+  return screenStream
+}
+
+let recorder = null
+
+async function recordStream() {
+  const stream = await captureMediaDevices()
+  
+  video.src = null
+  video.srcObject = stream
+  video.muted = true
+  
+  recorder = new MediaRecorder(stream)
+  
+  let chunks = []
+
+  recorder.ondataavailable = event => {
+    if (event.data.size > 0) {
+      chunks.push(event.data)
+    }
+  }
+  
+  recorder.onstop = () => {
+    const blob = new Blob(chunks, {
+      type: 'video/webm'
+    })
+    
+    chunks = []
+    const blobUrl = URL.createObjectURL(blob)
+    
+    video.srcObject = null
+    video.src = blobUrl
+    video.muted = false
+   }
+  
+  recorder.start(200)
+}
+
+function stopRecording() {
+ recorder.stream.getTracks().forEach(track => track.stop())
+}
+
+async function recordScreenAndAudio() {
+  const screenStream = await captureScreen()
+  const audioStream = await captureMediaDevices({
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true,
+      sampleRate: 44100
+    },
+    video: false
+  })
+  
+  const stream = new MediaStream([...screenStream.getTracks(), ...audioStream.getTracks()])
+  
+  video.src = null
+  video.srcObject = stream
+  video.muted = true
+  
+  recorder = new MediaRecorder(stream)
+  let chunks = []
+
+  recorder.ondataavailable = event => {
+    if (event.data.size > 0) {
+      chunks.push(event.data)
+    }
+  }
+  
+  recorder.onstop = () => {
+    const blob = new Blob(chunks, {
+      type: 'video/webm'
+    })
+    
+    chunks = []
+    const blobUrl = URL.createObjectURL(blob)
+
+    video.srcObject = null
+    video.src = blobUrl
+    video.muted = false
+   }
+  
+  recorder.start(200)
+}
+</script>
