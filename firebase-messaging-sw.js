@@ -20,7 +20,16 @@ messaging.onBackgroundMessage((payload) => {
   console.log("mensaje de fondo recibido")
 
   self.registration.showNotification(notification.titulo, {
-    body: notification.mensaje
+    body: notification.mensaje,
+    icon: notification.icon,
+    image: notification.image
   })
+  self.addEventListener('notificationclick', function (event) {
+            const clickedNotification = event.notification
+            clickedNotification.close();
+            event.waitUntil(
+                clients.openWindow(notification.click_action)
+            )
+        })
    
 })
