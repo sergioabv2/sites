@@ -9,7 +9,6 @@
     <div>Notification data will receive here if the app is open and focused.</div>
     <div class="message" style="min-height: 80px;"></div>
     <div>Device Token: </div>
-      <button onclick="requestPermission()">Notif</button>
 </div>
   </body>
   <script>
@@ -22,9 +21,8 @@
   appId: "1:205309097881:web:b314395b0beaaa740a0508",
   measurementId: "G-7E5QXN171E"
 };
-const app = firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging()
-messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgRm9tZjae-4zA2efk-PZFB-LsFNuUSFY8t4QmlcNs" })
 
 messaging.onMessage((payload) => {
     console.log('Message received ', payload);
@@ -45,10 +43,10 @@ messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgR
 }).catch((err) => {
     console.log(err);
     // if error
-    setTokenSentToServer(false)
+    //setTokenSentToServer(false)
 })
 
-    function requestPermission(){
+    /*function requestPermission(){
       Notification.requestPermission().then((permission) => {
         if(permission === 'granted'){
           messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgRm9tZjae-4zA2efk-PZFB-LsFNuUSFY8t4QmlcNs" }).then((currentToken) => {
@@ -57,7 +55,7 @@ messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgR
           })
         }
       })
-    }
+    }*/
 
   </script>
 
