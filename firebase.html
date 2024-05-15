@@ -9,6 +9,7 @@
     <div>Notification data will receive here if the app is open and focused.</div>
     <div class="message" style="min-height: 80px;"></div>
     <div>Device Token: </div>
+      <button onclick="requestPermission()">Notif</button>
 </div>
   </body>
   <script>
@@ -46,6 +47,17 @@ messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgR
     // if error
     setTokenSentToServer(false)
 })
+
+    function requestPermission(){
+      Notification.requestPermission().then((permission) => {
+        if(permission === 'granted'){
+          messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgRm9tZjae-4zA2efk-PZFB-LsFNuUSFY8t4QmlcNs" }).then((currentToken) => {
+          console.log(currentToken);
+          document.querySelector('body').append(currentToken)
+          })
+        }
+      })
+    }
 
   </script>
 
