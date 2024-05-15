@@ -48,4 +48,21 @@ messaging.getToken({ vapidKey: "BBHEjEwHxHIiDIXaXmuecTbN3q-R8MO1_NxQBL3GG6ttzLgR
 })
 
   </script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then(function(registration) {
+          console.log('Service Worker registered:', registration);
+        })
+        .catch(function(error) {
+          console.error('Service Worker registration failed:', error);
+        });
+    });
+  }
+</script>
+
+  
 </html>
