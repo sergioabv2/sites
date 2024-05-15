@@ -13,3 +13,23 @@ const firebaseConfig = {
 };
 const app = firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging()
+
+
+messaging.onBackgroundMessage(function (payload) {
+    if (!payload.hasOwnProperty('notification')) {
+        const notificationTitle = payload.data.title
+        const notificationOptions = {
+            body: payload.data.body,
+            icon: payload.data.icon,
+            image: payload.data.image
+        }
+        self.registration.showNotification(notificationTitle, notificationOptions);
+        self.addEventListener('notificationclick', function (event) {
+            const clickedNotification = event.notification
+            clickedNotification.close();
+            event.waitUntil(
+                clients.openWindow(payload.data.click_action)
+            )
+        })
+    }
+})
