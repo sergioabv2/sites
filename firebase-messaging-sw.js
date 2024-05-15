@@ -20,6 +20,6 @@ messaging.onBackgroundMessage((payload) => {
 
   self.registration.showNotification(notification.titulo, {
     body: notification.mensaje
-  }
+  })
    
 })
