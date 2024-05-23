@@ -1,6 +1,8 @@
+<html>
+<head>
 <link href="https://cdn.jsdelivr.net/npm/marzipano@0.7.2/demos/equirect/style.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marzipano@0.7.2/dist/marzipano.js"></script>
-
+</head>
 
 <style>
 #pano {
@@ -39,3 +41,4 @@ var scene = viewer.createScene({
 // Display scene.
 scene.switchTo();
 </script>
+</html>
