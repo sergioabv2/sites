@@ -1,8 +1,4 @@
  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
-<link rel="icon" href="https://lh3.googleusercontent.com/d/1L1kLwLAt2KksPG2tN4tT1bRle4RqveWo" type="image/x-icon">
-    <title>Mozart Studio | Academia de Piano</title>
-  
     <meta name="google-signin-client_id" content="613538890545-o4p4ft7oji6uhimgh0inqn5l5cgv1gnm.apps.googleusercontent.com">
    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -21,9 +17,15 @@
 </head>
 
 <style>
-  body {
+ body {
   background-color: #fff;
   font-family: 'Karla', sans-serif; }
+
+
+h1 {
+    letter-spacing: -1px;
+}
+
 
 .intro-section {
   background-image: url(https://lh3.googleusercontent.com/d/1XBWyFeO4wVvB8jgYlGjywplnTQjiJJnw);
@@ -32,6 +34,7 @@
   background-position: center;
   padding: 75px 95px;
   min-height: 100vh;
+  height: 100vh;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -54,9 +57,9 @@
 .brand-wrapper .logo {
   height: 35px; }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
   .brand-wrapper {
-    margin-bottom: 35px; } }
+    margin-top: -35px; } }
 
 .intro-content-wrapper {
   width: 410px;
@@ -197,10 +200,6 @@
 
 
 
-h1 {
-    letter-spacing: -1px;
-}
-
 
 
 .flex-flex {
@@ -248,66 +247,7 @@ h1 {
   justify-content: center;
 }
 
-.formbg {
-    margin: 0px auto;
-    width: 100%;
-    max-width: 448px;
-    background: white;
-    border-radius: 4px;
-    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
-}
-span {
-    display: block;
-    font-size: 20px;
-    line-height: 28px;
-    color: #1a1f36;
-}
-label {
-    margin-bottom: 10px;
-}
-.reset-pass a,label {
-    font-size: 14px;
-    font-weight: 600;
-    display: block;
-}
-.reset-pass > a {
-    text-align: right;
-    margin-top: 10px;
-}
 
-
-.field input {
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 16px;
-    width: 100%;
-    min-height: 44px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-}
-
-input[type="submit"] {
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
-                rgb(84, 105, 212) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
 
 
 .footer-link span {
@@ -320,12 +260,101 @@ input[type="submit"] {
     margin: 0 10px;
 }
 
+
+
+
+ .login-container {
+            text-align: center;
+            max-width: 400px;
+   height: 60vh; 
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+   
+        }
+
+        .login-btn, .back-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+     
+       .login-btn-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 215px;
+    height: 40px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #3c4043;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.login-btn-email:hover {
+    background-color: #f7f8f8;
+}
+
+.login-btn-email:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(66, 133, 244, 0.3);
+}
+      
+
+        .signup-link {
+
+           margin-top: 10px;
+
+        }
+
+        .signup-link a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        #maillogin, #signupform {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #login-options {
+            display: block;
+        }
+
+        .back-btn {
+            background-color: #f2f2f2;
+            color: #555;
+        }
+
+        .back-btn:hover {
+            background-color: #e0e0e0;
+        }
 </style>
+
+
 
 <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 col-md-7 intro-section">
-          <div class="brand-wrapper">
+          <div class="brand-wrapper" style="color: white;">
             <h1>Mozart Studio</h1>
           </div>
           <div class="intro-content-wrapper">
@@ -349,55 +378,68 @@ input[type="submit"] {
          <div class="col-sm-6 col-md-5 box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9; ">
         <div class="padding-bottom--24 flex-flex flex-justifyContent--center" >
           <h1><a href="https://mozart.studio" >Mozart Studio</a></h1>
-        </div>
+        </div><br>
         <div class="formbg-outer">
           <div class="formbg">
-            <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Inicia sesión</span>
-              <form id="stripe-login">
-                <div class="field padding-bottom--24">
-                  <label for="email">Email</label>
-                  <input type="email" name="email">
-                </div>
-                <div class="field padding-bottom--24">
-                  <div class="grid--50-50">
-                    <label for="password">Password</label>
-                   
-                  </div>
-                  <input type="password" name="password">
-                   <div class="reset-pass">
-                      <a href="#">Forgot your password?</a>
-                    </div>
-                </div>
-                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
+      
+              <div class="login-container d-flex flex-column justify-content-between min-vh-100">
                 
-                </div>
-                <div class="field padding-bottom--24">
-                  <input type="submit" name="submit" value="Continue">
-                </div>
-                <div class="field">
-                   <div id="g_id_onload"
-       data-client_id="613538890545-o4p4ft7oji6uhimgh0inqn5l5cgv1gnm.apps.googleusercontent.com"
-       data-context="signup"
-       data-ux_mode="popup"
-       data-callback="handleCredentialResponse"
-       data-auto_prompt="false">
-   </div>
+       <div id="login-options" >
+    <h4 class="mt-3">Inicia sesión</h4>
+<br><br><br>
+    <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+        <div id="g_id_onload"
+            data-client_id="613538890545-o4p4ft7oji6uhimgh0inqn5l5cgv1gnm.apps.googleusercontent.com"
+            data-context="signup"
+            data-ux_mode="popup"
+            data-callback="handleCredentialResponse"
+            data-auto_prompt="false">
+        </div>
 
-   <div id="sign" class="g_id_signin col-6 col-xm-6 col-md-4 col-sm-5 col-lg-3"
-       data-type="standard"
-       data-shape="rectangular"
-       data-theme="outline"
-       data-text="signin_with"
-       data-size="large"
-       data-logo_alignment="left">
+        <div id="sign" class="g_id_signin "
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="outline"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left">
+        </div>
+
+        <br>
+
+        <button class="login-btn login-btn-email" onclick="showMailLogin()">Acceder con email</button>
     </div>
-                </div>
-              </form>
-            </div>
+
+  
+</div>
+
+
+        <section id="maillogin">
+            <h3>Acceder con email</h3>
+          <br><br>
+            <input type="email" placeholder="Ingresa tu email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" placeholder="Ingresa tu password" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <div class="signup-link mb-4">
+        <p>¿No tienes cuenta? <a href="#" onclick="showSignupForm()">Regístrate</a></p>
+    </div>
+            <button class="login-btn login-btn-email">Iniciar sesión</button>
+            <button class="back-btn" onclick="showLoginOptions()">Atrás</button>
+        </section>
+
+        <section id="signupform">
+            <h3>Sign Up</h3>
+            <input type="text" placeholder="Enter your name" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="email" placeholder="Enter your email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="password" placeholder="Create a password" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button class="signup-btn">Sign up</button>
+            <button class="back-btn" onclick="showLoginOptions()">Back</button>
+        </section>
+                
+    </div>
+      
           </div>
           <div class="footer-link padding-top--24">
-            <span>Don't have an account? <a href="">Sign up</a></span>
+          
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a href="#">@mozart.studio</a></span>
               <span><a href="#">Contacto</a></span>
@@ -414,3 +456,23 @@ input[type="submit"] {
     </div>
 
 
+
+ <script>
+   function showMailLogin() {
+            document.getElementById('login-options').style.display = 'none';
+            document.getElementById('maillogin').style.display = 'block';
+            document.getElementById('signupform').style.display = 'none';
+        }
+
+        function showSignupForm() {
+            document.getElementById('login-options').style.display = 'none';
+            document.getElementById('signupform').style.display = 'block';
+            document.getElementById('maillogin').style.display = 'none';
+        }
+
+        function showLoginOptions() {
+            document.getElementById('maillogin').style.display = 'none';
+            document.getElementById('signupform').style.display = 'none';
+            document.getElementById('login-options').style.display = 'block';
+        }
+ </script>
