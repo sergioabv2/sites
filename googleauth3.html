@@ -492,4 +492,41 @@ h1 {
             document.getElementById('signupform').style.display = 'none';
             document.getElementById('login-options').style.display = 'block';
         }
+
+
+  function showMailLogin() {
+            document.getElementById('login-options').style.display = 'none';
+            document.getElementById('maillogin').style.display = 'block';
+            document.getElementById('signupform').style.display = 'none';
+        }
+
+        function showSignupForm() {
+            document.getElementById('login-options').style.display = 'none';
+            document.getElementById('signupform').style.display = 'block';
+            document.getElementById('maillogin').style.display = 'none';
+        }
+
+        function showLoginOptions() {
+            document.getElementById('maillogin').style.display = 'none';
+            document.getElementById('signupform').style.display = 'none';
+            document.getElementById('login-options').style.display = 'block';
+        }
+
+
+
+
+window.onload = function() {
+    // Capturamos el botón de Google y los otros botones
+    const googleButton = document.getElementById('sign');
+    const emailButton = document.querySelector('.login-btn-email');
+
+    // Esperamos un pequeño tiempo para asegurar que el botón de Google se haya renderizado completamente
+    setTimeout(function() {
+        const googleButtonWidth = googleButton.offsetWidth; // Capturamos el ancho del botón de Google
+
+        // Asignamos el ancho capturado a los otros botones
+        emailButton.style.width = googleButtonWidth + 'px';
+        whatsappButton.style.width = googleButtonWidth + 'px';
+    }, 500); // 500ms debería ser suficiente, pero ajusta según sea necesario
+};
 </script>
