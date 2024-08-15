@@ -1,9 +1,8 @@
  <head>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
 <link rel="icon" href="https://lh3.googleusercontent.com/d/1L1kLwLAt2KksPG2tN4tT1bRle4RqveWo" type="image/x-icon">
     <title>Mozart Studio | Academia de Piano</title>
-  
+   
     <meta name="google-signin-client_id" content="613538890545-o4p4ft7oji6uhimgh0inqn5l5cgv1gnm.apps.googleusercontent.com">
    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -256,6 +255,7 @@ h1 {
 
 
 .footer-link span {
+  margin-top: 90px;
     font-size: 14px;
     text-align: center;
 }
@@ -275,10 +275,18 @@ h1 {
             margin: auto;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+     
    
         }
+
+.logo-img {
+    max-width: 130px; 
+    height: auto; 
+    display: block; 
+  border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
         .login-btn, .back-btn {
             display: block;
@@ -291,12 +299,15 @@ h1 {
             cursor: pointer;
         }
 
+.login-btn-icon{
+  margin-right: 5px; 
+  margin-top: -7px;
+  font-size: 22px;
+  float: left;
+}
      
        .login-btn-email {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 215px;
+    width: 80%;
     height: 40px;
     border: 1px solid #dadce0;
     border-radius: 4px;
@@ -354,8 +365,6 @@ h1 {
         }
 </style>
 
-
-
 <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 col-md-7 intro-section">
@@ -382,15 +391,19 @@ h1 {
         
          <div class="col-sm-6 col-md-5 box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9; ">
         <div class="padding-bottom--24 flex-flex flex-justifyContent--center" >
-          <h1><a href="https://mozart.studio" >Mozart Studio</a></h1>
-        </div><br>
+        
+         
+        </div>
+          
         <div class="formbg-outer">
           <div class="formbg">
       
               <div class="login-container d-flex flex-column justify-content-between min-vh-100">
                 
-       <div id="login-options" >
+       <div id="login-options">
+           <img src="https://lh3.googleusercontent.com/d/1DTAhbXT6HHWM-FzPXy0Xi3u7iMELgYqy"  class="logo-img my-3">
     <h4 class="mt-3">Inicia sesión</h4>
+        
 <br><br><br>
     <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
         <div id="g_id_onload"
@@ -401,18 +414,18 @@ h1 {
             data-auto_prompt="false">
         </div>
 
-        <div id="sign" class="g_id_signin "
+        <div id="sign" class="g_id_signin"
             data-type="standard"
             data-shape="rectangular"
             data-theme="outline"
             data-text="signin_with"
             data-size="large"
-            data-logo_alignment="left">
+            data-logo_alignment="left" style=" width: 80%;">
         </div>
 
-        <br>
-
-        <button class="login-btn login-btn-email" onclick="showMailLogin()">Acceder con email</button>
+     
+ <button class="login-btn login-btn-email" onclick="showMailLogin()"><i class="ri-whatsapp-fill login-btn-icon" style=" color: green;"></i> <span >Acceder con WhatsApp</span></button>
+      <button class="login-btn login-btn-email" onclick="showMailLogin()" style="margin-top: -4px;"><i class="ri-mail-line login-btn-icon" ></i> Acceder con email</button>
     </div>
 
   
@@ -427,7 +440,7 @@ h1 {
             <div class="signup-link mb-4">
         <p>¿No tienes cuenta? <a href="#" onclick="showSignupForm()">Regístrate</a></p>
     </div>
-            <button class="login-btn login-btn-email">Iniciar sesión</button>
+            <button class="login-btn">Iniciar sesión</button>
             <button class="back-btn" onclick="showLoginOptions()">Atrás</button>
         </section>
 
@@ -443,7 +456,7 @@ h1 {
     </div>
       
           </div>
-          <div class="footer-link padding-top--24">
+        <div class="footer-link ">
           
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a href="#">@mozart.studio</a></span>
@@ -461,9 +474,8 @@ h1 {
     </div>
 
 
-
- <script>
-   function showMailLogin() {
+<script>
+  function showMailLogin() {
             document.getElementById('login-options').style.display = 'none';
             document.getElementById('maillogin').style.display = 'block';
             document.getElementById('signupform').style.display = 'none';
@@ -480,4 +492,4 @@ h1 {
             document.getElementById('signupform').style.display = 'none';
             document.getElementById('login-options').style.display = 'block';
         }
- </script>
+</script>
