@@ -521,13 +521,15 @@ function handleCredentialResponse(response) {
     .then(res => {
       var validation = JSON.parse(res);
       if (validation.status == "success") {
-        //localStorage.setItem('MStoken', validation.token);            
-        //var iframe = document.getElementById('profileFrame');
-        //iframe.src = 'https://app.mozart.studio/profile';
-        //$('.preloader').css({'display':'none'})  
+        /*localStorage.setItem('MStoken', validation.token);            
+        var iframe = document.getElementById('profileFrame');
+        iframe.src = 'https://app.mozart.studio/profile';
+        $('.preloader').css({'display':'none'})  
         $('.loginSection').css({'display':'none'})  
-        $('.mainSection').fadeIn('slow')
+        $('.mainSection').fadeIn('slow')*/
+       
         //loadData(api, email, "no");    
+        alert('Usuario encontrado');
       } else {
         alert('Usuario no encontrado');
       }
