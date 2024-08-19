@@ -307,7 +307,7 @@ h1 {
 }
      
        .login-btn-email, .g_id_signin {
-    width: 80%;
+    /*width: 80%;*/
     height: 40px;
     border: 1px solid #dadce0;
     border-radius: 4px;
@@ -587,4 +587,19 @@ function decodeJwtResponse(data) {
     })
   
 }
+
+
+
+ window.addEventListener('load', function() {
+      var googleButton = document.querySelector('.g_id_signin');
+      var otherButtons = document.querySelectorAll('.login-btn-email');
+
+      if (googleButton) {
+        var googleButtonWidth = googleButton.offsetWidth;
+
+        otherButtons.forEach(function(button) {
+          button.style.width = googleButtonWidth + 'px';
+        });
+      }
+    });
 </script>
