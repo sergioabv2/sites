@@ -495,4 +495,50 @@ h1 {
 
 
 
+function handleCredentialResponse(response) {
+  const responsePayload = decodeJwtResponse(response.credential);
+
+    var fullnameL = responsePayload.name
+    var photo_linkL = responsePayload.picture
+    var mail = responsePayload.email
+    
+    var api = "https://script.google.com/macros/s/AKfycbxXD35z5FSf_m_dwBt5qcBwWq2L7IDc7KBrYGfix6hUa4kvJ1TFpjU82NltFXezUroGgQ/exec";
+
+  var validationData = {
+    redirect: "follow",
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      action: "validateGoogleUser",
+      email: mail
+    })
+  };
+
+  fetch(api, validationData)
+    .then(response => response.text())
+    .then(res => {
+      var validation = JSON.parse(res);
+      if (validation.status == "success") {
+        //localStorage.setItem('MStoken', validation.token);            
+        //var iframe = document.getElementById('profileFrame');
+        //iframe.src = 'https://app.mozart.studio/profile';
+        //$('.preloader').css({'display':'none'})  
+        $('.loginSection').css({'display':'none'})  
+        $('.mainSection').fadeIn('slow')
+        //loadData(api, email, "no");    
+      } else {
+        alert('Usuario no encontrado');
+      }
+    })
+  }
+ 
+
+}
+
+function decodeJwtResponse(data) {
+  let tokens = data.split(".");
+  return JSON.parse(atob(tokens[1]))
+}
 </script>
