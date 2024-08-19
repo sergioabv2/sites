@@ -501,7 +501,7 @@ function handleCredentialResponse(response) {
     var fullnameL = responsePayload.name
     var photo_linkL = responsePayload.picture
     var mail = responsePayload.email
- alert(mail)
+ //alert(mail)
     
     var api = "https://script.google.com/macros/s/AKfycbxXD35z5FSf_m_dwBt5qcBwWq2L7IDc7KBrYGfix6hUa4kvJ1TFpjU82NltFXezUroGgQ/exec";
 
@@ -522,12 +522,12 @@ function handleCredentialResponse(response) {
     .then(res => {
       var validation = JSON.parse(res);
       if (validation.status == "success") {
-        localStorage.setItem('MStoken', validation.token);            
+        /*localStorage.setItem('MStoken', validation.token);            
         var iframe = document.getElementById('profileFrame');
         iframe.src = 'https://app.mozart.studio/profile';
         $('.preloader').css({'display':'none'})  
         $('.loginSection').css({'display':'none'})  
-        $('.mainSection').fadeIn('slow')
+        $('.mainSection').fadeIn('slow')*/
        
         //loadData(api, email, "no");    
         alert('Usuario encontrado');
