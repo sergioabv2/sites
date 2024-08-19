@@ -1,7 +1,7 @@
 {
   "name": "Mozart Studio Test",
   "short_name": "Mozart Studio",
-  "start_url": "/",
+  "start_url": "https://git.tallerdepiano.app",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#317EFB",
