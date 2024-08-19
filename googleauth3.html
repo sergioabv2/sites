@@ -522,7 +522,7 @@ function handleCredentialResponse(response) {
     .then(res => {
       var validation = JSON.parse(res);
       if (validation.status == "success") {
-        /*localStorage.setItem('MStoken', validation.token);            
+        localStorage.setItem('MStoken', validation.token);            
         var iframe = document.getElementById('profileFrame');
         iframe.src = 'https://app.mozart.studio/profile';
         $('.preloader').css({'display':'none'})  
