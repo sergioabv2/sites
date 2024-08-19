@@ -318,7 +318,7 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .login-btn-email:hover {
@@ -595,7 +595,7 @@ function decodeJwtResponse(data) {
       var otherButtons = document.querySelectorAll('.login-btn-email');
 
       if (googleButton) {
-        var googleButtonWidth = googleButton.offsetWidth;
+        var googleButtonWidth = googleButton.offsetWidth + 1;
 
         otherButtons.forEach(function(button) {
           button.style.width = googleButtonWidth + 'px';
