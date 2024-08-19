@@ -1,62 +1,84 @@
 
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="manifest" href="/manifest.json">
-  <title>Mozart Studio PWA</title>
-  <style>
-    #installButton {
-     
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      padding: 10px 20px;
-      background-color: #317EFB;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+	<title>Learn Web Coding > Add to home screen on localhost</title>
+	<link rel="manifest" href="manifest.json">
+	<style>
+		.add-to {
+			background-color: #E02D44; 
+			width: 30%;
+		} 
+		.add-to-btn {
+			background-color: #E02D44; 
+			color: white; 
+			border: none; 
+			outline:none; 
+			font-weight: bold; 
+			width: 100%; 
+			height: 50px; 
+		} 
+	</style>
 </head>
 <body>
-  <h1>Bienvenido a Mozart Studio</h1>
-  <button id="installButton">Agregar a la Pantalla de Inicio</button>
+	<div class="container">
+		<h1 class="text-center">Add to home screen feature on localhost</h1>
+		<hr>
+		<center>
+			<div class="add-to">
+				<button class="add-to-btn">Add to home screen</button>
+			</div>
+			<hr>	
+			<img src="icons/149071.png">
+		</center>
+	</div>
+	<div style="position: fixed; bottom: 10px; right: 10px; color: green;">
+	    <strong>
+	        Learn Web Coding
+	    </strong>
+	</div>
+<script type="text/javascript">
+	if ('serviceWorker' in navigator) {
+	  window.addEventListener('load', function() {
+	    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+	      // Registration was successful
+	      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+	    }, function(err) {
+	      // registration failed :(
+	      console.log('ServiceWorker registration failed: ', err);
+	    });
+	  });
+	}
 
-  <script>
-    let deferredPrompt;
+	let deferredPrompt;
+	var div = document.querySelector('.add-to');
+	var button = document.querySelector('.add-to-btn');
+	div.style.display = 'none';
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      // Update UI notify the user they can install the PWA
-      const installButton = document.getElementById('installButton');
-      installButton.style.display = 'block';
+	window.addEventListener('beforeinstallprompt', (e) => {
+	  // Prevent Chrome 67 and earlier from automatically showing the prompt
+	  e.preventDefault();
+	  // Stash the event so it can be triggered later.
+	  deferredPrompt = e;
+	  div.style.display = 'block';
 
-      installButton.addEventListener('click', () => {
-        // Hide the install button
-        installButton.style.display = 'none';
-        // Show the install prompt
-        deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
-        });
-      });
-    });
+	  button.addEventListener('click', (e) => {
+	  // hide our user interface that shows our A2HS button
+	  div.style.display = 'none';
+	  // Show the prompt
+	  deferredPrompt.prompt();
+	  // Wait for the user to respond to the prompt
+	  deferredPrompt.userChoice
+	    .then((choiceResult) => {
+	      if (choiceResult.outcome === 'accepted') {
+	        console.log('User accepted the A2HS prompt');
+	      } else {
+	        console.log('User dismissed the A2HS prompt');
+	      }
+	      deferredPrompt = null;
+	    });
+	});
+	});
 
-    window.addEventListener('appinstalled', () => {
-      // Log install to analytics
-      console.log('PWA was installed');
-    });
-  </script>
+</script>
 </body>
 </html>
