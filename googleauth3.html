@@ -435,12 +435,12 @@ h1 {
         <section id="maillogin">
             <h3>Acceder con email</h3>
           <br><br>
-            <input type="email" placeholder="Ingresa tu email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="email" id="email-login" placeholder="Ingresa tu email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
             <input type="password" placeholder="Ingresa tu password" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
             <div class="signup-link mb-4">
         <p>¿No tienes cuenta? <a href="#" onclick="showSignupForm()">Regístrate</a></p>
     </div>
-            <button class="login-btn">Iniciar sesión</button>
+            <button class="login-btn" onclick="login()">Iniciar sesión</button>
             <button class="back-btn" onclick="showLoginOptions()">Atrás</button>
         </section>
 
@@ -503,7 +503,7 @@ function handleCredentialResponse(response) {
     var mail = responsePayload.email
  alert(mail)
     
-   /* var api = "https://script.google.com/macros/s/AKfycbxXD35z5FSf_m_dwBt5qcBwWq2L7IDc7KBrYGfix6hUa4kvJ1TFpjU82NltFXezUroGgQ/exec";
+    var api = "https://script.google.com/macros/s/AKfycbxXD35z5FSf_m_dwBt5qcBwWq2L7IDc7KBrYGfix6hUa4kvJ1TFpjU82NltFXezUroGgQ/exec";
 
   var validationData = {
     redirect: "follow",
@@ -535,7 +535,7 @@ function handleCredentialResponse(response) {
         alert('Usuario no encontrado');
       }
     })
-  }*/
+  
  
 
 }
@@ -543,5 +543,48 @@ function handleCredentialResponse(response) {
 function decodeJwtResponse(data) {
   let tokens = data.split(".");
   return JSON.parse(atob(tokens[1]))
+}
+
+
+
+ 
+  
+ function login() {
+  var email = document.getElementById('email-login').value;
+
+  var api = "https://script.google.com/macros/s/AKfycbxXD35z5FSf_m_dwBt5qcBwWq2L7IDc7KBrYGfix6hUa4kvJ1TFpjU82NltFXezUroGgQ/exec";
+
+  var validationData = {
+    redirect: "follow",
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      action: "validateGoogleUser",
+      email: email
+    })
+  };
+
+
+  fetch(api, validationData)
+    .then(response => response.text())
+    .then(res => {
+      var validation = JSON.parse(res);
+      if (validation.status == "success") {
+        /*localStorage.setItem('MStoken', validation.token);            
+        var iframe = document.getElementById('profileFrame');
+        iframe.src = 'https://app.mozart.studio/profile';
+        $('.preloader').css({'display':'none'})  
+        $('.loginSection').css({'display':'none'})  
+        $('.mainSection').fadeIn('slow')*/
+       
+        //loadData(api, email, "no");    
+        alert('Usuario encontrado');
+      } else {
+        alert('Usuario no encontrado');
+      }
+    })
+  
 }
 </script>
