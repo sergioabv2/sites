@@ -1,5 +1,5 @@
 {
-  "name": "Mozart Studio Test",
+  "name": "Mozart Studio",
   "short_name": "Mozart Studio",
   "start_url": "/",
   "display": "standalone",
@@ -7,12 +7,12 @@
   "theme_color": "#317EFB",
   "icons": [
     {
-      "src": "/icons/favicon_android-icon-192x192.png",
+      "src": "/icons/192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icons/149071.png",
+      "src": "/icons/512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
